@@ -225,6 +225,7 @@
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Form1";
+            this.Text = "Pytel";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
