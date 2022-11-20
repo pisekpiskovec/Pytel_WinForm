@@ -46,6 +46,8 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ofdFile = new System.Windows.Forms.OpenFileDialog();
+            this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -83,24 +85,28 @@
             this.tssbOpen.Name = "tssbOpen";
             this.tssbOpen.Size = new System.Drawing.Size(32, 22);
             this.tssbOpen.Text = "Open file";
+            this.tssbOpen.ButtonClick += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open file";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // openFolderToolStripMenuItem
             // 
             this.openFolderToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.openFolderToolStripMenuItem.Enabled = false;
             this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openFolderToolStripMenuItem.Text = "Open folder";
             // 
             // tsbQueue
             // 
             this.tsbQueue.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbQueue.Enabled = false;
             this.tsbQueue.Image = global::Pytel_WinForm.Properties.Resources.video_playlist_96px;
             this.tsbQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbQueue.Name = "tsbQueue";
@@ -120,10 +126,12 @@
             this.tsbPrevious.Name = "tsbPrevious";
             this.tsbPrevious.Size = new System.Drawing.Size(23, 22);
             this.tsbPrevious.Text = "Previous";
+            this.tsbPrevious.Click += new System.EventHandler(this.tsbPrevious_Click);
             // 
             // tsb10SecBack
             // 
             this.tsb10SecBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb10SecBack.Enabled = false;
             this.tsb10SecBack.Image = global::Pytel_WinForm.Properties.Resources.rewind_96px;
             this.tsb10SecBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecBack.Name = "tsb10SecBack";
@@ -138,6 +146,7 @@
             this.tsbPlay.Name = "tsbPlay";
             this.tsbPlay.Size = new System.Drawing.Size(23, 22);
             this.tsbPlay.Text = "Play";
+            this.tsbPlay.Click += new System.EventHandler(this.tsbPlay_Click);
             // 
             // tsbPause
             // 
@@ -147,6 +156,7 @@
             this.tsbPause.Name = "tsbPause";
             this.tsbPause.Size = new System.Drawing.Size(23, 22);
             this.tsbPause.Text = "Pause";
+            this.tsbPause.Click += new System.EventHandler(this.tsbPause_Click);
             // 
             // tsbStop
             // 
@@ -156,10 +166,12 @@
             this.tsbStop.Name = "tsbStop";
             this.tsbStop.Size = new System.Drawing.Size(23, 22);
             this.tsbStop.Text = "Stop";
+            this.tsbStop.Click += new System.EventHandler(this.tsbStop_Click);
             // 
             // tsb10SecForward
             // 
             this.tsb10SecForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb10SecForward.Enabled = false;
             this.tsb10SecForward.Image = global::Pytel_WinForm.Properties.Resources.fast_forward_96px;
             this.tsb10SecForward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecForward.Name = "tsb10SecForward";
@@ -174,6 +186,7 @@
             this.tsbNext.Name = "tsbNext";
             this.tsbNext.Size = new System.Drawing.Size(23, 22);
             this.tsbNext.Text = "Next";
+            this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
             // 
             // toolStripSeparator2
             // 
@@ -182,6 +195,7 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Enabled = false;
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(66, 22);
             this.toolStripLabel1.Text = "00:00/00:00";
@@ -190,6 +204,7 @@
             // 
             this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar1.Enabled = false;
             this.trackBar1.Location = new System.Drawing.Point(12, 393);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(385, 45);
@@ -199,6 +214,7 @@
             // trackBar2
             // 
             this.trackBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar2.Enabled = false;
             this.trackBar2.Location = new System.Drawing.Point(403, 393);
             this.trackBar2.Maximum = 100;
             this.trackBar2.Name = "trackBar2";
@@ -257,6 +273,8 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFolderToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.OpenFileDialog ofdFile;
+        private System.Windows.Forms.FolderBrowserDialog fbdFolder;
     }
 }
 
