@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +15,19 @@ namespace Pytel_WinForm
     public partial class Form1 : Form
     {
 
-        MpvPlayer player;
+MpvPlayer player;
 
         public Form1()
         {
+
             InitializeComponent();
-            player = new MpvPlayer(panel1.Handle);
+
+            player = new MpvPlayer(panel1.Handle)
+            {
+                Loop = true,
+                Volume = 50
+            };
+            player.Load(@"http://techslides.com/demos/sample-videos/small.mp4");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -32,36 +38,6 @@ namespace Pytel_WinForm
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
 
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            player.Load();
-        }
-
-        private void tsbPrevious_Click(object sender, EventArgs e)
-        {
-            player.PlaylistPrevious();
-        }
-
-        private void tsbNext_Click(object sender, EventArgs e)
-        {
-            player.PlaylistNext();
-        }
-
-        private void tsbPlay_Click(object sender, EventArgs e)
-        {
-            player.Resume();
-        }
-
-        private void tsbPause_Click(object sender, EventArgs e)
-        {
-            player.Pause();
-        }
-
-        private void tsbStop_Click(object sender, EventArgs e)
-        {
-            player.Stop();
         }
     }
 }
