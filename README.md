@@ -1,2 +1,2 @@
 # Pytel_WinForm
-Simple WinForms audio player.
+Simple WinForms video player.
