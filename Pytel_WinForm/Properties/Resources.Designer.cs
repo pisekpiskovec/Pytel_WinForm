@@ -113,6 +113,16 @@ namespace Pytel_WinForm.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pytel_icon_16 {
+            get {
+                object obj = ResourceManager.GetObject("pytel_icon_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rewind_96px {
             get {
                 object obj = ResourceManager.GetObject("rewind_96px", resourceCulture);
