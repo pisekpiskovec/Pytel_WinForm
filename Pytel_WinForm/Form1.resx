@@ -126,4 +126,27 @@
   <metadata name="fbdFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>210, 17</value>
   </metadata>
+  <metadata name="tDuration.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>314, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAaAMAAAAAAAAAAAAAAAAAAAAA
+        AABTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFL/////////
+        //////////////////////////////////////////////9TEFJTEFL/////////////////////////
+        //////////////////////////////9TEFJTEFL///////////////9TEFJTEFL/////////////////
+        //////////////9TEFJTEFL///////////////9TEFJTEFJTEFL///////////////////////////9T
+        EFJTEFL///////////////9TEFJTEFJTEFJTEFL///////////////////////9TEFJTEFL/////////
+        //////9TEFJTEFJTEFJTEFJTEFL///////////////////9TEFJTEFL///////////////9TEFJTEFJT
+        EFJTEFJTEFJTEFL///////////////9TEFJTEFL///////////////9TEFJTEFJTEFJTEFJTEFJTEFL/
+        //////////////9TEFJTEFL///////////////9TEFJTEFJTEFJTEFJTEFL///////////////////9T
+        EFJTEFL///////////////9TEFJTEFJTEFJTEFL///////////////////////9TEFJTEFL/////////
+        //////9TEFJTEFJTEFL///////////////////////////9TEFJTEFL///////////////9TEFJTEFL/
+        //////////////////////////////9TEFJTEFL/////////////////////////////////////////
+        //////////////9TEFJTEFL///////////////////////////////////////////////////////9T
+        EFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFJTEFIAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
 </root>
