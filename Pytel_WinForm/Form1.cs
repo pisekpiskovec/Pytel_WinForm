@@ -15,7 +15,7 @@ namespace Pytel_WinForm
         
         private void tbPosition_Scroll(object sender, EventArgs e)
         {
-            
+            player.Position = TimeSpan.FromSeconds(tbPosition.Value);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } }
@@ -32,7 +32,7 @@ namespace Pytel_WinForm
 
         private void tDuration_Tick(object sender, EventArgs e)
         {
-            
+            tbPosition.Maximum = (int)player.Duration.TotalSeconds;
         }
     }
 }

@@ -206,7 +206,6 @@
             // 
             this.tbPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPosition.Enabled = false;
             this.tbPosition.LargeChange = 10;
             this.tbPosition.Location = new System.Drawing.Point(12, 393);
             this.tbPosition.Name = "tbPosition";
