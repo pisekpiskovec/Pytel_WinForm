@@ -51,6 +51,8 @@
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.tDuration = new System.Windows.Forms.Timer(this.components);
+            this.tControls = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -83,7 +85,7 @@
             this.tssbOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.openFolderToolStripMenuItem});
-            this.tssbOpen.Image = global::Pytel_WinForm.Properties.Resources.opened_folder_96px;
+            this.tssbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tssbOpen.Image")));
             this.tssbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tssbOpen.Name = "tssbOpen";
             this.tssbOpen.Size = new System.Drawing.Size(32, 22);
@@ -110,7 +112,7 @@
             // 
             this.tsbQueue.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbQueue.Enabled = false;
-            this.tsbQueue.Image = global::Pytel_WinForm.Properties.Resources.video_playlist_96px;
+            this.tsbQueue.Image = ((System.Drawing.Image)(resources.GetObject("tsbQueue.Image")));
             this.tsbQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbQueue.Name = "tsbQueue";
             this.tsbQueue.Size = new System.Drawing.Size(23, 22);
@@ -124,7 +126,7 @@
             // tsbPrevious
             // 
             this.tsbPrevious.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbPrevious.Image = global::Pytel_WinForm.Properties.Resources.skip_to_start_96px;
+            this.tsbPrevious.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevious.Image")));
             this.tsbPrevious.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrevious.Name = "tsbPrevious";
             this.tsbPrevious.Size = new System.Drawing.Size(23, 22);
@@ -135,7 +137,7 @@
             // 
             this.tsb10SecBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsb10SecBack.Enabled = false;
-            this.tsb10SecBack.Image = global::Pytel_WinForm.Properties.Resources.rewind_96px;
+            this.tsb10SecBack.Image = ((System.Drawing.Image)(resources.GetObject("tsb10SecBack.Image")));
             this.tsb10SecBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecBack.Name = "tsb10SecBack";
             this.tsb10SecBack.Size = new System.Drawing.Size(23, 22);
@@ -144,7 +146,7 @@
             // tsbPlay
             // 
             this.tsbPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbPlay.Image = global::Pytel_WinForm.Properties.Resources.play_96px;
+            this.tsbPlay.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlay.Image")));
             this.tsbPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPlay.Name = "tsbPlay";
             this.tsbPlay.Size = new System.Drawing.Size(23, 22);
@@ -154,7 +156,7 @@
             // tsbPause
             // 
             this.tsbPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbPause.Image = global::Pytel_WinForm.Properties.Resources.pause_96px;
+            this.tsbPause.Image = ((System.Drawing.Image)(resources.GetObject("tsbPause.Image")));
             this.tsbPause.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPause.Name = "tsbPause";
             this.tsbPause.Size = new System.Drawing.Size(23, 22);
@@ -164,7 +166,7 @@
             // tsbStop
             // 
             this.tsbStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbStop.Image = global::Pytel_WinForm.Properties.Resources.stop_96px;
+            this.tsbStop.Image = ((System.Drawing.Image)(resources.GetObject("tsbStop.Image")));
             this.tsbStop.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbStop.Name = "tsbStop";
             this.tsbStop.Size = new System.Drawing.Size(23, 22);
@@ -175,7 +177,7 @@
             // 
             this.tsb10SecForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsb10SecForward.Enabled = false;
-            this.tsb10SecForward.Image = global::Pytel_WinForm.Properties.Resources.fast_forward_96px;
+            this.tsb10SecForward.Image = ((System.Drawing.Image)(resources.GetObject("tsb10SecForward.Image")));
             this.tsb10SecForward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecForward.Name = "tsb10SecForward";
             this.tsb10SecForward.Size = new System.Drawing.Size(23, 22);
@@ -184,7 +186,7 @@
             // tsbNext
             // 
             this.tsbNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNext.Image = global::Pytel_WinForm.Properties.Resources.end_96px;
+            this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
             this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNext.Name = "tsbNext";
             this.tsbNext.Size = new System.Drawing.Size(23, 22);
@@ -208,6 +210,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPosition.LargeChange = 10;
             this.tbPosition.Location = new System.Drawing.Point(12, 393);
+            this.tbPosition.Maximum = 1;
             this.tbPosition.Name = "tbPosition";
             this.tbPosition.Size = new System.Drawing.Size(385, 45);
             this.tbPosition.SmallChange = 5;
@@ -240,6 +243,12 @@
             // 
             this.tDuration.Interval = 750;
             this.tDuration.Tick += new System.EventHandler(this.tDuration_Tick);
+            // 
+            // tControls
+            // 
+            this.tControls.Enabled = true;
+            this.tControls.Interval = 1000;
+            this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
             // 
             // Form1
             // 
@@ -286,6 +295,8 @@
         private System.Windows.Forms.OpenFileDialog ofdFile;
         private System.Windows.Forms.FolderBrowserDialog fbdFolder;
         private System.Windows.Forms.Timer tDuration;
+        private System.Windows.Forms.Timer tControls;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
