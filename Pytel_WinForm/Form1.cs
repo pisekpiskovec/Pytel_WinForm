@@ -13,10 +13,7 @@ namespace Pytel_WinForm
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
 
-        private void tbPosition_Scroll(object sender, EventArgs e)
-        {
-            player.Position = TimeSpan.FromSeconds(tbPosition.Value);
-        }
+        private void tbPosition_Scroll(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } }
 
@@ -40,9 +37,6 @@ namespace Pytel_WinForm
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
         }
 
-        private void tControls_Tick(object sender, EventArgs e)
-        {
-            tbPosition.Enabled = player.IsMediaLoaded; 
-        }
+        private void tControls_Tick(object sender, EventArgs e) { tbPosition.Enabled = player.IsMediaLoaded; }
     }
 }
