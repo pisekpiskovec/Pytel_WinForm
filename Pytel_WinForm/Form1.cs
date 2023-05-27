@@ -15,7 +15,7 @@ namespace Pytel_WinForm
 
         private void tbPosition_Scroll(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } else { player.Resume(); } }
 
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
 
