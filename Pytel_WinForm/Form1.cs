@@ -37,6 +37,10 @@ namespace Pytel_WinForm
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
         }
 
-        private void tControls_Tick(object sender, EventArgs e) { tbPosition.Enabled = player.IsMediaLoaded; }
+        private void tControls_Tick(object sender, EventArgs e) 
+        { 
+            tbPosition.Enabled = player.IsMediaLoaded;
+            tbPosition.Value = (int)player.Position.TotalSeconds;
+        }
     }
 }

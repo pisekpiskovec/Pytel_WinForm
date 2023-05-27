@@ -247,7 +247,7 @@
             // tControls
             // 
             this.tControls.Enabled = true;
-            this.tControls.Interval = 1000;
+            this.tControls.Interval = 750;
             this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
             // 
             // Form1
@@ -260,6 +260,7 @@
             this.Controls.Add(this.tbPosition);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
             this.Text = "Pytel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
