@@ -228,6 +228,7 @@
             this.tbVolume.TabIndex = 2;
             this.tbVolume.Value = 100;
             this.tbVolume.Scroll += new System.EventHandler(this.tbVolume_Scroll);
+            this.tbVolume.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tbVolume_MouseUp);
             // 
             // panel1
             // 
