@@ -9,7 +9,7 @@ namespace Pytel_WinForm
     {
         MpvPlayer player;
 
-        public Form1() { InitializeComponent(); player = new MpvPlayer(panel1.Handle); }
+        public Form1() { InitializeComponent(); player = new MpvPlayer(panel1.Handle); player.Volume = 100; }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
 
@@ -40,7 +40,11 @@ namespace Pytel_WinForm
         private void tControls_Tick(object sender, EventArgs e) 
         { 
             tbPosition.Enabled = player.IsMediaLoaded;
+            tbVolume.Enabled = player.IsMediaLoaded;
             tbPosition.Value = (int)player.Position.TotalSeconds;
+            tbVolume.Value = (int)player.Volume;
         }
+
+        private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
     }
 }

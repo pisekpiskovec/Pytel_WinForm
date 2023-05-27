@@ -46,7 +46,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tslDuration = new System.Windows.Forms.ToolStripLabel();
             this.tbPosition = new System.Windows.Forms.TrackBar();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.tbVolume = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
@@ -55,7 +55,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -217,16 +217,17 @@
             this.tbPosition.TabIndex = 1;
             this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Scroll);
             // 
-            // trackBar2
+            // tbVolume
             // 
-            this.trackBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar2.Enabled = false;
-            this.trackBar2.LargeChange = 10;
-            this.trackBar2.Location = new System.Drawing.Point(403, 393);
-            this.trackBar2.Maximum = 100;
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(385, 45);
-            this.trackBar2.TabIndex = 2;
+            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbVolume.LargeChange = 10;
+            this.tbVolume.Location = new System.Drawing.Point(403, 393);
+            this.tbVolume.Maximum = 100;
+            this.tbVolume.Name = "tbVolume";
+            this.tbVolume.Size = new System.Drawing.Size(385, 45);
+            this.tbVolume.TabIndex = 2;
+            this.tbVolume.Value = 100;
+            this.tbVolume.Scroll += new System.EventHandler(this.tbVolume_Scroll);
             // 
             // panel1
             // 
@@ -256,7 +257,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.tbVolume);
             this.Controls.Add(this.tbPosition);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -267,7 +268,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,7 +278,7 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TrackBar tbPosition;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar tbVolume;
         private System.Windows.Forms.ToolStripSplitButton tssbOpen;
         private System.Windows.Forms.ToolStripButton tsbQueue;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
