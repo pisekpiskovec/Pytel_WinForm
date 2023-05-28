@@ -8,23 +8,16 @@ namespace Pytel_WinForm
     public partial class Form1 : Form
     {
         MpvPlayer player;
+        public int saveLocalVolume = 0;
 
         public Form1() { InitializeComponent(); player = new MpvPlayer(panel1.Handle); player.Volume = 100; }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
-
         private void tbPosition_Scroll(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } else { player.Resume(); } }
-
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
-
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
-
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); }
-
         private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); }
-
         private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); }
 
         private void tDuration_Tick(object sender, EventArgs e)
@@ -46,9 +39,6 @@ namespace Pytel_WinForm
         }
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
-
-        public int saveLocalVolume = 0;
-
         private void tbVolume_MouseUp(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } } }
     }
 }
