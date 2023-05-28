@@ -47,7 +47,7 @@ namespace Pytel_WinForm
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
 
-        public int saveLocalVolume = 100;
+        public int saveLocalVolume = 0;
 
         private void tbVolume_MouseUp(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } } }
     }
