@@ -36,9 +36,15 @@ namespace Pytel_WinForm
             tbVolume.Enabled = player.IsMediaLoaded;
             tbPosition.Value = (int)player.Position.TotalSeconds;
             tbVolume.Value = (int)player.Volume;
+            tsb10SecBack.Enabled = player.Position.TotalSeconds >= 10; 
         }
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
         private void tbVolume_MouseUp(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } } }
+
+        private void tsb10SecBack_Click(object sender, EventArgs e)
+        {
+            player.SeekAsync(player.Position.TotalSeconds - 10);
+        }
     }
 }

@@ -136,12 +136,12 @@
             // tsb10SecBack
             // 
             this.tsb10SecBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb10SecBack.Enabled = false;
             this.tsb10SecBack.Image = ((System.Drawing.Image)(resources.GetObject("tsb10SecBack.Image")));
             this.tsb10SecBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecBack.Name = "tsb10SecBack";
             this.tsb10SecBack.Size = new System.Drawing.Size(23, 22);
             this.tsb10SecBack.Text = "Seek back";
+            this.tsb10SecBack.Click += new System.EventHandler(this.tsb10SecBack_Click);
             // 
             // tsbPlay
             // 
