@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tslDuration = new System.Windows.Forms.ToolStripLabel();
@@ -54,14 +54,14 @@
             this.tsbStop = new System.Windows.Forms.ToolStripButton();
             this.tsb10SecForward = new System.Windows.Forms.ToolStripButton();
             this.tsbNext = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssbOpen,
             this.tsbQueue,
             this.tsbFullScreen,
@@ -75,11 +75,11 @@
             this.tsbNext,
             this.toolStripSeparator2,
             this.tslDuration});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip.TabIndex = 0;
+            this.toolStrip.Text = "toolStrip1";
             // 
             // toolStripSeparator1
             // 
@@ -162,7 +162,7 @@
             // 
             this.tsmiOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsmiOpenFile.Name = "tsmiOpenFile";
-            this.tsmiOpenFile.Size = new System.Drawing.Size(156, 22);
+            this.tsmiOpenFile.Size = new System.Drawing.Size(180, 22);
             this.tsmiOpenFile.Text = "Open file";
             this.tsmiOpenFile.Click += new System.EventHandler(this.tsmiOpenFile_Click);
             // 
@@ -171,7 +171,7 @@
             this.tsmiOpenURL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsmiOpenURL.Enabled = false;
             this.tsmiOpenURL.Name = "tsmiOpenURL";
-            this.tsmiOpenURL.Size = new System.Drawing.Size(156, 22);
+            this.tsmiOpenURL.Size = new System.Drawing.Size(180, 22);
             this.tsmiOpenURL.Text = "Open from URL";
             // 
             // tsbQueue
@@ -187,6 +187,7 @@
             // tsbFullScreen
             // 
             this.tsbFullScreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFullScreen.Enabled = false;
             this.tsbFullScreen.Image = global::Pytel_WinForm.Properties.Resources.showing_video_frames_96px;
             this.tsbFullScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFullScreen.Name = "tsbFullScreen";
@@ -271,14 +272,14 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbVolume);
             this.Controls.Add(this.tbPosition);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
             this.Text = "Pytel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
             this.ResumeLayout(false);
@@ -288,7 +289,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.TrackBar tbPosition;
         private System.Windows.Forms.TrackBar tbVolume;
         private System.Windows.Forms.ToolStripSplitButton tssbOpen;
