@@ -176,12 +176,12 @@
             // tsb10SecForward
             // 
             this.tsb10SecForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb10SecForward.Enabled = false;
             this.tsb10SecForward.Image = ((System.Drawing.Image)(resources.GetObject("tsb10SecForward.Image")));
             this.tsb10SecForward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecForward.Name = "tsb10SecForward";
             this.tsb10SecForward.Size = new System.Drawing.Size(23, 22);
             this.tsb10SecForward.Text = "Seek forward";
+            this.tsb10SecForward.Click += new System.EventHandler(this.tsb10SecForward_Click);
             // 
             // tsbNext
             // 
