@@ -31,18 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tssbOpen = new System.Windows.Forms.ToolStripSplitButton();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbQueue = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbPrevious = new System.Windows.Forms.ToolStripButton();
-            this.tsb10SecBack = new System.Windows.Forms.ToolStripButton();
-            this.tsbPlay = new System.Windows.Forms.ToolStripButton();
-            this.tsbPause = new System.Windows.Forms.ToolStripButton();
-            this.tsbStop = new System.Windows.Forms.ToolStripButton();
-            this.tsb10SecForward = new System.Windows.Forms.ToolStripButton();
-            this.tsbNext = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tslDuration = new System.Windows.Forms.ToolStripLabel();
             this.tbPosition = new System.Windows.Forms.TrackBar();
@@ -53,6 +42,18 @@
             this.tDuration = new System.Windows.Forms.Timer(this.components);
             this.tControls = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tssbOpen = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsmiOpenFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenURL = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbQueue = new System.Windows.Forms.ToolStripButton();
+            this.tsbFullScreen = new System.Windows.Forms.ToolStripButton();
+            this.tsbPrevious = new System.Windows.Forms.ToolStripButton();
+            this.tsb10SecBack = new System.Windows.Forms.ToolStripButton();
+            this.tsbPlay = new System.Windows.Forms.ToolStripButton();
+            this.tsbPause = new System.Windows.Forms.ToolStripButton();
+            this.tsbStop = new System.Windows.Forms.ToolStripButton();
+            this.tsb10SecForward = new System.Windows.Forms.ToolStripButton();
+            this.tsbNext = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
@@ -63,6 +64,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssbOpen,
             this.tsbQueue,
+            this.tsbFullScreen,
             this.toolStripSeparator1,
             this.tsbPrevious,
             this.tsb10SecBack,
@@ -79,34 +81,98 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tslDuration
+            // 
+            this.tslDuration.Name = "tslDuration";
+            this.tslDuration.Size = new System.Drawing.Size(66, 22);
+            this.tslDuration.Text = "00:00/00:00";
+            // 
+            // tbPosition
+            // 
+            this.tbPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPosition.LargeChange = 10;
+            this.tbPosition.Location = new System.Drawing.Point(12, 393);
+            this.tbPosition.Maximum = 1;
+            this.tbPosition.Name = "tbPosition";
+            this.tbPosition.Size = new System.Drawing.Size(385, 45);
+            this.tbPosition.SmallChange = 5;
+            this.tbPosition.TabIndex = 1;
+            this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Scroll);
+            // 
+            // tbVolume
+            // 
+            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbVolume.LargeChange = 10;
+            this.tbVolume.Location = new System.Drawing.Point(403, 393);
+            this.tbVolume.Maximum = 100;
+            this.tbVolume.Name = "tbVolume";
+            this.tbVolume.Size = new System.Drawing.Size(385, 45);
+            this.tbVolume.TabIndex = 2;
+            this.tbVolume.Value = 100;
+            this.tbVolume.Scroll += new System.EventHandler(this.tbVolume_Scroll);
+            this.tbVolume.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tbVolume_MouseUp);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(12, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(776, 359);
+            this.panel1.TabIndex = 3;
+            // 
+            // tDuration
+            // 
+            this.tDuration.Interval = 750;
+            this.tDuration.Tick += new System.EventHandler(this.tDuration_Tick);
+            // 
+            // tControls
+            // 
+            this.tControls.Enabled = true;
+            this.tControls.Interval = 750;
+            this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
+            // 
             // tssbOpen
             // 
             this.tssbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tssbOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.openFolderToolStripMenuItem});
+            this.tsmiOpenFile,
+            this.tsmiOpenURL});
             this.tssbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tssbOpen.Image")));
             this.tssbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tssbOpen.Name = "tssbOpen";
             this.tssbOpen.Size = new System.Drawing.Size(32, 22);
             this.tssbOpen.Text = "Open file";
-            this.tssbOpen.ButtonClick += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.tssbOpen.ButtonClick += new System.EventHandler(this.tsmiOpenFile_Click);
             // 
-            // openToolStripMenuItem
+            // tsmiOpenFile
             // 
-            this.openToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.openToolStripMenuItem.Text = "Open file";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.tsmiOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsmiOpenFile.Name = "tsmiOpenFile";
+            this.tsmiOpenFile.Size = new System.Drawing.Size(156, 22);
+            this.tsmiOpenFile.Text = "Open file";
+            this.tsmiOpenFile.Click += new System.EventHandler(this.tsmiOpenFile_Click);
             // 
-            // openFolderToolStripMenuItem
+            // tsmiOpenURL
             // 
-            this.openFolderToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.openFolderToolStripMenuItem.Enabled = false;
-            this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.openFolderToolStripMenuItem.Text = "Open folder";
+            this.tsmiOpenURL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsmiOpenURL.Enabled = false;
+            this.tsmiOpenURL.Name = "tsmiOpenURL";
+            this.tsmiOpenURL.Size = new System.Drawing.Size(156, 22);
+            this.tsmiOpenURL.Text = "Open from URL";
             // 
             // tsbQueue
             // 
@@ -118,10 +184,14 @@
             this.tsbQueue.Size = new System.Drawing.Size(23, 22);
             this.tsbQueue.Text = "Queue";
             // 
-            // toolStripSeparator1
+            // tsbFullScreen
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.tsbFullScreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFullScreen.Image = global::Pytel_WinForm.Properties.Resources.showing_video_frames_96px;
+            this.tsbFullScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFullScreen.Name = "tsbFullScreen";
+            this.tsbFullScreen.Size = new System.Drawing.Size(23, 22);
+            this.tsbFullScreen.Text = "Full Screen";
             // 
             // tsbPrevious
             // 
@@ -193,65 +263,6 @@
             this.tsbNext.Text = "Next";
             this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tslDuration
-            // 
-            this.tslDuration.Name = "tslDuration";
-            this.tslDuration.Size = new System.Drawing.Size(66, 22);
-            this.tslDuration.Text = "00:00/00:00";
-            // 
-            // tbPosition
-            // 
-            this.tbPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPosition.LargeChange = 10;
-            this.tbPosition.Location = new System.Drawing.Point(12, 393);
-            this.tbPosition.Maximum = 1;
-            this.tbPosition.Name = "tbPosition";
-            this.tbPosition.Size = new System.Drawing.Size(385, 45);
-            this.tbPosition.SmallChange = 5;
-            this.tbPosition.TabIndex = 1;
-            this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Scroll);
-            // 
-            // tbVolume
-            // 
-            this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbVolume.LargeChange = 10;
-            this.tbVolume.Location = new System.Drawing.Point(403, 393);
-            this.tbVolume.Maximum = 100;
-            this.tbVolume.Name = "tbVolume";
-            this.tbVolume.Size = new System.Drawing.Size(385, 45);
-            this.tbVolume.TabIndex = 2;
-            this.tbVolume.Value = 100;
-            this.tbVolume.Scroll += new System.EventHandler(this.tbVolume_Scroll);
-            this.tbVolume.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tbVolume_MouseUp);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(12, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 359);
-            this.panel1.TabIndex = 3;
-            // 
-            // tDuration
-            // 
-            this.tDuration.Interval = 750;
-            this.tDuration.Tick += new System.EventHandler(this.tDuration_Tick);
-            // 
-            // tControls
-            // 
-            this.tControls.Enabled = true;
-            this.tControls.Interval = 750;
-            this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,14 +303,15 @@
         private System.Windows.Forms.ToolStripButton tsbNext;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel tslDuration;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenURL;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.OpenFileDialog ofdFile;
         private System.Windows.Forms.FolderBrowserDialog fbdFolder;
         private System.Windows.Forms.Timer tDuration;
         private System.Windows.Forms.Timer tControls;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripButton tsbFullScreen;
     }
 }
 

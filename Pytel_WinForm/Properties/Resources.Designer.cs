@@ -133,6 +133,16 @@ namespace Pytel_WinForm.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap showing_video_frames_96px {
+            get {
+                object obj = ResourceManager.GetObject("showing_video_frames_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap skip_to_start_96px {
             get {
                 object obj = ResourceManager.GetObject("skip_to_start_96px", resourceCulture);

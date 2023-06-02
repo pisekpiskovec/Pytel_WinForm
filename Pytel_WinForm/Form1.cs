@@ -13,7 +13,7 @@ namespace Pytel_WinForm
         public Form1() { InitializeComponent(); player = new MpvPlayer(panel1.Handle); player.Volume = 100; }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
         private void tbPosition_Scroll(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
-        private void openToolStripMenuItem_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } else { player.Resume(); } }
+        private void tsmiOpenFile_Click(object sender, EventArgs e) { player.Pause(); if (ofdFile.ShowDialog() == DialogResult.OK) { player.Load(ofdFile.FileName); player.Resume(); tDuration.Start(); } else { player.Resume(); } }
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); }
