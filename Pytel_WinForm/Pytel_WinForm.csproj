@@ -73,6 +73,11 @@
   <PropertyGroup>
     <ApplicationIcon>pytel_icon_64.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mpv.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mpv.NET.1.2.0\lib\netstandard2.0\Mpv.NET.dll</HintPath>
@@ -161,7 +166,7 @@
     </Content>
     <Content Include="pytel_icon_16.ico" />
     <None Include="Resources\pytel_icon_64.png" />
-    <None Include="pytel_icon_64.ico" />
+    <Content Include="pytel_icon_64.ico" />
     <None Include="Resources\showing_video_frames_96px.png" />
   </ItemGroup>
   <ItemGroup>
