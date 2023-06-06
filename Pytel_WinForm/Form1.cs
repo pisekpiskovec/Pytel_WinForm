@@ -28,12 +28,12 @@ namespace Pytel_WinForm
             }
             else { player.Resume(); }
         }
+
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
         private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
         private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; }
-
         private void tDuration_Tick(object sender, EventArgs e)
         {
             tbPosition.Maximum = (int)player.Duration.TotalSeconds;
@@ -56,10 +56,8 @@ namespace Pytel_WinForm
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
         private void tbVolume_MouseUp(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } } }
-
         private void tsb10SecBack_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds - 10); }
         private void tsb10SecForward_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds + 10); }
-
         private void pPlayer_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
