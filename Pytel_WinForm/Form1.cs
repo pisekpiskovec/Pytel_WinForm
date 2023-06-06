@@ -8,7 +8,9 @@ namespace Pytel_WinForm
     public partial class Form1 : Form
     {
         MpvPlayer player;
-        public int saveLocalVolume = 0;
+        int saveLocalVolume = 0;
+        bool isMediaLoaded = false;
+        bool isMediaPlaying = false;
 
         public Form1() { InitializeComponent(); player = new MpvPlayer(pPlayer.Handle); player.Volume = 100; }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
@@ -19,16 +21,18 @@ namespace Pytel_WinForm
             if (ofdFile.ShowDialog() == DialogResult.OK) 
             { 
                 player.Load(ofdFile.FileName); 
+                isMediaLoaded = true;
                 player.Resume(); 
+                isMediaPlaying = true;
                 tDuration.Start();
             }
             else { player.Resume(); }
         }
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
-        private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); }
-        private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); }
-        private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); }
+        private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
+        private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
+        private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; }
 
         private void tDuration_Tick(object sender, EventArgs e)
         {
@@ -37,7 +41,7 @@ namespace Pytel_WinForm
             string hoursTotal = null;
             if (player.Duration.Hours.ToString("00") != "00") { hoursPosition = player.Position.Hours.ToString("00") + ":"; };
             if (player.Duration.Hours.ToString("00") != "00") { hoursTotal = player.Duration.Hours.ToString("00") + ":"; };
-            tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
+            tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00} \\ isMediaPlaying? {isMediaPlaying}";
         }
 
         private void tControls_Tick(object sender, EventArgs e) 
@@ -58,17 +62,9 @@ namespace Pytel_WinForm
 
         private void pPlayer_MouseClick(object sender, MouseEventArgs e)
         {
-            switch (e.Button)
+            if (e.Button == MouseButtons.Right)
             {
-                case MouseButtons.Right:
-                    if (player.IsPlaying) { player.Pause(); } else { player.Resume(); }
-                    break;
-                case MouseButtons.XButton1:
-                    player.PlaylistNext();
-                    break;
-                case MouseButtons.XButton2:
-                    player.PlaylistPrevious();
-                    break;
+                if (isMediaPlaying) { tsbPause.PerformClick(); } else { tsbPlay.PerformClick(); }
             }
         }
     }

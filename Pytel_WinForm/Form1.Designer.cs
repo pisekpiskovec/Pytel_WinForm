@@ -226,7 +226,7 @@
             this.tbPosition.Name = "tbPosition";
             this.tbPosition.Size = new System.Drawing.Size(385, 45);
             this.tbPosition.SmallChange = 5;
-            this.tbPosition.TabIndex = 1;
+            this.tbPosition.TabIndex = 2;
             this.tbPosition.TickFrequency = 60;
             this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Seek);
             // 
@@ -238,7 +238,7 @@
             this.tbVolume.Maximum = 100;
             this.tbVolume.Name = "tbVolume";
             this.tbVolume.Size = new System.Drawing.Size(385, 45);
-            this.tbVolume.TabIndex = 2;
+            this.tbVolume.TabIndex = 3;
             this.tbVolume.TickFrequency = 5;
             this.tbVolume.Value = 100;
             this.tbVolume.ValueChanged += new System.EventHandler(this.tbVolume_Scroll);
@@ -253,8 +253,9 @@
             this.pPlayer.Location = new System.Drawing.Point(12, 28);
             this.pPlayer.Name = "pPlayer";
             this.pPlayer.Size = new System.Drawing.Size(776, 359);
-            this.pPlayer.TabIndex = 3;
-            this.pPlayer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
+            this.pPlayer.TabIndex = 1;
+            this.pPlayer.TabStop = true;
+            this.pPlayer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
             // 
             // tDuration
             // 
