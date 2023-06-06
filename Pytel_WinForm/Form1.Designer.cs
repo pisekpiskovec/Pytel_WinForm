@@ -48,7 +48,7 @@
             this.tslDuration = new System.Windows.Forms.ToolStripLabel();
             this.tbPosition = new System.Windows.Forms.TrackBar();
             this.tbVolume = new System.Windows.Forms.TrackBar();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pPlayer = new System.Windows.Forms.Panel();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.tDuration = new System.Windows.Forms.Timer(this.components);
@@ -227,7 +227,7 @@
             this.tbPosition.Size = new System.Drawing.Size(385, 45);
             this.tbPosition.SmallChange = 5;
             this.tbPosition.TabIndex = 1;
-            this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Scroll);
+            this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Seek);
             // 
             // tbVolume
             // 
@@ -243,16 +243,17 @@
             this.tbVolume.ValueChanged += new System.EventHandler(this.tbVolume_Scroll);
             this.tbVolume.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tbVolume_MouseUp);
             // 
-            // panel1
+            // pPlayer
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(12, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 359);
-            this.panel1.TabIndex = 3;
+            this.pPlayer.BackColor = System.Drawing.Color.Black;
+            this.pPlayer.Location = new System.Drawing.Point(12, 28);
+            this.pPlayer.Name = "pPlayer";
+            this.pPlayer.Size = new System.Drawing.Size(776, 359);
+            this.pPlayer.TabIndex = 3;
+            this.pPlayer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
             // 
             // tDuration
             // 
@@ -270,7 +271,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pPlayer);
             this.Controls.Add(this.tbVolume);
             this.Controls.Add(this.tbPosition);
             this.Controls.Add(this.toolStrip);
@@ -307,7 +308,7 @@
         private System.Windows.Forms.ToolStripLabel tslDuration;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenURL;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pPlayer;
         private System.Windows.Forms.OpenFileDialog ofdFile;
         private System.Windows.Forms.FolderBrowserDialog fbdFolder;
         private System.Windows.Forms.Timer tDuration;

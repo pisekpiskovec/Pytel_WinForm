@@ -10,9 +10,9 @@ namespace Pytel_WinForm
         MpvPlayer player;
         public int saveLocalVolume = 0;
 
-        public Form1() { InitializeComponent(); player = new MpvPlayer(panel1.Handle); player.Volume = 100; }
+        public Form1() { InitializeComponent(); player = new MpvPlayer(pPlayer.Handle); player.Volume = 100; }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
-        private void tbPosition_Scroll(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
+        private void tbPosition_Seek(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
         private void tsmiOpenFile_Click(object sender, EventArgs e)
         {
             player.Pause();
@@ -56,5 +56,21 @@ namespace Pytel_WinForm
 
         private void tsb10SecBack_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds - 10); }
         private void tsb10SecForward_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds + 10); }
+
+        private void pPlayer_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    if (player.IsPlaying) { player.Pause(); } else { player.Resume(); }
+                    break;
+                case MouseButtons.XButton1:
+                    player.PlaylistNext();
+                    break;
+                case MouseButtons.XButton2:
+                    player.PlaylistPrevious();
+                    break;
+            }
+        }
     }
 }
