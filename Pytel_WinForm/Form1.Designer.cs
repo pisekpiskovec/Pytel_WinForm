@@ -227,6 +227,7 @@
             this.tbPosition.Size = new System.Drawing.Size(385, 45);
             this.tbPosition.SmallChange = 5;
             this.tbPosition.TabIndex = 1;
+            this.tbPosition.TickFrequency = 60;
             this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Seek);
             // 
             // tbVolume

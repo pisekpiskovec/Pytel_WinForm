@@ -33,7 +33,6 @@ namespace Pytel_WinForm
         private void tDuration_Tick(object sender, EventArgs e)
         {
             tbPosition.Maximum = (int)player.Duration.TotalSeconds;
-            if (player.IsMediaLoaded) { tbPosition.TickFrequency = ((int)player.Duration.TotalSeconds / player.Duration.Minutes) - (((int)player.Duration.TotalSeconds / player.Duration.Minutes) - 60); }
             string hoursPosition = null;
             string hoursTotal = null;
             if (player.Duration.Hours.ToString("00") != "00") { hoursPosition = player.Position.Hours.ToString("00") + ":"; };
