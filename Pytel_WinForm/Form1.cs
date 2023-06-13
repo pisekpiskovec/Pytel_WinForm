@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Mpv.NET.Player;
 
@@ -11,6 +12,7 @@ namespace Pytel_WinForm
         int saveLocalVolume = 0;
         bool isMediaLoaded = false;
         bool isMediaPlaying = false;
+        bool isFullScreen = false;
 
         public Form1() { InitializeComponent(); player = new MpvPlayer(pPlayer.Handle); player.Volume = 100; }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
@@ -31,25 +33,33 @@ namespace Pytel_WinForm
 
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
-        private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
+        private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
         private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
         private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; }
         private void tDuration_Tick(object sender, EventArgs e)
         {
             tbPosition.Maximum = (int)player.Duration.TotalSeconds;
+            tspbPosition.Maximum = (int)player.Duration.TotalSeconds;
             string hoursPosition = null;
             string hoursTotal = null;
             if (player.Duration.Hours.ToString("00") != "00") { hoursPosition = player.Position.Hours.ToString("00") + ":"; };
             if (player.Duration.Hours.ToString("00") != "00") { hoursTotal = player.Duration.Hours.ToString("00") + ":"; };
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
+            tslFSDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
         }
 
         private void tControls_Tick(object sender, EventArgs e) 
-        { 
-            tbPosition.Enabled = player.IsMediaLoaded;
-            tbVolume.Enabled = player.IsMediaLoaded;
+        {
+            pFullScreenControl.Visible = isFullScreen;
+            tsBasic.Visible = !isFullScreen;
+            if (!isMediaPlaying) { tsFullScreen.Visible = isFullScreen; }
+            tbPosition.Enabled = isMediaLoaded;
+            tbVolume.Enabled = isMediaLoaded;
+            tsbFullScreen.Enabled = isMediaLoaded;
             tbPosition.Value = (int)player.Position.TotalSeconds;
+            tspbPosition.Value = (int)player.Position.TotalSeconds;
             tbVolume.Value = (int)player.Volume;
+            tspbVolume.Value = (int)player.Volume;
             tsb10SecBack.Enabled = player.Position.TotalSeconds >= 10;
             tsb10SecForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= 10;
         }
@@ -64,6 +74,42 @@ namespace Pytel_WinForm
             {
                 if (isMediaPlaying) { tsbPause.PerformClick(); } else { tsbPlay.PerformClick(); }
             }
+        }
+
+        private void tsbFSPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
+        private void tsbFSPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
+        private void tsbFullScreen_Click(object sender, EventArgs e)
+        {
+            isFullScreen = true;
+            pPlayer.Dock = DockStyle.Fill;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void tsbExitFullScreen_Click(object sender, EventArgs e)
+        {
+            isFullScreen = false;
+            pPlayer.Dock = DockStyle.None;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void panel1_MouseEnter(object sender, EventArgs e) { tsFullScreen.Visible = true; }
+        private void panel1_MouseLeave(object sender, EventArgs e) { tsFullScreen.Visible = false; }
+        private void tspbPosition_Click(object sender, EventArgs e)
+        {
+            float absoluteMouse = (PointToClient(MousePosition).X - tspbPosition.Bounds.X);
+            float calcFactor = tspbPosition.Width / (float)tspbPosition.Maximum;
+            float relativeMouse = absoluteMouse / calcFactor;
+            player.Position = TimeSpan.FromSeconds(Convert.ToInt32(relativeMouse));
+        }
+
+        private void tspbVolume_Click(object sender, EventArgs e)
+        {
+            float absoluteMouse = (PointToClient(MousePosition).X - tspbVolume.Bounds.X);
+            float calcFactor = tspbVolume.Width / (float)tspbVolume.Maximum;
+            float relativeMouse = absoluteMouse / calcFactor;
+            player.Volume = Convert.ToInt32(relativeMouse);
         }
     }
 }
