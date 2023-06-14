@@ -52,6 +52,7 @@ namespace Pytel_WinForm
         {
             pFullScreenControl.Visible = isFullScreen;
             tsBasic.Visible = !isFullScreen;
+            pBottom.Visible = !isFullScreen;
             if (!isMediaPlaying) { tsFullScreen.Visible = isFullScreen; }
             tbPosition.Enabled = isMediaLoaded;
             tbVolume.Enabled = isMediaLoaded;
@@ -82,15 +83,13 @@ namespace Pytel_WinForm
         private void tsbFullScreen_Click(object sender, EventArgs e)
         {
             isFullScreen = true;
-            pPlayer.Dock = DockStyle.Fill;
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
 
         private void tsbExitFullScreen_Click(object sender, EventArgs e)
         {
-            isFullScreen = false;
-            pPlayer.Dock = DockStyle.None;
+            isFullScreen = false;            
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = FormWindowState.Normal;
         }

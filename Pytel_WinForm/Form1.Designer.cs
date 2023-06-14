@@ -65,11 +65,13 @@
             this.tslFSDuration = new System.Windows.Forms.ToolStripLabel();
             this.tssFS3 = new System.Windows.Forms.ToolStripSeparator();
             this.tspbVolume = new System.Windows.Forms.ToolStripProgressBar();
+            this.pBottom = new System.Windows.Forms.Panel();
             this.tsBasic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
             this.pPlayer.SuspendLayout();
             this.tsFullScreen.SuspendLayout();
+            this.pBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBasic
@@ -234,7 +236,7 @@
             this.tbPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPosition.LargeChange = 10;
-            this.tbPosition.Location = new System.Drawing.Point(12, 393);
+            this.tbPosition.Location = new System.Drawing.Point(12, 3);
             this.tbPosition.Maximum = 1;
             this.tbPosition.Name = "tbPosition";
             this.tbPosition.Size = new System.Drawing.Size(385, 45);
@@ -247,7 +249,7 @@
             // 
             this.tbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tbVolume.LargeChange = 10;
-            this.tbVolume.Location = new System.Drawing.Point(403, 393);
+            this.tbVolume.Location = new System.Drawing.Point(403, 3);
             this.tbVolume.Maximum = 100;
             this.tbVolume.Name = "tbVolume";
             this.tbVolume.Size = new System.Drawing.Size(385, 45);
@@ -259,14 +261,13 @@
             // 
             // pPlayer
             // 
-            this.pPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pPlayer.BackColor = System.Drawing.Color.Black;
             this.pPlayer.Controls.Add(this.pFullScreenControl);
-            this.pPlayer.Location = new System.Drawing.Point(12, 28);
+            this.pPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pPlayer.Location = new System.Drawing.Point(0, 25);
+            this.pPlayer.MinimumSize = new System.Drawing.Size(776, 359);
             this.pPlayer.Name = "pPlayer";
-            this.pPlayer.Size = new System.Drawing.Size(776, 359);
+            this.pPlayer.Size = new System.Drawing.Size(800, 368);
             this.pPlayer.TabIndex = 1;
             this.pPlayer.TabStop = true;
             this.pPlayer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
@@ -275,9 +276,9 @@
             // 
             this.pFullScreenControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pFullScreenControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pFullScreenControl.Location = new System.Drawing.Point(0, 334);
+            this.pFullScreenControl.Location = new System.Drawing.Point(0, 343);
             this.pFullScreenControl.Name = "pFullScreenControl";
-            this.pFullScreenControl.Size = new System.Drawing.Size(776, 25);
+            this.pFullScreenControl.Size = new System.Drawing.Size(800, 25);
             this.pFullScreenControl.TabIndex = 0;
             this.pFullScreenControl.MouseEnter += new System.EventHandler(this.panel1_MouseEnter);
             // 
@@ -381,6 +382,16 @@
             this.tspbVolume.Value = 100;
             this.tspbVolume.Click += new System.EventHandler(this.tspbVolume_Click);
             // 
+            // pBottom
+            // 
+            this.pBottom.Controls.Add(this.tbVolume);
+            this.pBottom.Controls.Add(this.tbPosition);
+            this.pBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pBottom.Location = new System.Drawing.Point(0, 393);
+            this.pBottom.Name = "pBottom";
+            this.pBottom.Size = new System.Drawing.Size(800, 57);
+            this.pBottom.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -388,9 +399,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tsFullScreen);
             this.Controls.Add(this.pPlayer);
-            this.Controls.Add(this.tbVolume);
-            this.Controls.Add(this.tbPosition);
             this.Controls.Add(this.tsBasic);
+            this.Controls.Add(this.pBottom);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
@@ -403,6 +413,8 @@
             this.pPlayer.ResumeLayout(false);
             this.tsFullScreen.ResumeLayout(false);
             this.tsFullScreen.PerformLayout();
+            this.pBottom.ResumeLayout(false);
+            this.pBottom.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -445,6 +457,7 @@
         private System.Windows.Forms.ToolStripSeparator tssFS3;
         private System.Windows.Forms.ToolStripProgressBar tspbVolume;
         private System.Windows.Forms.Panel pFullScreenControl;
+        private System.Windows.Forms.Panel pBottom;
     }
 }
 
