@@ -268,7 +268,7 @@
             this.pPlayer.Location = new System.Drawing.Point(0, 25);
             this.pPlayer.MinimumSize = new System.Drawing.Size(776, 359);
             this.pPlayer.Name = "pPlayer";
-            this.pPlayer.Size = new System.Drawing.Size(800, 368);
+            this.pPlayer.Size = new System.Drawing.Size(800, 374);
             this.pPlayer.TabIndex = 1;
             this.pPlayer.TabStop = true;
             this.pPlayer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
@@ -277,7 +277,7 @@
             // 
             this.pFullScreenControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pFullScreenControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pFullScreenControl.Location = new System.Drawing.Point(0, 343);
+            this.pFullScreenControl.Location = new System.Drawing.Point(0, 349);
             this.pFullScreenControl.Name = "pFullScreenControl";
             this.pFullScreenControl.Size = new System.Drawing.Size(800, 25);
             this.pFullScreenControl.TabIndex = 0;
@@ -388,9 +388,9 @@
             this.pBottom.Controls.Add(this.tbVolume);
             this.pBottom.Controls.Add(this.tbPosition);
             this.pBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pBottom.Location = new System.Drawing.Point(0, 393);
+            this.pBottom.Location = new System.Drawing.Point(0, 399);
             this.pBottom.Name = "pBottom";
-            this.pBottom.Size = new System.Drawing.Size(800, 57);
+            this.pBottom.Size = new System.Drawing.Size(800, 51);
             this.pBottom.TabIndex = 1;
             // 
             // Form1
