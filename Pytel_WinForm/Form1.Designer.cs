@@ -138,6 +138,7 @@
             // tsbFullScreen
             // 
             this.tsbFullScreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFullScreen.Enabled = false;
             this.tsbFullScreen.Image = global::Pytel_WinForm.Properties.Resources.showing_video_frames_96px;
             this.tsbFullScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFullScreen.Name = "tsbFullScreen";
