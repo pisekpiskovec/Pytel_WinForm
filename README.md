@@ -1,4 +1,4 @@
-![Pytel (WinForm)](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel%20(WinForm)/Resources/pytel_icon_64.png)
+![Pytel (WinForm)](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel_WinForm/Resources/pytel_icon_64.png)
 
 # Pytel_WinForm
 
@@ -17,15 +17,15 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlim
 
 ## Screenshots
 
-![Newly opened window](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel%20(WinForm)/readme_resources/pytel_new_window.png)
+![Newly opened window](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel_WinForm/readme_resources/pytel_new_window.png)
 
 (Newly opened window)
 
-![Window with a video loaded](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel%20(WinForm)/readme_resources/pytel_video_loaded.png)
+![Window with a video loaded](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel_WinForm/readme_resources/pytel_video_loaded.png)
 
 (Window with a video loaded)
 
-![Fullscreen view](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel%20(WinForm)/readme_resources/pytel_video_fullscreen.png)
+![Fullscreen view](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel_WinForm/readme_resources/pytel_video_fullscreen.png)
 
 (Fullscreen view)
 
