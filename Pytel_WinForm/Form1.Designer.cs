@@ -305,9 +305,9 @@
             this.tssFS2,
             this.tspbPosition,
             this.tslFSDuration,
-            this.tssFS3,
-            this.tspbVolume});
-            this.tsFullScreen.Location = new System.Drawing.Point(0, 425);
+            this.tspbVolume,
+            this.tssFS3});
+            this.tsFullScreen.Location = new System.Drawing.Point(0, 374);
             this.tsFullScreen.Name = "tsFullScreen";
             this.tsFullScreen.Size = new System.Drawing.Size(800, 25);
             this.tsFullScreen.TabIndex = 4;
@@ -321,6 +321,7 @@
             this.tsbExitFullScreen.Image = global::Pytel_WinForm.Properties.Resources.showing_video_frames_96px;
             this.tsbExitFullScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbExitFullScreen.Name = "tsbExitFullScreen";
+            this.tsbExitFullScreen.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbExitFullScreen.Size = new System.Drawing.Size(23, 22);
             this.tsbExitFullScreen.Text = "Exit Full Screen";
             this.tsbExitFullScreen.Click += new System.EventHandler(this.tsbExitFullScreen_Click);
@@ -328,6 +329,7 @@
             // tssFS1
             // 
             this.tssFS1.Name = "tssFS1";
+            this.tssFS1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tssFS1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbFSPlay
@@ -336,6 +338,7 @@
             this.tsbFSPlay.Image = global::Pytel_WinForm.Properties.Resources.play_96px;
             this.tsbFSPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFSPlay.Name = "tsbFSPlay";
+            this.tsbFSPlay.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbFSPlay.Size = new System.Drawing.Size(23, 22);
             this.tsbFSPlay.Text = "Play";
             this.tsbFSPlay.Click += new System.EventHandler(this.tsbFSPlay_Click);
@@ -346,6 +349,7 @@
             this.tsbFSPause.Image = global::Pytel_WinForm.Properties.Resources.pause_96px;
             this.tsbFSPause.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFSPause.Name = "tsbFSPause";
+            this.tsbFSPause.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbFSPause.Size = new System.Drawing.Size(23, 22);
             this.tsbFSPause.Text = "Pause";
             this.tsbFSPause.Click += new System.EventHandler(this.tsbFSPause_Click);
@@ -353,12 +357,14 @@
             // tssFS2
             // 
             this.tssFS2.Name = "tssFS2";
+            this.tssFS2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tssFS2.Size = new System.Drawing.Size(6, 25);
             // 
             // tspbPosition
             // 
             this.tspbPosition.Maximum = 1;
             this.tspbPosition.Name = "tspbPosition";
+            this.tspbPosition.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tspbPosition.Size = new System.Drawing.Size(500, 22);
             this.tspbPosition.Step = 1;
             this.tspbPosition.Click += new System.EventHandler(this.tspbPosition_Click);
@@ -367,17 +373,23 @@
             // 
             this.tslFSDuration.BackColor = System.Drawing.Color.Transparent;
             this.tslFSDuration.Name = "tslFSDuration";
+            this.tslFSDuration.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tslFSDuration.Size = new System.Drawing.Size(66, 22);
             this.tslFSDuration.Text = "00:00/00:00";
             // 
             // tssFS3
             // 
+            this.tssFS3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tssFS3.Name = "tssFS3";
+            this.tssFS3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tssFS3.Size = new System.Drawing.Size(6, 25);
             // 
             // tspbVolume
             // 
+            this.tspbVolume.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tspbVolume.AutoSize = false;
             this.tspbVolume.Name = "tspbVolume";
+            this.tspbVolume.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tspbVolume.Size = new System.Drawing.Size(100, 22);
             this.tspbVolume.Step = 2;
             this.tspbVolume.Value = 100;

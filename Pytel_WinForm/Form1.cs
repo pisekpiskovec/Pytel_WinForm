@@ -59,7 +59,7 @@ namespace Pytel_WinForm
             tsbFullScreen.Enabled = isMediaLoaded;
             tbPosition.Value = (int)player.Position.TotalSeconds;
             tspbPosition.Value = (int)player.Position.TotalSeconds;
-            tspbPosition.Size = new System.Drawing.Size(tsFullScreen.Width - (267), 22);
+            tspbPosition.Size = new System.Drawing.Size(tsFullScreen.Width - (tslFSDuration.Text.Length == 11 ? 267 : 297), 22);
             tbVolume.Value = (int)player.Volume;
             tspbVolume.Value = (int)player.Volume;
             tsb10SecBack.Enabled = player.Position.TotalSeconds >= 10;
