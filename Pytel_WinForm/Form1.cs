@@ -14,7 +14,7 @@ namespace Pytel_WinForm
         bool isMediaPlaying = false;
         bool isFullScreen = false;
 
-        public Form1() { InitializeComponent(); player = new MpvPlayer(pPlayer.Handle); player.Volume = 100; }
+        public Form1() { InitializeComponent(); player = new MpvPlayer(pPlayer.Handle); player.Volume = 100; player.MediaFinished+=this.mediaFinished; }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
         private void tbPosition_Seek(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
         private void tsmiOpenFile_Click(object sender, EventArgs e)
@@ -111,5 +111,21 @@ namespace Pytel_WinForm
             float relativeMouse = absoluteMouse / calcFactor;
             player.Volume = Convert.ToInt32(relativeMouse);
         }
+
+        private void tsmiOpenFileUniversal_Click(object sender, EventArgs e)
+        {
+            player.Pause();
+            if (ofdUniversal.ShowDialog() == DialogResult.OK)
+            {
+                player.Load(ofdUniversal.FileName);
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
+                tDuration.Start();
+            }
+            else { player.Resume(); }
+        }
+
+        private void mediaFinished(object sender, EventArgs e) { isMediaPlaying = false; isMediaLoaded = false; isFullScreen = false; this.FormBorderStyle = FormBorderStyle.Sizable; this.WindowState = FormWindowState.Normal; }
     }
 }
