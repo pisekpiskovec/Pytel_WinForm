@@ -34,6 +34,7 @@
             this.tssbOpen = new System.Windows.Forms.ToolStripSplitButton();
             this.tsmiOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenURL = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenFileUniversal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbQueue = new System.Windows.Forms.ToolStripButton();
             this.tsbFullScreen = new System.Windows.Forms.ToolStripButton();
             this.tssBasic1 = new System.Windows.Forms.ToolStripSeparator();
@@ -63,9 +64,10 @@
             this.tssFS2 = new System.Windows.Forms.ToolStripSeparator();
             this.tspbPosition = new System.Windows.Forms.ToolStripProgressBar();
             this.tslFSDuration = new System.Windows.Forms.ToolStripLabel();
-            this.tssFS3 = new System.Windows.Forms.ToolStripSeparator();
             this.tspbVolume = new System.Windows.Forms.ToolStripProgressBar();
+            this.tssFS3 = new System.Windows.Forms.ToolStripSeparator();
             this.pBottom = new System.Windows.Forms.Panel();
+            this.ofdUniversal = new System.Windows.Forms.OpenFileDialog();
             this.tsBasic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
@@ -101,7 +103,8 @@
             this.tssbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tssbOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiOpenFile,
-            this.tsmiOpenURL});
+            this.tsmiOpenURL,
+            this.tsmiOpenFileUniversal});
             this.tssbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tssbOpen.Image")));
             this.tssbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tssbOpen.Name = "tssbOpen";
@@ -113,7 +116,7 @@
             // 
             this.tsmiOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsmiOpenFile.Name = "tsmiOpenFile";
-            this.tsmiOpenFile.Size = new System.Drawing.Size(156, 22);
+            this.tsmiOpenFile.Size = new System.Drawing.Size(181, 22);
             this.tsmiOpenFile.Text = "Open file";
             this.tsmiOpenFile.Click += new System.EventHandler(this.tsmiOpenFile_Click);
             // 
@@ -122,8 +125,15 @@
             this.tsmiOpenURL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsmiOpenURL.Enabled = false;
             this.tsmiOpenURL.Name = "tsmiOpenURL";
-            this.tsmiOpenURL.Size = new System.Drawing.Size(156, 22);
+            this.tsmiOpenURL.Size = new System.Drawing.Size(181, 22);
             this.tsmiOpenURL.Text = "Open from URL";
+            // 
+            // tsmiOpenFileUniversal
+            // 
+            this.tsmiOpenFileUniversal.Name = "tsmiOpenFileUniversal";
+            this.tsmiOpenFileUniversal.Size = new System.Drawing.Size(181, 22);
+            this.tsmiOpenFileUniversal.Text = "Open file (Universal)";
+            this.tsmiOpenFileUniversal.Click += new System.EventHandler(this.tsmiOpenFileUniversal_Click);
             // 
             // tsbQueue
             // 
@@ -283,6 +293,11 @@
             this.pFullScreenControl.TabIndex = 0;
             this.pFullScreenControl.MouseEnter += new System.EventHandler(this.panel1_MouseEnter);
             // 
+            // ofdFile
+            // 
+            this.ofdFile.Filter = resources.GetString("ofdFile.Filter");
+            this.ofdFile.Title = "Open file...";
+            // 
             // tDuration
             // 
             this.tDuration.Interval = 750;
@@ -377,13 +392,6 @@
             this.tslFSDuration.Size = new System.Drawing.Size(66, 22);
             this.tslFSDuration.Text = "00:00/00:00";
             // 
-            // tssFS3
-            // 
-            this.tssFS3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssFS3.Name = "tssFS3";
-            this.tssFS3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.tssFS3.Size = new System.Drawing.Size(6, 25);
-            // 
             // tspbVolume
             // 
             this.tspbVolume.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -395,6 +403,13 @@
             this.tspbVolume.Value = 100;
             this.tspbVolume.Click += new System.EventHandler(this.tspbVolume_Click);
             // 
+            // tssFS3
+            // 
+            this.tssFS3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssFS3.Name = "tssFS3";
+            this.tssFS3.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tssFS3.Size = new System.Drawing.Size(6, 25);
+            // 
             // pBottom
             // 
             this.pBottom.Controls.Add(this.tbVolume);
@@ -404,6 +419,10 @@
             this.pBottom.Name = "pBottom";
             this.pBottom.Size = new System.Drawing.Size(800, 51);
             this.pBottom.TabIndex = 1;
+            // 
+            // ofdUniversal
+            // 
+            this.ofdUniversal.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -471,6 +490,8 @@
         private System.Windows.Forms.ToolStripProgressBar tspbVolume;
         private System.Windows.Forms.Panel pFullScreenControl;
         private System.Windows.Forms.Panel pBottom;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenFileUniversal;
+        private System.Windows.Forms.OpenFileDialog ofdUniversal;
     }
 }
 
