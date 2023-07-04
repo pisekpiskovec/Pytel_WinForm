@@ -109,14 +109,15 @@
             this.tssbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tssbOpen.Name = "tssbOpen";
             this.tssbOpen.Size = new System.Drawing.Size(32, 22);
-            this.tssbOpen.Text = "Open file";
+            this.tssbOpen.Text = "Open file (Ctrl+O)";
             this.tssbOpen.ButtonClick += new System.EventHandler(this.tsmiOpenFile_Click);
             // 
             // tsmiOpenFile
             // 
             this.tsmiOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsmiOpenFile.Name = "tsmiOpenFile";
-            this.tsmiOpenFile.Size = new System.Drawing.Size(181, 22);
+            this.tsmiOpenFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.tsmiOpenFile.Size = new System.Drawing.Size(247, 22);
             this.tsmiOpenFile.Text = "Open file";
             this.tsmiOpenFile.Click += new System.EventHandler(this.tsmiOpenFile_Click);
             // 
@@ -125,13 +126,17 @@
             this.tsmiOpenURL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsmiOpenURL.Enabled = false;
             this.tsmiOpenURL.Name = "tsmiOpenURL";
-            this.tsmiOpenURL.Size = new System.Drawing.Size(181, 22);
+            this.tsmiOpenURL.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
+            this.tsmiOpenURL.Size = new System.Drawing.Size(247, 22);
             this.tsmiOpenURL.Text = "Open from URL";
             // 
             // tsmiOpenFileUniversal
             // 
             this.tsmiOpenFileUniversal.Name = "tsmiOpenFileUniversal";
-            this.tsmiOpenFileUniversal.Size = new System.Drawing.Size(181, 22);
+            this.tsmiOpenFileUniversal.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.O)));
+            this.tsmiOpenFileUniversal.Size = new System.Drawing.Size(247, 22);
             this.tsmiOpenFileUniversal.Text = "Open file (Universal)";
             this.tsmiOpenFileUniversal.Click += new System.EventHandler(this.tsmiOpenFileUniversal_Click);
             // 
@@ -143,7 +148,7 @@
             this.tsbQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbQueue.Name = "tsbQueue";
             this.tsbQueue.Size = new System.Drawing.Size(23, 22);
-            this.tsbQueue.Text = "Queue";
+            this.tsbQueue.Text = "Queue (F9/Ctrl+L)";
             // 
             // tsbFullScreen
             // 
@@ -253,6 +258,7 @@
             this.tbPosition.Size = new System.Drawing.Size(385, 45);
             this.tbPosition.SmallChange = 5;
             this.tbPosition.TabIndex = 2;
+            this.tbPosition.TabStop = false;
             this.tbPosition.TickFrequency = 60;
             this.tbPosition.Scroll += new System.EventHandler(this.tbPosition_Seek);
             // 
@@ -265,6 +271,7 @@
             this.tbVolume.Name = "tbVolume";
             this.tbVolume.Size = new System.Drawing.Size(385, 45);
             this.tbVolume.TabIndex = 3;
+            this.tbVolume.TabStop = false;
             this.tbVolume.TickFrequency = 5;
             this.tbVolume.Value = 100;
             this.tbVolume.ValueChanged += new System.EventHandler(this.tbVolume_Scroll);
@@ -272,6 +279,7 @@
             // 
             // pPlayer
             // 
+            this.pPlayer.AutoScroll = true;
             this.pPlayer.BackColor = System.Drawing.Color.Black;
             this.pPlayer.Controls.Add(this.pFullScreenControl);
             this.pPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -281,7 +289,8 @@
             this.pPlayer.Size = new System.Drawing.Size(800, 374);
             this.pPlayer.TabIndex = 1;
             this.pPlayer.TabStop = true;
-            this.pPlayer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
+            this.pPlayer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
+            this.pPlayer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseDoubleClick);
             // 
             // pFullScreenControl
             // 
@@ -434,10 +443,12 @@
             this.Controls.Add(this.tsBasic);
             this.Controls.Add(this.pBottom);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
             this.Text = "Pytel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.tsBasic.ResumeLayout(false);
             this.tsBasic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).EndInit();
