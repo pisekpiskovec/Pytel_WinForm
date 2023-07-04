@@ -41,7 +41,7 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlim
 ## Keyboard shortcuts
 
 | Action                  | Shortcut                       |
-|:----------------------- | ------------------------------ |
+| ----------------------- | ------------------------------ |
 | Open File               | Ctrl+O                         |
 | Open from URL           | Ctrl+Shift+O                   |
 | Open File (Universal)   | Ctrl+Alt+O                     |
