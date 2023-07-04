@@ -23,6 +23,7 @@ namespace Pytel_WinForm
             if (ofdFile.ShowDialog() == DialogResult.OK)
             {
                 player.Load(ofdFile.FileName);
+                this.Text = "Pytel | " + ofdFile.SafeFileName;
                 isMediaLoaded = true;
                 player.Resume();
                 isMediaPlaying = true;
@@ -111,6 +112,7 @@ namespace Pytel_WinForm
             if (ofdUniversal.ShowDialog() == DialogResult.OK)
             {
                 player.Load(ofdUniversal.FileName);
+                this.Text = "Pytel | " + ofdUniversal.SafeFileName;
                 isMediaLoaded = true;
                 player.Resume();
                 isMediaPlaying = true;
@@ -119,7 +121,7 @@ namespace Pytel_WinForm
             else { player.Resume(); }
         }
 
-        private void mediaFinished(object sender, EventArgs e) { isMediaPlaying = false; isMediaLoaded = false; isFullScreen = false; this.FormBorderStyle = FormBorderStyle.Sizable; this.WindowState = FormWindowState.Normal; }
+        private void mediaFinished(object sender, EventArgs e) { isMediaPlaying = false; isMediaLoaded = false; isFullScreen = false; this.FormBorderStyle = FormBorderStyle.Sizable; this.WindowState = FormWindowState.Normal; this.Text = "Pytel"; }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
@@ -151,20 +153,7 @@ namespace Pytel_WinForm
             else if (e.KeyCode == Keys.Up) { if (isMediaPlaying & !(player.Volume + 10 > 100)) { player.Volume += 10; } }
             else if (e.KeyCode == Keys.Down) { if (isMediaPlaying & !(player.Volume - 10 < 0)) { player.Volume -= 10; } }
             else if (e.KeyCode == Keys.M) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } }
-            else if (e.KeyCode == Keys.S)
-            {
-                using (var bmp = new Bitmap(pPlayer.Width, pPlayer.Height))
-                {
-                    player.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                    bmp.Save(
-                        Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
-                        + "\\"
-                        + player.MediaTitle.ToString()
-                        + "@"
-                        + player.Position.TotalSeconds.ToString("0")
-                        + ".png");
-                }
-            }
+            else if (e.KeyCode == Keys.Q) { player.Stop(); Application.Exit(); }
         }
 
         private void pPlayer_MouseDoubleClick(object sender, MouseEventArgs e) { { if (e.Button == MouseButtons.Left) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } } } }

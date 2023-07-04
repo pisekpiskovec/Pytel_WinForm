@@ -158,7 +158,7 @@
             this.tsbFullScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFullScreen.Name = "tsbFullScreen";
             this.tsbFullScreen.Size = new System.Drawing.Size(23, 22);
-            this.tsbFullScreen.Text = "Full Screen";
+            this.tsbFullScreen.Text = "Full Screen (F/F11)";
             this.tsbFullScreen.Click += new System.EventHandler(this.tsbFullScreen_Click);
             // 
             // tssBasic1
@@ -173,7 +173,7 @@
             this.tsbPrevious.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrevious.Name = "tsbPrevious";
             this.tsbPrevious.Size = new System.Drawing.Size(23, 22);
-            this.tsbPrevious.Text = "Previous";
+            this.tsbPrevious.Text = "Previous (Ctrl+,)";
             this.tsbPrevious.Click += new System.EventHandler(this.tsbPrevious_Click);
             // 
             // tsb10SecBack
@@ -183,7 +183,7 @@
             this.tsb10SecBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecBack.Name = "tsb10SecBack";
             this.tsb10SecBack.Size = new System.Drawing.Size(23, 22);
-            this.tsb10SecBack.Text = "Seek back";
+            this.tsb10SecBack.Text = "Seek back (Left)";
             this.tsb10SecBack.Click += new System.EventHandler(this.tsb10SecBack_Click);
             // 
             // tsbPlay
@@ -193,7 +193,7 @@
             this.tsbPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPlay.Name = "tsbPlay";
             this.tsbPlay.Size = new System.Drawing.Size(23, 22);
-            this.tsbPlay.Text = "Play";
+            this.tsbPlay.Text = "Play (P/Space)";
             this.tsbPlay.Click += new System.EventHandler(this.tsbPlay_Click);
             // 
             // tsbPause
@@ -203,7 +203,7 @@
             this.tsbPause.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPause.Name = "tsbPause";
             this.tsbPause.Size = new System.Drawing.Size(23, 22);
-            this.tsbPause.Text = "Pause";
+            this.tsbPause.Text = "Pause (P/Space)";
             this.tsbPause.Click += new System.EventHandler(this.tsbPause_Click);
             // 
             // tsbStop
@@ -213,7 +213,7 @@
             this.tsbStop.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbStop.Name = "tsbStop";
             this.tsbStop.Size = new System.Drawing.Size(23, 22);
-            this.tsbStop.Text = "Stop";
+            this.tsbStop.Text = "Stop (Ctrl+S)";
             this.tsbStop.Click += new System.EventHandler(this.tsbStop_Click);
             // 
             // tsb10SecForward
@@ -223,7 +223,7 @@
             this.tsb10SecForward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb10SecForward.Name = "tsb10SecForward";
             this.tsb10SecForward.Size = new System.Drawing.Size(23, 22);
-            this.tsb10SecForward.Text = "Seek forward";
+            this.tsb10SecForward.Text = "Seek forward (Right)";
             this.tsb10SecForward.Click += new System.EventHandler(this.tsb10SecForward_Click);
             // 
             // tsbNext
@@ -233,7 +233,7 @@
             this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNext.Name = "tsbNext";
             this.tsbNext.Size = new System.Drawing.Size(23, 22);
-            this.tsbNext.Text = "Next";
+            this.tsbNext.Text = "Next (Ctrl+.)";
             this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
             // 
             // tssBasic2
@@ -347,7 +347,7 @@
             this.tsbExitFullScreen.Name = "tsbExitFullScreen";
             this.tsbExitFullScreen.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbExitFullScreen.Size = new System.Drawing.Size(23, 22);
-            this.tsbExitFullScreen.Text = "Exit Full Screen";
+            this.tsbExitFullScreen.Text = "Exit Full Screen (F/F11/Escape)";
             this.tsbExitFullScreen.Click += new System.EventHandler(this.tsbExitFullScreen_Click);
             // 
             // tssFS1
@@ -364,7 +364,7 @@
             this.tsbFSPlay.Name = "tsbFSPlay";
             this.tsbFSPlay.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbFSPlay.Size = new System.Drawing.Size(23, 22);
-            this.tsbFSPlay.Text = "Play";
+            this.tsbFSPlay.Text = "Play (P/Space)";
             this.tsbFSPlay.Click += new System.EventHandler(this.tsbFSPlay_Click);
             // 
             // tsbFSPause
@@ -375,7 +375,7 @@
             this.tsbFSPause.Name = "tsbFSPause";
             this.tsbFSPause.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbFSPause.Size = new System.Drawing.Size(23, 22);
-            this.tsbFSPause.Text = "Pause";
+            this.tsbFSPause.Text = "Pause (P/Space)";
             this.tsbFSPause.Click += new System.EventHandler(this.tsbFSPause_Click);
             // 
             // tssFS2

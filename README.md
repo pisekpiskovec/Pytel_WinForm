@@ -38,26 +38,24 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlim
 * Right-click video to pause
 * Right-click volume slider to mute
 
-
-
 ## Keyboard shortcuts
 
-| Action                  | Shortcut                |
-|:----------------------- | ----------------------- |
-| Open File               | Ctrl+O                  |
-| Open from URL           | Ctrl+Shift+O            |
-| Open File (Universal)   | Ctrl+Alt+O              |
-| Queue                   | F9/Ctrl+L               |
-| Full Screen             | F/F11/Left Double Click |
-| Exit Full Screen        | Escape                  |
-| Prevoius File           | Ctrtl+,                 |
-| Seek backward           | Left                    |
-| Play/Pause              | P/Space/Right Click     |
-| Stop                    | Ctrl+S                  |
-| Seek forward            | Right                   |
-| Next File               | Ctrl+.                  |
-| Volume up               | Up                      |
-| Volume down             | Down                    |
-| Mute/Unmute             | M                       |
-| Quit                    | Q                       |
-| Reset Window's Position | Ctrl+Alt+F6             |
+| Action                  | Shortcut                       |
+|:----------------------- | ------------------------------ |
+| Open File               | Ctrl+O                         |
+| Open from URL           | Ctrl+Shift+O                   |
+| Open File (Universal)   | Ctrl+Alt+O                     |
+| Queue                   | F9/Ctrl+L                      |
+| Full Screen             | F/F11/Left Double Click        |
+| Exit Full Screen        | F/F11/Escape/Left Double Click |
+| Prevoius File           | Ctrtl+,                        |
+| Seek backward           | Left                           |
+| Play/Pause              | P/Space/Right Click            |
+| Stop                    | Ctrl+S                         |
+| Seek forward            | Right                          |
+| Next File               | Ctrl+.                         |
+| Volume up               | Up                             |
+| Volume down             | Down                           |
+| Mute/Unmute             | M                              |
+| Quit                    | Q                              |
+| Reset Window's Position | Ctrl+Alt+F6                    |
