@@ -55,7 +55,6 @@
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.tDuration = new System.Windows.Forms.Timer(this.components);
             this.tControls = new System.Windows.Forms.Timer(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tsFullScreen = new System.Windows.Forms.ToolStrip();
             this.tsbExitFullScreen = new System.Windows.Forms.ToolStripButton();
             this.tssFS1 = new System.Windows.Forms.ToolStripSeparator();
@@ -68,6 +67,7 @@
             this.tssFS3 = new System.Windows.Forms.ToolStripSeparator();
             this.pBottom = new System.Windows.Forms.Panel();
             this.ofdUniversal = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tsBasic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
@@ -487,7 +487,6 @@
         private System.Windows.Forms.FolderBrowserDialog fbdFolder;
         private System.Windows.Forms.Timer tDuration;
         private System.Windows.Forms.Timer tControls;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripButton tsbFullScreen;
         private System.Windows.Forms.ToolStrip tsFullScreen;
         private System.Windows.Forms.ToolStripButton tsbExitFullScreen;
@@ -503,6 +502,7 @@
         private System.Windows.Forms.Panel pBottom;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenFileUniversal;
         private System.Windows.Forms.OpenFileDialog ofdUniversal;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

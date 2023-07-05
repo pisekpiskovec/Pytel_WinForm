@@ -47,6 +47,8 @@ namespace Pytel_WinForm
             if (player.Duration.Hours.ToString("00") != "00") { hoursTotal = player.Duration.Hours.ToString("00") + ":"; };
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
             tslFSDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
+            tslDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
+            tslFSDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
         }
 
         private void tControls_Tick(object sender, EventArgs e)
