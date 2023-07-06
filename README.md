@@ -4,7 +4,7 @@
 
 ### Simple WinForms multimedia player.
 
-Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlimedia viewer.
+Inspired by KDE's Haruna Media Player, Pytel is simplier still yet powerful mutlimedia viewer.
 
 > **Warning** This project was created for learning purpose.
 
@@ -12,7 +12,7 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlim
 
 * [ ] Queue and playlist support
 * [ ] Opening video from internet (ytdl support)
-* [ ] Settings and About window
+* [x] Settings and About window
 * [x] Mouse and Keyboard shortcuts
 
 ## Screenshots
@@ -29,14 +29,20 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlim
 
 (Fullscreen view)
 
+![About and Settings window](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel_WinForm/readme_resources/pytel_about.png)
+
+(About and Settings window)
+
 ## Features
 
 * Open local video/audio
 * Fullscreen view
-* 10 sec skip back/forward
+* [Configurable] sec skip back/forward
+* [Configurable] volume changing when using a keyboard.
 * Seek bar and Volume slider
 * Right-click video to pause
 * Right-click volume slider to mute
+* Double-click to open Fullscreen view
 
 ## Keyboard shortcuts
 
