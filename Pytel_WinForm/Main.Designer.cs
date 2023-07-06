@@ -70,6 +70,7 @@ namespace Pytel_WinForm
             this.pBottom = new System.Windows.Forms.Panel();
             this.ofdUniversal = new System.Windows.Forms.OpenFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tTaskbar = new System.Windows.Forms.Timer(this.components);
             this.tsBasic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
@@ -437,6 +438,12 @@ namespace Pytel_WinForm
             // 
             this.ofdUniversal.FileName = "openFileDialog1";
             // 
+            // tTaskbar
+            // 
+            this.tTaskbar.Enabled = true;
+            this.tTaskbar.Interval = 1000;
+            this.tTaskbar.Tick += new System.EventHandler(this.tTaskbar_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -508,6 +515,7 @@ namespace Pytel_WinForm
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenFileUniversal;
         private System.Windows.Forms.OpenFileDialog ofdUniversal;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Timer tTaskbar;
     }
 }
 

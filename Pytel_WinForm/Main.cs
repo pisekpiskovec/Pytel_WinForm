@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -72,7 +73,7 @@ namespace Pytel_WinForm
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
         private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
-        private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; }
+        private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; Text = "Pytel"; }
         private void tDuration_Tick(object sender, EventArgs e)
         {
             tbPosition.Maximum = (int)player.Duration.TotalSeconds;
@@ -198,5 +199,65 @@ namespace Pytel_WinForm
 
         private void pPlayer_MouseDoubleClick(object sender, MouseEventArgs e) { { if (e.Button == MouseButtons.Left) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } } } }
         private void tslDuration_Click(object sender, EventArgs e) { About abt = new About(); abt.ShowDialog(); }
+
+        private void tTaskbar_Tick(object sender, EventArgs e)
+        {
+            switch (Settings.Default.tbVisual)
+            {
+                case 0:
+                    TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.NoProgress);
+                    break;
+                case 1:
+                    TaskbarProgress.SetValue(this.Handle, 1, 1);
+                    if (isMediaPlaying) TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Indeterminate);
+                    else if (!isMediaPlaying && isMediaLoaded) TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+                    else if (!isMediaLoaded) { TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Error); }
+                    else TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.NoProgress);
+                    break;
+                case 2:
+                    if (isMediaPlaying) { TaskbarProgress.SetValue(this.Handle, player.Position.TotalSeconds, player.Duration.TotalSeconds); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal); }
+                    else if (!isMediaPlaying && isMediaLoaded) { TaskbarProgress.SetValue(this.Handle, player.Position.TotalSeconds, player.Duration.TotalSeconds); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused); }
+                    else if (!isMediaLoaded) { TaskbarProgress.SetValue(this.Handle, 1, 1); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Error); }
+                    else TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+                    break;
+                case 3:
+                    if (player.Volume >= 50) { TaskbarProgress.SetValue(this.Handle, player.Volume, 100); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal); }
+                    else if (player.Volume == 0) { TaskbarProgress.SetValue(this.Handle, 1, 1); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Error); }
+                    else if (player.Volume < 50) { TaskbarProgress.SetValue(this.Handle, player.Volume, 100); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused); }
+                    break;
+            }
+        }
+    }
+    public static class TaskbarProgress
+    {
+        public enum TaskbarStates { NoProgress = 0, Indeterminate = 0x1, Normal = 0x2, Error = 0x4, Paused = 0x8 }
+        [ComImport()]
+        [Guid("ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        private interface ITaskbarList3
+        {
+            // ITaskbarList
+            [PreserveSig] void HrInit();
+            [PreserveSig] void AddTab(IntPtr hwnd);
+            [PreserveSig] void DeleteTab(IntPtr hwnd);
+            [PreserveSig] void ActivateTab(IntPtr hwnd);
+            [PreserveSig] void SetActiveAlt(IntPtr hwnd);
+
+            // ITaskbarList2
+            [PreserveSig] void MarkFullscreenWindow(IntPtr hwnd, [MarshalAs(UnmanagedType.Bool)] bool fFullscreen);
+
+            // ITaskbarList3
+            [PreserveSig] void SetProgressValue(IntPtr hwnd, UInt64 ullCompleted, UInt64 ullTotal);
+            [PreserveSig] void SetProgressState(IntPtr hwnd, TaskbarStates state);
+        }
+
+        [ComImport()]
+        [Guid("56fdf344-fd6d-11d0-958a-006097c9a090")]
+        [ClassInterface(ClassInterfaceType.None)]
+        private class TaskbarInstance { }
+        private static ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
+        private static bool taskbarSupported = Environment.OSVersion.Version >= new Version(6, 1);
+        public static void SetState(IntPtr windowHandle, TaskbarStates taskbarState) { if (taskbarSupported) taskbarInstance.SetProgressState(windowHandle, taskbarState); }
+        public static void SetValue(IntPtr windowHandle, double progressValue, double progressMax) { if (taskbarSupported) taskbarInstance.SetProgressValue(windowHandle, (ulong)progressValue, (ulong)progressMax); }
     }
 }
