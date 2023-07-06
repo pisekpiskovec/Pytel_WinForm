@@ -1,21 +1,56 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mpv.NET.Player;
+using Pytel_WinForm.Properties;
 
 namespace Pytel_WinForm
 {
 
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         MpvPlayer player;
         int saveLocalVolume = 0;
         bool isMediaLoaded = false;
         bool isMediaPlaying = false;
         bool isFullScreen = false;
+        string mediaPath;
+        bool closedWithQ = false;
+        int winState;
 
-        public Form1() { InitializeComponent(); player = new MpvPlayer(pPlayer.Handle); player.Volume = 100; player.MediaFinished += this.mediaFinished; }
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) { player.Dispose(); }
+        public Main() 
+        {
+            InitializeComponent();
+            player = new MpvPlayer(pPlayer.Handle);
+            player.MediaFinished += this.mediaFinished; 
+            this.Location = Settings.Default.lastPos;
+            this.WindowState = (FormWindowState)Settings.Default.lastStat; 
+            this.Size = Settings.Default.lastSize;
+            player.Volume = Settings.Default.volumeLast;
+            if (Settings.Default.mediaLast != "")
+            {
+                player.Load(Settings.Default.mediaLast);
+                mediaPath = Settings.Default.mediaLast;
+                Thread.Sleep(2000);
+                this.Text = "Pytel | " + player.MediaTitle;
+                isMediaLoaded = true;
+                tDuration.Start();
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Default.volumeLast = player.Volume;
+            player.Dispose();
+            Settings.Default.lastPos = this.Location;
+            Settings.Default.lastStat = (int)this.WindowState;
+            Settings.Default.lastSize = this.Size;
+            if (closedWithQ) { Settings.Default.mediaLast = mediaPath; } else { Settings.Default.mediaLast = ""; }
+            Settings.Default.Save();
+        }
+
         private void tbPosition_Seek(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
         private void tsmiOpenFile_Click(object sender, EventArgs e)
         {
@@ -23,6 +58,7 @@ namespace Pytel_WinForm
             if (ofdFile.ShowDialog() == DialogResult.OK)
             {
                 player.Load(ofdFile.FileName);
+                mediaPath = ofdFile.FileName;
                 this.Text = "Pytel | " + ofdFile.SafeFileName;
                 isMediaLoaded = true;
                 player.Resume();
@@ -47,7 +83,7 @@ namespace Pytel_WinForm
             if (player.Duration.Hours.ToString("00") != "00") { hoursTotal = player.Duration.Hours.ToString("00") + ":"; };
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
             tslFSDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
-            tslDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
+            tslDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%\nClick to open Settings.";
             tslFSDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
         }
 
@@ -58,27 +94,27 @@ namespace Pytel_WinForm
             pBottom.Visible = !isFullScreen;
             if (!isMediaPlaying) { tsFullScreen.Visible = isFullScreen; }
             tbPosition.Enabled = isMediaLoaded;
-            tbVolume.Enabled = isMediaLoaded;
             tsbFullScreen.Enabled = isMediaLoaded;
             tbPosition.Value = (int)player.Position.TotalSeconds;
             tspbPosition.Value = (int)player.Position.TotalSeconds;
             tspbPosition.Size = new System.Drawing.Size(tsFullScreen.Width - (tslFSDuration.Text.Length == 11 ? 267 : 297), 22);
             tbVolume.Value = (int)player.Volume;
             tspbVolume.Value = (int)player.Volume;
-            tsb10SecBack.Enabled = player.Position.TotalSeconds >= 10;
-            tsb10SecForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= 10;
+            tsbSeekBack.Enabled = player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
+            tsbSeekForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
         }
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
         private void tbVolume_MouseUp(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } } }
-        private void tsb10SecBack_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds - 10); }
-        private void tsb10SecForward_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds + 10); }
+        private void tsbSeekBack_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds - (double)Settings.Default.positionChange); }
+        private void tsbSeekForward_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds + (double)Settings.Default.positionChange); }
         private void pPlayer_MouseClick(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (isMediaPlaying) { tsbPause.PerformClick(); } else { tsbPlay.PerformClick(); } } }
         private void tsbFSPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
         private void tsbFSPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
         private void tsbFullScreen_Click(object sender, EventArgs e)
         {
             isFullScreen = true;
+            winState = (int)this.WindowState;
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
@@ -87,7 +123,7 @@ namespace Pytel_WinForm
         {
             isFullScreen = false;
             this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.WindowState = FormWindowState.Normal;
+            this.WindowState = (FormWindowState)winState;
         }
 
         private void panel1_MouseEnter(object sender, EventArgs e) { tsFullScreen.Visible = true; }
@@ -114,6 +150,7 @@ namespace Pytel_WinForm
             if (ofdUniversal.ShowDialog() == DialogResult.OK)
             {
                 player.Load(ofdUniversal.FileName);
+                mediaPath = ofdUniversal.FileName;
                 this.Text = "Pytel | " + ofdUniversal.SafeFileName;
                 isMediaLoaded = true;
                 player.Resume();
@@ -144,20 +181,22 @@ namespace Pytel_WinForm
                 else if (e.KeyCode == Keys.Oemcomma) { tsbPrevious.PerformClick(); }
                 else if (e.KeyCode == Keys.S) { tsbStop.PerformClick(); }
                 else if (e.KeyCode == Keys.OemPeriod) { tsbNext.PerformClick(); }
+                else if (e.KeyCode == Keys.Q) { if (isMediaPlaying) { closedWithQ = true; } player.Stop(); Application.Exit(); }
             }
             else if (e.Alt) { if (e.KeyCode == Keys.F4) { player.Stop(); Application.Exit(); } }
             else if (e.KeyCode == Keys.F9) { tsbQueue.PerformClick(); }
             else if (e.KeyCode == Keys.F || e.KeyCode == Keys.F11) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } }
             else if (e.KeyCode == Keys.Escape) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } }
-            else if (e.KeyCode == Keys.Left) { tsb10SecBack.PerformClick(); }
+            else if (e.KeyCode == Keys.Left) { tsbSeekBack.PerformClick(); }
             else if (e.KeyCode == Keys.P || e.KeyCode == Keys.Space) { if (isMediaPlaying) { tsbPause.PerformClick(); } else { tsbPlay.PerformClick(); } }
-            else if (e.KeyCode == Keys.Right) { tsb10SecForward.PerformClick(); }
-            else if (e.KeyCode == Keys.Up) { if (isMediaPlaying & !(player.Volume + 10 > 100)) { player.Volume += 10; } }
-            else if (e.KeyCode == Keys.Down) { if (isMediaPlaying & !(player.Volume - 10 < 0)) { player.Volume -= 10; } }
+            else if (e.KeyCode == Keys.Right) { tsbSeekForward.PerformClick(); }
+            else if (e.KeyCode == Keys.Up) { if (!(player.Volume + Settings.Default.volumeChange > 100)) { player.Volume += (int)Settings.Default.volumeChange; } }
+            else if (e.KeyCode == Keys.Down) { if (!(player.Volume - Settings.Default.volumeChange < 0)) { player.Volume -= (int)Settings.Default.volumeChange; } }
             else if (e.KeyCode == Keys.M) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } }
             else if (e.KeyCode == Keys.Q) { player.Stop(); Application.Exit(); }
         }
 
         private void pPlayer_MouseDoubleClick(object sender, MouseEventArgs e) { { if (e.Button == MouseButtons.Left) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } } } }
+        private void tslDuration_Click(object sender, EventArgs e) { About abt = new About(); abt.ShowDialog(); }
     }
 }

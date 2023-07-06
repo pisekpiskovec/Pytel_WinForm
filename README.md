@@ -58,4 +58,5 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier and yet powerful mutlim
 | Volume down             | Down                           |
 | Mute/Unmute             | M                              |
 | Quit                    | Q                              |
+| Quit and Save Last File | Ctrl+Q                         |
 | Reset Window's Position | Ctrl+Alt+F6                    |

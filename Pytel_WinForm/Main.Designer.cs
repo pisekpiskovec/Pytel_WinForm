@@ -1,6 +1,8 @@
-﻿namespace Pytel_WinForm
+﻿using Pytel_WinForm.Properties;
+
+namespace Pytel_WinForm
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Vyžaduje se proměnná návrháře.
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tsBasic = new System.Windows.Forms.ToolStrip();
             this.tssbOpen = new System.Windows.Forms.ToolStripSplitButton();
             this.tsmiOpenFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,11 +41,11 @@
             this.tsbFullScreen = new System.Windows.Forms.ToolStripButton();
             this.tssBasic1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbPrevious = new System.Windows.Forms.ToolStripButton();
-            this.tsb10SecBack = new System.Windows.Forms.ToolStripButton();
+            this.tsbSeekBack = new System.Windows.Forms.ToolStripButton();
             this.tsbPlay = new System.Windows.Forms.ToolStripButton();
             this.tsbPause = new System.Windows.Forms.ToolStripButton();
             this.tsbStop = new System.Windows.Forms.ToolStripButton();
-            this.tsb10SecForward = new System.Windows.Forms.ToolStripButton();
+            this.tsbSeekForward = new System.Windows.Forms.ToolStripButton();
             this.tsbNext = new System.Windows.Forms.ToolStripButton();
             this.tssBasic2 = new System.Windows.Forms.ToolStripSeparator();
             this.tslDuration = new System.Windows.Forms.ToolStripLabel();
@@ -84,11 +86,11 @@
             this.tsbFullScreen,
             this.tssBasic1,
             this.tsbPrevious,
-            this.tsb10SecBack,
+            this.tsbSeekBack,
             this.tsbPlay,
             this.tsbPause,
             this.tsbStop,
-            this.tsb10SecForward,
+            this.tsbSeekForward,
             this.tsbNext,
             this.tssBasic2,
             this.tslDuration});
@@ -176,15 +178,15 @@
             this.tsbPrevious.Text = "Previous (Ctrl+,)";
             this.tsbPrevious.Click += new System.EventHandler(this.tsbPrevious_Click);
             // 
-            // tsb10SecBack
+            // tsbSeekBack
             // 
-            this.tsb10SecBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb10SecBack.Image = ((System.Drawing.Image)(resources.GetObject("tsb10SecBack.Image")));
-            this.tsb10SecBack.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb10SecBack.Name = "tsb10SecBack";
-            this.tsb10SecBack.Size = new System.Drawing.Size(23, 22);
-            this.tsb10SecBack.Text = "Seek back (Left)";
-            this.tsb10SecBack.Click += new System.EventHandler(this.tsb10SecBack_Click);
+            this.tsbSeekBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSeekBack.Image = ((System.Drawing.Image)(resources.GetObject("tsbSeekBack.Image")));
+            this.tsbSeekBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSeekBack.Name = "tsbSeekBack";
+            this.tsbSeekBack.Size = new System.Drawing.Size(23, 22);
+            this.tsbSeekBack.Text = "Seek back (Left)";
+            this.tsbSeekBack.Click += new System.EventHandler(this.tsbSeekBack_Click);
             // 
             // tsbPlay
             // 
@@ -216,15 +218,15 @@
             this.tsbStop.Text = "Stop (Ctrl+S)";
             this.tsbStop.Click += new System.EventHandler(this.tsbStop_Click);
             // 
-            // tsb10SecForward
+            // tsbSeekForward
             // 
-            this.tsb10SecForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb10SecForward.Image = ((System.Drawing.Image)(resources.GetObject("tsb10SecForward.Image")));
-            this.tsb10SecForward.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb10SecForward.Name = "tsb10SecForward";
-            this.tsb10SecForward.Size = new System.Drawing.Size(23, 22);
-            this.tsb10SecForward.Text = "Seek forward (Right)";
-            this.tsb10SecForward.Click += new System.EventHandler(this.tsb10SecForward_Click);
+            this.tsbSeekForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSeekForward.Image = ((System.Drawing.Image)(resources.GetObject("tsbSeekForward.Image")));
+            this.tsbSeekForward.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSeekForward.Name = "tsbSeekForward";
+            this.tsbSeekForward.Size = new System.Drawing.Size(23, 22);
+            this.tsbSeekForward.Text = "Seek forward (Right)";
+            this.tsbSeekForward.Click += new System.EventHandler(this.tsbSeekForward_Click);
             // 
             // tsbNext
             // 
@@ -246,6 +248,8 @@
             this.tslDuration.Name = "tslDuration";
             this.tslDuration.Size = new System.Drawing.Size(66, 22);
             this.tslDuration.Text = "00:00/00:00";
+            this.tslDuration.ToolTipText = "Click to open Settings.";
+            this.tslDuration.Click += new System.EventHandler(this.tslDuration_Click);
             // 
             // tbPosition
             // 
@@ -273,7 +277,7 @@
             this.tbVolume.TabIndex = 3;
             this.tbVolume.TabStop = false;
             this.tbVolume.TickFrequency = 5;
-            this.tbVolume.Value = 100;
+            this.tbVolume.Value = global::Pytel_WinForm.Properties.Settings.Default.volumeLast;
             this.tbVolume.ValueChanged += new System.EventHandler(this.tbVolume_Scroll);
             this.tbVolume.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tbVolume_MouseUp);
             // 
@@ -433,7 +437,7 @@
             // 
             this.ofdUniversal.FileName = "openFileDialog1";
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -445,7 +449,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(816, 489);
-            this.Name = "Form1";
+            this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Pytel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
@@ -472,11 +477,11 @@
         private System.Windows.Forms.ToolStripButton tsbQueue;
         private System.Windows.Forms.ToolStripSeparator tssBasic1;
         private System.Windows.Forms.ToolStripButton tsbPrevious;
-        private System.Windows.Forms.ToolStripButton tsb10SecBack;
+        private System.Windows.Forms.ToolStripButton tsbSeekBack;
         private System.Windows.Forms.ToolStripButton tsbPlay;
         private System.Windows.Forms.ToolStripButton tsbPause;
         private System.Windows.Forms.ToolStripButton tsbStop;
-        private System.Windows.Forms.ToolStripButton tsb10SecForward;
+        private System.Windows.Forms.ToolStripButton tsbSeekForward;
         private System.Windows.Forms.ToolStripButton tsbNext;
         private System.Windows.Forms.ToolStripSeparator tssBasic2;
         private System.Windows.Forms.ToolStripLabel tslDuration;
