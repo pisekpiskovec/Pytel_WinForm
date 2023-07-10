@@ -182,6 +182,7 @@ namespace Pytel_WinForm
             // tsbSeekBack
             // 
             this.tsbSeekBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSeekBack.Enabled = false;
             this.tsbSeekBack.Image = ((System.Drawing.Image)(resources.GetObject("tsbSeekBack.Image")));
             this.tsbSeekBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSeekBack.Name = "tsbSeekBack";
@@ -222,6 +223,7 @@ namespace Pytel_WinForm
             // tsbSeekForward
             // 
             this.tsbSeekForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSeekForward.Enabled = false;
             this.tsbSeekForward.Image = ((System.Drawing.Image)(resources.GetObject("tsbSeekForward.Image")));
             this.tsbSeekForward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSeekForward.Name = "tsbSeekForward";
@@ -256,6 +258,7 @@ namespace Pytel_WinForm
             // 
             this.tbPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPosition.Enabled = false;
             this.tbPosition.LargeChange = 10;
             this.tbPosition.Location = new System.Drawing.Point(12, 3);
             this.tbPosition.Maximum = 1;
