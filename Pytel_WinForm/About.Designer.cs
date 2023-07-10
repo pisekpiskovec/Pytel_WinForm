@@ -84,7 +84,7 @@ namespace Pytel_WinForm
             this.lAbout.Name = "lAbout";
             this.lAbout.Size = new System.Drawing.Size(78, 52);
             this.lAbout.TabIndex = 0;
-            this.lAbout.Text = "Pytel_WinForm\r\nver. 0.6.0\r\nMpv.NET\r\nver. 1.2.0";
+            this.lAbout.Text = "Pytel_WinForm\r\nver. 0.7.0\r\nMpv.NET\r\nver. 1.2.0";
             // 
             // gbShortcuts
             // 
