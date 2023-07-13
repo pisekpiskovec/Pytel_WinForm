@@ -118,5 +118,41 @@ namespace Pytel_WinForm.Properties {
                 this["tbVisual"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string queCurrentPlaylist {
+            get {
+                return ((string)(this["queCurrentPlaylist"]));
+            }
+            set {
+                this["queCurrentPlaylist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int queLoop {
+            get {
+                return ((int)(this["queLoop"]));
+            }
+            set {
+                this["queLoop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int queIndex {
+            get {
+                return ((int)(this["queIndex"]));
+            }
+            set {
+                this["queIndex"] = value;
+            }
+        }
     }
 }

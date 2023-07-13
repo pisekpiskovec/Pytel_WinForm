@@ -146,12 +146,12 @@ namespace Pytel_WinForm
             // tsbQueue
             // 
             this.tsbQueue.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbQueue.Enabled = false;
             this.tsbQueue.Image = ((System.Drawing.Image)(resources.GetObject("tsbQueue.Image")));
             this.tsbQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbQueue.Name = "tsbQueue";
             this.tsbQueue.Size = new System.Drawing.Size(23, 22);
             this.tsbQueue.Text = "Queue (F9/Ctrl+L)";
+            this.tsbQueue.Click += new System.EventHandler(this.tsbQueue_Click);
             // 
             // tsbFullScreen
             // 
