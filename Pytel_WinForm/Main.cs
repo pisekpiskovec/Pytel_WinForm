@@ -64,7 +64,12 @@ namespace Pytel_WinForm
         private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
-        private void tsbPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
+        private void tsbPause_Click(object sender, EventArgs e) {
+            if (isMediaPlaying)
+            { player.Pause(); isMediaPlaying = false; }
+            else { player.NextFrame(); }
+        }
+
         private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; Text = "Pytel"; }
         private void tDuration_Tick(object sender, EventArgs e)
         {
@@ -109,7 +114,13 @@ namespace Pytel_WinForm
         private void tsbSeekForward_Click(object sender, EventArgs e) { player.SeekAsync(player.Position.TotalSeconds + (double)Settings.Default.positionChange); }
         private void pPlayer_MouseClick(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Right) { if (isMediaPlaying) { tsbPause.PerformClick(); } else { tsbPlay.PerformClick(); } } }
         private void tsbFSPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
-        private void tsbFSPause_Click(object sender, EventArgs e) { player.Pause(); isMediaPlaying = false; }
+        private void tsbFSPause_Click(object sender, EventArgs e) 
+        {
+            if (isMediaPlaying)
+            { player.Pause(); isMediaPlaying = false; }
+            else { player.NextFrame(); }
+        }
+
         private void tsbFullScreen_Click(object sender, EventArgs e)
         {
             isFullScreen = true;
