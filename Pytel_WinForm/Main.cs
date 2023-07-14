@@ -65,8 +65,7 @@ namespace Pytel_WinForm
         private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
         private void tsbPause_Click(object sender, EventArgs e) {
-            if (isMediaPlaying)
-            { player.Pause(); isMediaPlaying = false; }
+            if (isMediaPlaying) { player.Pause(); isMediaPlaying = false; }
             else { player.NextFrame(); }
         }
 
@@ -116,8 +115,7 @@ namespace Pytel_WinForm
         private void tsbFSPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; }
         private void tsbFSPause_Click(object sender, EventArgs e) 
         {
-            if (isMediaPlaying)
-            { player.Pause(); isMediaPlaying = false; }
+            if (isMediaPlaying) { player.Pause(); isMediaPlaying = false; }
             else { player.NextFrame(); }
         }
 
