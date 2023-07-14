@@ -87,13 +87,18 @@ namespace Pytel_WinForm
             pBottom.Visible = !isFullScreen;
             if (!isMediaPlaying) { tsFullScreen.Visible = isFullScreen; }
             tbPosition.Enabled = isMediaLoaded;
-            tsbFullScreen.Enabled = isMediaLoaded;
             tbPosition.Value = (int)player.Position.TotalSeconds;
             tspbPosition.Value = (int)player.Position.TotalSeconds;
             tspbPosition.Size = new System.Drawing.Size(tsFullScreen.Width - (tslFSDuration.Text.Length == 11 ? 267 : 297), 22);
             tbVolume.Value = (int)player.Volume;
             tspbVolume.Value = (int)player.Volume;
+            tsbFullScreen.Enabled = isMediaLoaded;
             tsbSeekBack.Enabled = player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
+            tsbPlay.Enabled = !isMediaPlaying && isMediaLoaded;
+            tsbPause.Enabled = isMediaLoaded;
+            tsbFSPlay.Enabled = !isMediaPlaying;
+            tsbFSPause.Enabled = isMediaLoaded;
+            tsbStop.Enabled = isMediaLoaded;
             tsbSeekForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
             this.Text = isMediaLoaded ? "Pytel | " + player.MediaTitle : "Pytel";
         }
