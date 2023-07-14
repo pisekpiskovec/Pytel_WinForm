@@ -62,7 +62,18 @@ namespace Pytel_WinForm
                 Settings.Default.Save();
             }
         }
-        private void bPlaylistDelete_Click(object sender, EventArgs e) { if ( lbList.SelectedItems.Count != 0 ) lbList.Items.RemoveAt(lbList.SelectedIndex); }
+        private void bPlaylistDelete_Click(object sender, EventArgs e)
+        {
+            if (lbList.SelectedItems.Count != 0)
+            {
+                string[] playlistArr = Settings.Default.queCurrentPlaylist.Split('\n');
+                int selIndex = lbList.SelectedIndex;
+                playlistArr = playlistArr.Where((val, idx) => idx !=  selIndex).ToArray();
+                Settings.Default.queCurrentPlaylist = string.Join("\n", playlistArr);
+                Settings.Default.Save();
+                lbList.Items.RemoveAt(lbList.SelectedIndex);
+            } 
+        }
         private void bPlaylistPlay_Click(object sender, EventArgs e) { mainForm.loadMedia(lbList.Items[0].ToString()); }
         private void rbOff_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 0; }
         private void rbLoopPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 1; }

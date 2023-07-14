@@ -77,7 +77,6 @@
             // 
             // bPlaylistDelete
             // 
-            this.bPlaylistDelete.Enabled = false;
             this.bPlaylistDelete.Location = new System.Drawing.Point(244, 158);
             this.bPlaylistDelete.Name = "bPlaylistDelete";
             this.bPlaylistDelete.Size = new System.Drawing.Size(75, 46);
@@ -160,6 +159,7 @@
             // rbLoopPlaylist
             // 
             this.rbLoopPlaylist.AutoSize = true;
+            this.rbLoopPlaylist.Enabled = false;
             this.rbLoopPlaylist.Location = new System.Drawing.Point(120, 42);
             this.rbLoopPlaylist.Name = "rbLoopPlaylist";
             this.rbLoopPlaylist.Size = new System.Drawing.Size(84, 17);
