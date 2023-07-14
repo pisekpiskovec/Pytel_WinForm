@@ -45,9 +45,9 @@ namespace Pytel_WinForm
         {
             Settings.Default.volumeLast = player.Volume;
             player.Dispose();
-            Settings.Default.lastPos = this.Location;
+            if (WindowState != FormWindowState.Maximized) Settings.Default.lastPos = this.Location;
             Settings.Default.lastStat = (int)this.WindowState;
-            Settings.Default.lastSize = this.Size;
+            if (WindowState != FormWindowState.Maximized) Settings.Default.lastSize = this.Size;
             if (closedWithQ) { Settings.Default.mediaLast = mediaPath; } else { Settings.Default.mediaLast = ""; }
             if (!closedWithQ) { Settings.Default.queCurrentPlaylist = null; Settings.Default.queLoop = 0; }
             Settings.Default.Save();
