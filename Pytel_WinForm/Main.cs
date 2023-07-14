@@ -29,7 +29,7 @@ namespace Pytel_WinForm
             this.Location = Settings.Default.lastPos;
             this.WindowState = (FormWindowState)Settings.Default.lastStat;
             this.Size = Settings.Default.lastSize;
-            player.Volume = Settings.Default.volumeLast;
+            if (Settings.Default.volumeLast != 100) { player.Volume = Settings.Default.volumeLast; } else { player.Volume = 100; }
             if (Settings.Default.mediaLast != "")
             {
                 player.Load(Settings.Default.mediaLast);
@@ -43,14 +43,14 @@ namespace Pytel_WinForm
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Settings.Default.volumeLast = player.Volume;
-            player.Dispose();
+            if (closedWithQ) { Settings.Default.volumeLast = player.Volume; } else { Settings.Default.volumeLast = 100; }
             if (WindowState != FormWindowState.Maximized) Settings.Default.lastPos = this.Location;
             Settings.Default.lastStat = (int)this.WindowState;
             if (WindowState != FormWindowState.Maximized) Settings.Default.lastSize = this.Size;
             if (closedWithQ) { Settings.Default.mediaLast = mediaPath; } else { Settings.Default.mediaLast = ""; }
             if (!closedWithQ) { Settings.Default.queCurrentPlaylist = null; Settings.Default.queLoop = 0; }
             Settings.Default.Save();
+            player.Dispose();
         }
 
         private void tbPosition_Seek(object sender, EventArgs e) { player.Position = TimeSpan.FromSeconds(tbPosition.Value); }
