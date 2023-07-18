@@ -53,7 +53,7 @@ namespace Pytel_WinForm
             }
         }
 
-        private void bPlaylistClear_Click(object sender, EventArgs e) { lbList.Items.Clear(); Settings.Default.queCurrentPlaylist = ""; Settings.Default.queIndex = 0; }
+        private void bPlaylistClear_Click(object sender, EventArgs e) { lbList.Items.Clear(); Settings.Default.queCurrentPlaylist = ""; Settings.Default.queIndex = 0; Settings.Default.Save(); }
         private void bPlaylistAdd_Click(object sender, EventArgs e)
         {
             if (ofdAdd.ShowDialog() == DialogResult.OK)

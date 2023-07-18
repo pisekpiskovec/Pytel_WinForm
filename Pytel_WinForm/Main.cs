@@ -20,6 +20,7 @@ namespace Pytel_WinForm
         string mediaPath;
         bool closedWithQ = false;
         int winState;
+        int queIndex = 0;
 
         public Main()
         {
@@ -172,38 +173,42 @@ namespace Pytel_WinForm
                         isMediaLoaded = false;
                         Settings.Default.queIndex++;
                         Settings.Default.Save();
-                        if (Settings.Default.queIndex > playlist.Length)
+                        if (Settings.Default.queIndex >= playlist.Length)
                         {
-                            isFullScreen = false;
-                            this.FormBorderStyle = FormBorderStyle.Sizable;
-                            this.WindowState = FormWindowState.Normal;
-                            tsbStop.PerformClick();
+                            player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
                             Settings.Default.queIndex = 0;
                             Settings.Default.Save();
-                        } else 
+                            tDuration.Stop();
+                            break;
+                        } 
+                        else 
                         {
-                        player.Load(playlist[Settings.Default.queIndex]);
-                        mediaPath = playlist[Settings.Default.queIndex];
-                        isMediaLoaded = true;
-                        player.Resume();
-                        isMediaPlaying = true;
-                        tDuration.Start();
+                            try
+                            {
+                            player.Load(playlist[Settings.Default.queIndex]);
+                            mediaPath = playlist[Settings.Default.queIndex];
+                            isMediaLoaded = true;
+                            player.Resume();
+                            isMediaPlaying = true;
+                            tDuration.Start();
+                            }
+                            catch (Exception) {  }
                         }
                     }
                     break;
                 case 1:
-                    if (Settings.Default.queIndex <= playlist.Length)
+                    if (Settings.Default.queIndex <= Settings.Default.queCurrentPlaylist.Split('\n').Length)
                     {
                         isMediaPlaying = false;
                         isMediaLoaded = false;
                         Settings.Default.queIndex++;
                         Settings.Default.Save();
-                        if (Settings.Default.queIndex > playlist.Length)
+                        if (Settings.Default.queIndex > Settings.Default.queCurrentPlaylist.Split('\n').Length)
                         {
                             Settings.Default.queIndex = 0;
                             Settings.Default.Save();
-                            player.Load(playlist[0]);
-                            mediaPath = playlist[0];
+                            player.Load(Settings.Default.queCurrentPlaylist.Split('\n')[0]);
+                            mediaPath = Settings.Default.queCurrentPlaylist.Split('\n')[0];
                             isMediaLoaded = true;
                             player.Resume();
                             isMediaPlaying = true;
@@ -211,8 +216,8 @@ namespace Pytel_WinForm
                         }
                         else
                         {
-                            player.Load(playlist[Settings.Default.queIndex]);
-                            mediaPath = playlist[Settings.Default.queIndex];
+                            player.Load(Settings.Default.queCurrentPlaylist.Split('\n')[Settings.Default.queIndex]);
+                            mediaPath = Settings.Default.queCurrentPlaylist.Split('\n')[Settings.Default.queIndex];
                             isMediaLoaded = true;
                             player.Resume();
                             isMediaPlaying = true;
@@ -221,7 +226,7 @@ namespace Pytel_WinForm
                     }
                     break;
                 case 2:
-                    player.Load(playlist[Settings.Default.queIndex]);
+                    player.Load(Settings.Default.queCurrentPlaylist.Split('\n')[Settings.Default.queIndex]);
                     player.Resume();
                     break;
             }
