@@ -167,33 +167,28 @@ namespace Pytel_WinForm
             switch (Settings.Default.queLoop)
             {
                 case 0:
-                    if (Settings.Default.queIndex <= playlist.Length)
+                    isMediaPlaying = false;
+                    isMediaLoaded = false;
+                    Settings.Default.queIndex++;
+                    Settings.Default.Save();
+                    if (Settings.Default.queIndex < playlist.Length)
                     {
-                        isMediaPlaying = false;
-                        isMediaLoaded = false;
-                        Settings.Default.queIndex++;
-                        Settings.Default.Save();
-                        if (Settings.Default.queIndex >= playlist.Length)
+                        try
                         {
-                            player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                            Settings.Default.queIndex = 0;
-                            Settings.Default.Save();
-                            tDuration.Stop();
-                            break;
-                        } 
-                        else 
-                        {
-                            try
-                            {
                             player.Load(playlist[Settings.Default.queIndex]);
                             mediaPath = playlist[Settings.Default.queIndex];
                             isMediaLoaded = true;
                             player.Resume();
                             isMediaPlaying = true;
                             tDuration.Start();
-                            }
-                            catch (Exception) {  }
-                        }
+                        } catch (Exception) { }
+                    }
+                    else
+                    {
+                        player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                        Settings.Default.queIndex = 0;
+                        Settings.Default.Save();
+                        tDuration.Stop();
                     }
                     break;
                 case 1:
