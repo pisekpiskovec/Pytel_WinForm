@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -130,8 +129,8 @@ namespace Pytel_WinForm
             this.WindowState = (FormWindowState)winState;
         }
 
-        private void panel1_MouseEnter(object sender, EventArgs e) { tsFullScreen.Visible = true; }
-        private void panel1_MouseLeave(object sender, EventArgs e) { tsFullScreen.Visible = false; }
+        private void pFullScreenControl_MouseEnter(object sender, EventArgs e) { tsFullScreen.Visible = true; }
+        private void tsFullScreen_MouseLeave(object sender, EventArgs e) { tsFullScreen.Visible = false; }
         private void tspbPosition_Click(object sender, EventArgs e)
         {
             float absoluteMouse = (PointToClient(MousePosition).X - tspbPosition.Bounds.X);

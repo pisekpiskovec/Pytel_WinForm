@@ -312,7 +312,7 @@ namespace Pytel_WinForm
             this.pFullScreenControl.Name = "pFullScreenControl";
             this.pFullScreenControl.Size = new System.Drawing.Size(800, 25);
             this.pFullScreenControl.TabIndex = 0;
-            this.pFullScreenControl.MouseEnter += new System.EventHandler(this.panel1_MouseEnter);
+            this.pFullScreenControl.MouseEnter += new System.EventHandler(this.pFullScreenControl_MouseEnter);
             // 
             // ofdFile
             // 
@@ -349,7 +349,7 @@ namespace Pytel_WinForm
             this.tsFullScreen.TabIndex = 4;
             this.tsFullScreen.Text = "tsFullScreen";
             this.tsFullScreen.Visible = false;
-            this.tsFullScreen.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.tsFullScreen.MouseLeave += new System.EventHandler(this.tsFullScreen_MouseLeave);
             // 
             // tsbExitFullScreen
             // 
