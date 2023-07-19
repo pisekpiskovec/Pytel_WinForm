@@ -122,12 +122,12 @@ namespace Pytel_WinForm.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string queCurrentPlaylist {
+        public string quePlaylist {
             get {
-                return ((string)(this["queCurrentPlaylist"]));
+                return ((string)(this["quePlaylist"]));
             }
             set {
-                this["queCurrentPlaylist"] = value;
+                this["quePlaylist"] = value;
             }
         }
         

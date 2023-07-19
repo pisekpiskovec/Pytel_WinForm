@@ -54,7 +54,6 @@ namespace Pytel_WinForm
             this.pPlayer = new System.Windows.Forms.Panel();
             this.pFullScreenControl = new System.Windows.Forms.Panel();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
-            this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.tDuration = new System.Windows.Forms.Timer(this.components);
             this.tControls = new System.Windows.Forms.Timer(this.components);
             this.tsFullScreen = new System.Windows.Forms.ToolStrip();
@@ -504,7 +503,6 @@ namespace Pytel_WinForm
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenURL;
         private System.Windows.Forms.Panel pPlayer;
         private System.Windows.Forms.OpenFileDialog ofdFile;
-        private System.Windows.Forms.FolderBrowserDialog fbdFolder;
         private System.Windows.Forms.Timer tDuration;
         private System.Windows.Forms.Timer tControls;
         private System.Windows.Forms.ToolStripButton tsbFullScreen;

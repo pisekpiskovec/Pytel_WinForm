@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Queue));
             this.gbPlaylist = new System.Windows.Forms.GroupBox();
             this.bPlaylistPlay = new System.Windows.Forms.Button();
@@ -36,7 +37,6 @@
             this.bPlaylistAdd = new System.Windows.Forms.Button();
             this.bPlaylistClear = new System.Windows.Forms.Button();
             this.bPlaylistSave = new System.Windows.Forms.Button();
-            this.bPlaylistLoad = new System.Windows.Forms.Button();
             this.gbLoop = new System.Windows.Forms.GroupBox();
             this.rbLoopOne = new System.Windows.Forms.RadioButton();
             this.rbLoopPlaylist = new System.Windows.Forms.RadioButton();
@@ -44,6 +44,7 @@
             this.ofdLoad = new System.Windows.Forms.OpenFileDialog();
             this.sfdSave = new System.Windows.Forms.SaveFileDialog();
             this.ofdAdd = new System.Windows.Forms.OpenFileDialog();
+            this.tControls = new System.Windows.Forms.Timer(this.components);
             this.gbPlaylist.SuspendLayout();
             this.gbLoop.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +57,6 @@
             this.gbPlaylist.Controls.Add(this.bPlaylistAdd);
             this.gbPlaylist.Controls.Add(this.bPlaylistClear);
             this.gbPlaylist.Controls.Add(this.bPlaylistSave);
-            this.gbPlaylist.Controls.Add(this.bPlaylistLoad);
             this.gbPlaylist.Location = new System.Drawing.Point(12, 12);
             this.gbPlaylist.Name = "gbPlaylist";
             this.gbPlaylist.Size = new System.Drawing.Size(325, 320);
@@ -66,21 +66,23 @@
             // 
             // bPlaylistPlay
             // 
+            this.bPlaylistPlay.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bPlaylistPlay.Enabled = false;
             this.bPlaylistPlay.Location = new System.Drawing.Point(244, 291);
             this.bPlaylistPlay.Name = "bPlaylistPlay";
             this.bPlaylistPlay.Size = new System.Drawing.Size(75, 23);
-            this.bPlaylistPlay.TabIndex = 6;
+            this.bPlaylistPlay.TabIndex = 5;
             this.bPlaylistPlay.Text = "Play Playlist";
             this.bPlaylistPlay.UseVisualStyleBackColor = true;
             this.bPlaylistPlay.Click += new System.EventHandler(this.bPlaylistPlay_Click);
             // 
             // bPlaylistDelete
             // 
-            this.bPlaylistDelete.Location = new System.Drawing.Point(244, 158);
+            this.bPlaylistDelete.Enabled = false;
+            this.bPlaylistDelete.Location = new System.Drawing.Point(244, 129);
             this.bPlaylistDelete.Name = "bPlaylistDelete";
             this.bPlaylistDelete.Size = new System.Drawing.Size(75, 46);
-            this.bPlaylistDelete.TabIndex = 5;
+            this.bPlaylistDelete.TabIndex = 4;
             this.bPlaylistDelete.Text = "Delete from Playlist";
             this.bPlaylistDelete.UseVisualStyleBackColor = true;
             this.bPlaylistDelete.Click += new System.EventHandler(this.bPlaylistDelete_Click);
@@ -88,14 +90,15 @@
             // lbList
             // 
             this.lbList.FormattingEnabled = true;
+            this.lbList.HorizontalScrollbar = true;
             this.lbList.Location = new System.Drawing.Point(6, 19);
             this.lbList.Name = "lbList";
             this.lbList.Size = new System.Drawing.Size(232, 290);
-            this.lbList.TabIndex = 4;
+            this.lbList.TabIndex = 6;
             // 
             // bPlaylistAdd
             // 
-            this.bPlaylistAdd.Location = new System.Drawing.Point(244, 106);
+            this.bPlaylistAdd.Location = new System.Drawing.Point(244, 77);
             this.bPlaylistAdd.Name = "bPlaylistAdd";
             this.bPlaylistAdd.Size = new System.Drawing.Size(75, 46);
             this.bPlaylistAdd.TabIndex = 3;
@@ -105,7 +108,8 @@
             // 
             // bPlaylistClear
             // 
-            this.bPlaylistClear.Location = new System.Drawing.Point(244, 77);
+            this.bPlaylistClear.Enabled = false;
+            this.bPlaylistClear.Location = new System.Drawing.Point(244, 48);
             this.bPlaylistClear.Name = "bPlaylistClear";
             this.bPlaylistClear.Size = new System.Drawing.Size(75, 23);
             this.bPlaylistClear.TabIndex = 2;
@@ -115,23 +119,14 @@
             // 
             // bPlaylistSave
             // 
-            this.bPlaylistSave.Location = new System.Drawing.Point(244, 48);
+            this.bPlaylistSave.Enabled = false;
+            this.bPlaylistSave.Location = new System.Drawing.Point(244, 19);
             this.bPlaylistSave.Name = "bPlaylistSave";
             this.bPlaylistSave.Size = new System.Drawing.Size(75, 23);
             this.bPlaylistSave.TabIndex = 1;
             this.bPlaylistSave.Text = "Save Playlist";
             this.bPlaylistSave.UseVisualStyleBackColor = true;
             this.bPlaylistSave.Click += new System.EventHandler(this.bPlaylistSave_Click);
-            // 
-            // bPlaylistLoad
-            // 
-            this.bPlaylistLoad.Location = new System.Drawing.Point(244, 19);
-            this.bPlaylistLoad.Name = "bPlaylistLoad";
-            this.bPlaylistLoad.Size = new System.Drawing.Size(75, 23);
-            this.bPlaylistLoad.TabIndex = 0;
-            this.bPlaylistLoad.Text = "Load Playlist";
-            this.bPlaylistLoad.UseVisualStyleBackColor = true;
-            this.bPlaylistLoad.Click += new System.EventHandler(this.bPlaylistLoad_Click);
             // 
             // gbLoop
             // 
@@ -151,7 +146,7 @@
             this.rbLoopOne.Location = new System.Drawing.Point(126, 53);
             this.rbLoopOne.Name = "rbLoopOne";
             this.rbLoopOne.Size = new System.Drawing.Size(72, 17);
-            this.rbLoopOne.TabIndex = 2;
+            this.rbLoopOne.TabIndex = 8;
             this.rbLoopOne.Text = "Loop One";
             this.rbLoopOne.UseVisualStyleBackColor = true;
             this.rbLoopOne.CheckedChanged += new System.EventHandler(this.rbLoopOne_CheckedChanged);
@@ -163,7 +158,7 @@
             this.rbLoopPlaylist.Location = new System.Drawing.Point(17, 39);
             this.rbLoopPlaylist.Name = "rbLoopPlaylist";
             this.rbLoopPlaylist.Size = new System.Drawing.Size(84, 17);
-            this.rbLoopPlaylist.TabIndex = 1;
+            this.rbLoopPlaylist.TabIndex = 9;
             this.rbLoopPlaylist.Text = "Loop Playlist";
             this.rbLoopPlaylist.UseVisualStyleBackColor = true;
             this.rbLoopPlaylist.Visible = false;
@@ -176,7 +171,7 @@
             this.rbOff.Location = new System.Drawing.Point(143, 30);
             this.rbOff.Name = "rbOff";
             this.rbOff.Size = new System.Drawing.Size(39, 17);
-            this.rbOff.TabIndex = 0;
+            this.rbOff.TabIndex = 7;
             this.rbOff.TabStop = true;
             this.rbOff.Text = "Off";
             this.rbOff.UseVisualStyleBackColor = true;
@@ -202,6 +197,12 @@
             this.ofdAdd.Filter = resources.GetString("ofdAdd.Filter");
             this.ofdAdd.Multiselect = true;
             this.ofdAdd.Title = "Add to Playlist";
+            // 
+            // tControls
+            // 
+            this.tControls.Enabled = true;
+            this.tControls.Interval = 1000;
+            this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
             // 
             // Queue
             // 
@@ -235,14 +236,14 @@
         private System.Windows.Forms.RadioButton rbLoopOne;
         private System.Windows.Forms.RadioButton rbLoopPlaylist;
         private System.Windows.Forms.Button bPlaylistDelete;
-        private System.Windows.Forms.ListBox lbList;
         private System.Windows.Forms.Button bPlaylistAdd;
         private System.Windows.Forms.Button bPlaylistClear;
         private System.Windows.Forms.Button bPlaylistSave;
-        private System.Windows.Forms.Button bPlaylistLoad;
         private System.Windows.Forms.Button bPlaylistPlay;
         private System.Windows.Forms.OpenFileDialog ofdLoad;
         private System.Windows.Forms.SaveFileDialog sfdSave;
         private System.Windows.Forms.OpenFileDialog ofdAdd;
+        public System.Windows.Forms.ListBox lbList;
+        private System.Windows.Forms.Timer tControls;
     }
 }
