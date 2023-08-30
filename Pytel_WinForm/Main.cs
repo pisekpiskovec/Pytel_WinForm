@@ -25,7 +25,7 @@ namespace Pytel_WinForm
         {
             InitializeComponent();
             player = new MpvPlayer(pPlayer.Handle);
-            player.MediaFinished += this.mediaFinished;
+            //player.MediaFinished += this.mediaFinished;
             this.Location = Settings.Default.lastPos;
             this.WindowState = (FormWindowState)Settings.Default.lastStat;
             this.Size = Settings.Default.lastSize;
@@ -61,8 +61,58 @@ namespace Pytel_WinForm
             else { player.Resume(); }
         }
 
-        private void tsbPrevious_Click(object sender, EventArgs e) { player.PlaylistPrevious(); }
-        private void tsbNext_Click(object sender, EventArgs e) { player.PlaylistNext(); }
+        private void tsbPrevious_Click(object sender, EventArgs e) 
+        {
+            if (System.IO.Path.GetExtension(mediaPath) == ".m3u" && player.PlaylistIndex != 0)
+            {
+                player.PlaylistPrevious();
+            }
+            else
+            {
+                string[] playlist = Settings.Default.quePlaylist.Split('\n');
+                Settings.Default.queIndex--;
+                Settings.Default.Save();
+                if (Settings.Default.queIndex >= 0)
+                {
+                    player.Load(playlist[Settings.Default.queIndex]);
+                    mediaPath = playlist[Settings.Default.queIndex];
+                    isMediaLoaded = true;
+                    player.Resume();
+                    isMediaPlaying = true;
+                    tDuration.Start();
+                }
+                else { Settings.Default.queIndex = 0; Settings.Default.Save(); }
+            }
+        }
+
+        private void tsbNext_Click(object sender, EventArgs e)
+        {
+
+            if (System.IO.Path.GetExtension(mediaPath) == ".m3u" && player.PlaylistIndex != player.PlaylistEntryCount - 1)
+            {
+                player.PlaylistNext();
+            }
+            else
+            {
+                string[] playlist = Settings.Default.quePlaylist.Split('\n');
+                Settings.Default.queIndex++;
+                Settings.Default.Save();
+                if (Settings.Default.queIndex < playlist.Length)
+                {
+                    try
+                    {
+                        player.Load(playlist[Settings.Default.queIndex]);
+                        mediaPath = playlist[Settings.Default.queIndex];
+                        isMediaLoaded = true;
+                        player.Resume();
+                        isMediaPlaying = true;
+                        tDuration.Start();
+                    }
+                    catch (Exception) { }
+                }
+            }
+        }
+
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
         private void tsbPause_Click(object sender, EventArgs e) {
             if (isMediaPlaying) { player.Pause(); isMediaPlaying = false; }
@@ -82,6 +132,11 @@ namespace Pytel_WinForm
             tslFSDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
             tslDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%\nClick to open Settings.";
             tslFSDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
+
+            if (player.Position.TotalSeconds == player.Duration.TotalSeconds)
+            {
+                tsbNext.PerformClick();
+            }
         }
 
         private void tControls_Tick(object sender, EventArgs e)
@@ -97,6 +152,7 @@ namespace Pytel_WinForm
             tbVolume.Value = (int)player.Volume;
             tspbVolume.Value = (int)player.Volume;
             tsbFullScreen.Enabled = isMediaLoaded;
+            tsbPrevious.Enabled = isMediaLoaded;
             tsbSeekBack.Enabled = player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
             tsbPlay.Enabled = !isMediaPlaying && isMediaLoaded;
             tsbPause.Enabled = isMediaLoaded;
@@ -104,7 +160,10 @@ namespace Pytel_WinForm
             tsbFSPause.Enabled = isMediaLoaded;
             tsbStop.Enabled = isMediaLoaded;
             tsbSeekForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
+            tsbNext.Enabled = isMediaLoaded;
             this.Text = isMediaLoaded ? "Pytel | " + player.MediaTitle : "Pytel";
+
+            //tslDebug.Text = $"{player.PlaylistIndex.ToString()}/{player.PlaylistEntryCount.ToString()}";
         }
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
@@ -160,36 +219,66 @@ namespace Pytel_WinForm
             switch (Settings.Default.queLoop)
             {
                 case 0:
-                    isMediaPlaying = false;
-                    isMediaLoaded = false;
-                    Settings.Default.queIndex++;
-                    Settings.Default.Save();
-                    if (Settings.Default.queIndex < playlist.Length)
+                    player.Loop = false;
+                    if (System.IO.Path.GetExtension(mediaPath) != ".m3u") 
                     {
-                        try
-                        {
-                            player.Load(playlist[Settings.Default.queIndex]);
-                            mediaPath = playlist[Settings.Default.queIndex];
-                            isMediaLoaded = true;
-                            player.Resume();
-                            isMediaPlaying = true;
-                            tDuration.Start();
-                        } catch (Exception) { }
-                    }
-                    else
-                    {
-                        player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                        Settings.Default.queIndex = 0;
+                        isMediaPlaying = false;
+                        isMediaLoaded = false;
+                        Settings.Default.queIndex++;
                         Settings.Default.Save();
-                        tDuration.Stop();
+                        if (Settings.Default.queIndex < playlist.Length)
+                        {
+                            try
+                            {
+                                player.Load(playlist[Settings.Default.queIndex]);
+                                mediaPath = playlist[Settings.Default.queIndex];
+                                isMediaLoaded = true;
+                                player.Resume();
+                                isMediaPlaying = true;
+                                tDuration.Start();
+                            }
+                            catch (Exception) { }
+                        }
+                        else
+                        {
+                            player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                            Settings.Default.queIndex = 0;
+                            Settings.Default.Save();
+                            tDuration.Stop();
+                        }
+                    } else
+                    {
+                        if(player.PlaylistIndex < player.PlaylistEntryCount) { }
+                        else {
+                            isMediaPlaying = false;
+                            isMediaLoaded = false;
+                            Settings.Default.queIndex++;
+                            Settings.Default.Save();
+                            if (Settings.Default.queIndex < playlist.Length)
+                            {
+                                try
+                                {
+                                    player.Load(playlist[Settings.Default.queIndex]);
+                                    mediaPath = playlist[Settings.Default.queIndex];
+                                    isMediaLoaded = true;
+                                    player.Resume();
+                                    isMediaPlaying = true;
+                                    tDuration.Start();
+                                }
+                                catch (Exception) { }
+                            }
+                            else
+                            {
+                                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                                Settings.Default.queIndex = 0;
+                                Settings.Default.Save();
+                                tDuration.Stop();
+                            }
+                        }
                     }
                     break;
-                case 1:
-                    break;
-                case 2:
-                  player.Load(playlist[Settings.Default.queIndex]);
-                  player.Resume();
-                  break;
+                case 1: break;
+                case 2: player.Loop = true; break;
             }
         }
 

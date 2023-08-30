@@ -42,10 +42,10 @@ namespace Pytel_WinForm
             this.rbPosition = new System.Windows.Forms.RadioButton();
             this.rbState = new System.Windows.Forms.RadioButton();
             this.rbOff = new System.Windows.Forms.RadioButton();
-            this.nudPosition = new System.Windows.Forms.NumericUpDown();
             this.lPosition = new System.Windows.Forms.Label();
-            this.nudVolume = new System.Windows.Forms.NumericUpDown();
             this.lVolume = new System.Windows.Forms.Label();
+            this.nudPosition = new System.Windows.Forms.NumericUpDown();
+            this.nudVolume = new System.Windows.Forms.NumericUpDown();
             this.gbAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbShortcuts.SuspendLayout();
@@ -199,6 +199,24 @@ namespace Pytel_WinForm
             this.rbOff.UseVisualStyleBackColor = true;
             this.rbOff.CheckedChanged += new System.EventHandler(this.rbOff_CheckedChanged);
             // 
+            // lPosition
+            // 
+            this.lPosition.AutoSize = true;
+            this.lPosition.Location = new System.Drawing.Point(6, 47);
+            this.lPosition.Name = "lPosition";
+            this.lPosition.Size = new System.Drawing.Size(87, 13);
+            this.lPosition.TabIndex = 2;
+            this.lPosition.Text = "Position Change:";
+            // 
+            // lVolume
+            // 
+            this.lVolume.AutoSize = true;
+            this.lVolume.Location = new System.Drawing.Point(6, 21);
+            this.lVolume.Name = "lVolume";
+            this.lVolume.Size = new System.Drawing.Size(85, 13);
+            this.lVolume.TabIndex = 0;
+            this.lVolume.Text = "Volume Change:";
+            // 
             // nudPosition
             // 
             this.nudPosition.Location = new System.Drawing.Point(99, 45);
@@ -218,15 +236,6 @@ namespace Pytel_WinForm
             this.nudPosition.Value = global::Pytel_WinForm.Properties.Settings.Default.positionChange;
             this.nudPosition.ValueChanged += new System.EventHandler(this.nudPosition_ValueChanged);
             // 
-            // lPosition
-            // 
-            this.lPosition.AutoSize = true;
-            this.lPosition.Location = new System.Drawing.Point(6, 47);
-            this.lPosition.Name = "lPosition";
-            this.lPosition.Size = new System.Drawing.Size(87, 13);
-            this.lPosition.TabIndex = 2;
-            this.lPosition.Text = "Position Change:";
-            // 
             // nudVolume
             // 
             this.nudVolume.Location = new System.Drawing.Point(97, 19);
@@ -245,15 +254,6 @@ namespace Pytel_WinForm
             this.nudVolume.TabIndex = 1;
             this.nudVolume.Value = global::Pytel_WinForm.Properties.Settings.Default.volumeChange;
             this.nudVolume.ValueChanged += new System.EventHandler(this.nudVolume_ValueChanged);
-            // 
-            // lVolume
-            // 
-            this.lVolume.AutoSize = true;
-            this.lVolume.Location = new System.Drawing.Point(6, 21);
-            this.lVolume.Name = "lVolume";
-            this.lVolume.Size = new System.Drawing.Size(85, 13);
-            this.lVolume.TabIndex = 0;
-            this.lVolume.Text = "Volume Change:";
             // 
             // About
             // 

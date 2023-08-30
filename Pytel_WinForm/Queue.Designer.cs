@@ -41,7 +41,6 @@
             this.rbLoopOne = new System.Windows.Forms.RadioButton();
             this.rbLoopPlaylist = new System.Windows.Forms.RadioButton();
             this.rbOff = new System.Windows.Forms.RadioButton();
-            this.ofdLoad = new System.Windows.Forms.OpenFileDialog();
             this.sfdSave = new System.Windows.Forms.SaveFileDialog();
             this.ofdAdd = new System.Windows.Forms.OpenFileDialog();
             this.tControls = new System.Windows.Forms.Timer(this.components);
@@ -177,13 +176,6 @@
             this.rbOff.UseVisualStyleBackColor = true;
             this.rbOff.CheckedChanged += new System.EventHandler(this.rbOff_CheckedChanged);
             // 
-            // ofdLoad
-            // 
-            this.ofdLoad.DefaultExt = "m3u";
-            this.ofdLoad.Filter = "MP3 URL|*.m3u";
-            this.ofdLoad.RestoreDirectory = true;
-            this.ofdLoad.Title = "Load Playlist";
-            // 
             // sfdSave
             // 
             this.sfdSave.DefaultExt = "m3u";
@@ -240,7 +232,6 @@
         private System.Windows.Forms.Button bPlaylistClear;
         private System.Windows.Forms.Button bPlaylistSave;
         private System.Windows.Forms.Button bPlaylistPlay;
-        private System.Windows.Forms.OpenFileDialog ofdLoad;
         private System.Windows.Forms.SaveFileDialog sfdSave;
         private System.Windows.Forms.OpenFileDialog ofdAdd;
         public System.Windows.Forms.ListBox lbList;
