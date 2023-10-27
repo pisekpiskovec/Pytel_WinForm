@@ -12,8 +12,6 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier still yet powerful mutl
 
 * [ ] Queue and playlist support
 * [ ] Opening video from internet (ytdl support)
-* [x] Settings and About window
-* [x] Mouse and Keyboard shortcuts
 - [ ] Windows integration and Drag'n'Drop
 
 ## Screenshots

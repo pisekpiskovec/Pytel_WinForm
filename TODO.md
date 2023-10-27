@@ -2,7 +2,7 @@
 
 [ ] Remember window size toggle
 [ ] Pause on background
-[ ] Load last file on startup, last position and play
+[ ] Load last file on startup, last position
 
 # Ha
 
