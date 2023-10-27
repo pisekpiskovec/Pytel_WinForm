@@ -133,10 +133,32 @@ namespace Pytel_WinForm
             tslDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%\nClick to open Settings.";
             tslFSDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
 
-            if (player.Position.TotalSeconds == player.Duration.TotalSeconds)
+            /* if (player.Position.TotalSeconds == player.Duration.TotalSeconds)
             {
-                tsbNext.PerformClick();
-            }
+                if (System.IO.Path.GetExtension(mediaPath) == ".m3u" && player.PlaylistIndex != player.PlaylistEntryCount - 1)
+                {
+                    player.PlaylistNext();
+                }
+                else
+                {
+                    string[] playlist = Settings.Default.quePlaylist.Split('\n');
+                    Settings.Default.queIndex++;
+                    Settings.Default.Save();
+                    if (Settings.Default.queIndex < playlist.Length)
+                    {
+                        try
+                        {
+                            player.Load(playlist[Settings.Default.queIndex]);
+                            mediaPath = playlist[Settings.Default.queIndex];
+                            isMediaLoaded = true;
+                            player.Resume();
+                            isMediaPlaying = true;
+                            tDuration.Start();
+                        }
+                        catch (Exception) { }
+                    }
+                }
+            }*/
         }
 
         private void tControls_Tick(object sender, EventArgs e)
