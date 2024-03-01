@@ -13,7 +13,10 @@
 
 # Q
 
-[ ] 
+[ ] Pause on mute
+[ ] Dark theme
+[ ] Tray controls
+[ ] Keep screen on during pause
 
 # :||
 
