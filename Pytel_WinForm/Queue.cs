@@ -59,8 +59,12 @@ namespace Pytel_WinForm
             bPlaylistSave.Enabled = lbList.Items.Count == 0 ? false : true;
             bPlaylistClear.Enabled = lbList.Items.Count == 0 ? false : true;
             bPlaylistDelete.Enabled = lbList.SelectedItems.Count == 0 ? false : true;
+            bPlaylistPlaySelected.Enabled = lbList.SelectedItems.Count == 0 ? false : true;
         }
 
         public List<string> getEditedMediaQueue() { return mediaQueue.ToList(); }
+
+        private void bPlaylistPlaySelected_Click(object sender, EventArgs e) { Settings.Default.queIndex = lbList.SelectedIndex; Settings.Default.Save(); }
+        
     }
 }

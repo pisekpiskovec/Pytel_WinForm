@@ -44,12 +44,14 @@
             this.sfdSave = new System.Windows.Forms.SaveFileDialog();
             this.ofdAdd = new System.Windows.Forms.OpenFileDialog();
             this.tControls = new System.Windows.Forms.Timer(this.components);
+            this.bPlaylistPlaySelected = new System.Windows.Forms.Button();
             this.gbPlaylist.SuspendLayout();
             this.gbLoop.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbPlaylist
             // 
+            this.gbPlaylist.Controls.Add(this.bPlaylistPlaySelected);
             this.gbPlaylist.Controls.Add(this.bPlaylistPlay);
             this.gbPlaylist.Controls.Add(this.bPlaylistDelete);
             this.gbPlaylist.Controls.Add(this.lbList);
@@ -196,6 +198,18 @@
             this.tControls.Interval = 1000;
             this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
             // 
+            // bPlaylistPlaySelected
+            // 
+            this.bPlaylistPlaySelected.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.bPlaylistPlaySelected.Enabled = false;
+            this.bPlaylistPlaySelected.Location = new System.Drawing.Point(244, 234);
+            this.bPlaylistPlaySelected.Name = "bPlaylistPlaySelected";
+            this.bPlaylistPlaySelected.Size = new System.Drawing.Size(75, 46);
+            this.bPlaylistPlaySelected.TabIndex = 7;
+            this.bPlaylistPlaySelected.Text = "Play from Selected";
+            this.bPlaylistPlaySelected.UseVisualStyleBackColor = true;
+            this.bPlaylistPlaySelected.Click += new System.EventHandler(this.bPlaylistPlaySelected_Click);
+            // 
             // Queue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,5 +250,6 @@
         private System.Windows.Forms.OpenFileDialog ofdAdd;
         public System.Windows.Forms.ListBox lbList;
         private System.Windows.Forms.Timer tControls;
+        private System.Windows.Forms.Button bPlaylistPlaySelected;
     }
 }

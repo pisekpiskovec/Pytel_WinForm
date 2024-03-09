@@ -344,16 +344,28 @@ namespace Pytel_WinForm
         private void tslDuration_Click(object sender, EventArgs e) { About abt = new About(); abt.ShowDialog(); }
         private void tsbQueue_Click(object sender, EventArgs e) {
             Queue que = new Queue(mediaQueue);
-            if (que.ShowDialog() == DialogResult.OK)
+            switch (que.ShowDialog())
             {
-                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                mediaQueue = que.getEditedMediaQueue();
-                player.Load(mediaQueue[0]);
-                mediaPath = mediaQueue[0];
-                isMediaLoaded = true;
-                player.Resume();
-                isMediaPlaying = true;
-                tDuration.Start();
+                case DialogResult.OK:
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                    mediaQueue = que.getEditedMediaQueue();
+                    player.Load(mediaQueue[0]);
+                    mediaPath = mediaQueue[0];
+                    isMediaLoaded = true;
+                    player.Resume();
+                    isMediaPlaying = true;
+                    tDuration.Start();
+                    break;
+                case DialogResult.Yes:
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                    mediaQueue = que.getEditedMediaQueue();
+                    player.Load(mediaQueue[Settings.Default.queIndex]);
+                    mediaPath = mediaQueue[Settings.Default.queIndex];
+                    isMediaLoaded = true;
+                    player.Resume();
+                    isMediaPlaying = true;
+                    tDuration.Start();
+                    break;
             }
         }
         private void tTaskbar_Tick(object sender, EventArgs e)
