@@ -1,24 +1,21 @@
-﻿using Pytel_WinForm.Properties;
-using System;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Pytel_WinForm.Properties;
 
 namespace Pytel_WinForm
 {
     public partial class Queue : Form
     {
-        string[] separator = { "\n" };
-        public Main mainForm;
+        BindingList<string> mediaQueue;
 
-        public Queue() { InitializeComponent(); }
+        public Queue(List<string> listPass) { InitializeComponent(); mediaQueue = new BindingList<string>(listPass); }
         private void Queue_Load(object sender, EventArgs e)
         {
-            if (Settings.Default.quePlaylist != null || !Settings.Default.quePlaylist.Equals(""))
-            {
-                string[] itemsToAdd = Settings.Default.quePlaylist.ToString().Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string item in itemsToAdd) { lbList.Items.Add(item); }
-            }
+            lbList.Items.Clear();
+            lbList.DataSource = mediaQueue;
             switch (Settings.Default.queLoop) 
             {
                 case 0: 
@@ -42,27 +39,16 @@ namespace Pytel_WinForm
             }
         }
 
-        private void bPlaylistClear_Click(object sender, EventArgs e) { lbList.Items.Clear(); Settings.Default.quePlaylist = ""; Settings.Default.queIndex = 0; Settings.Default.Save(); }
+        private void bPlaylistClear_Click(object sender, EventArgs e) { mediaQueue.Clear(); Settings.Default.queIndex = 0; Settings.Default.Save(); }
         private void bPlaylistAdd_Click(object sender, EventArgs e)
         {
             if (ofdAdd.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < ofdAdd.FileNames.Count(); i++) { lbList.Items.Add(ofdAdd.FileNames[i]); Settings.Default.quePlaylist += ofdAdd.FileNames[i] + "\n"; }
+                for (int i = 0; i < ofdAdd.FileNames.Count(); i++) { mediaQueue.Add(ofdAdd.FileNames[i]); }
                 Settings.Default.Save();
             }
         }
-        private void bPlaylistDelete_Click(object sender, EventArgs e)
-        {
-            if (lbList.SelectedItems.Count != 0)
-            {
-                string[] playlistArr = Settings.Default.quePlaylist.Split('\n');
-                int selIndex = lbList.SelectedIndex;
-                playlistArr = playlistArr.Where((val, idx) => idx !=  selIndex).ToArray();
-                Settings.Default.quePlaylist = string.Join("\n", playlistArr);
-                Settings.Default.Save();
-                lbList.Items.RemoveAt(lbList.SelectedIndex);
-            } 
-        }
+        private void bPlaylistDelete_Click(object sender, EventArgs e) { mediaQueue.RemoveAt(lbList.SelectedIndex); }
         private void bPlaylistPlay_Click(object sender, EventArgs e) { Settings.Default.queIndex = 0; Settings.Default.Save(); }
         private void rbOff_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 0; }
         private void rbLoopPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 1; }
@@ -75,5 +61,7 @@ namespace Pytel_WinForm
             bPlaylistClear.Enabled = lbList.Items.Count == 0 ? false : true;
             bPlaylistDelete.Enabled = lbList.SelectedItems.Count == 0 ? false : true;
         }
+
+        public List<string> getEditedMediaQueue() { return mediaQueue.ToList(); }
     }
 }
