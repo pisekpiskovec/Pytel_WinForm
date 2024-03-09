@@ -130,8 +130,7 @@ namespace Pytel_WinForm
             if (player.Duration.Hours.ToString("00") != "00") { hoursTotal = player.Duration.Hours.ToString("00") + ":"; };
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
             tslFSDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
-            toolTip.SetToolTip(tbVolume, $"Volume: {player.Volume}%");
-            tslFSDuration.ToolTipText = $"Volume: {player.Volume.ToString()}%";
+            tslFSDuration.ToolTipText = $"Volume: {player.Volume}%";
 
             /* if (player.Position.TotalSeconds == player.Duration.TotalSeconds)
             {
@@ -184,7 +183,7 @@ namespace Pytel_WinForm
             tsbSeekForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
             tsbNext.Enabled = isMediaLoaded;
             this.Text = isMediaLoaded ? "Pytel | " + player.MediaTitle : "Pytel";
-
+            toolTip.SetToolTip(tbVolume, $"Volume: {tbVolume.Value}%");
             //tslDebug.Text = $"{player.PlaylistIndex.ToString()}/{player.PlaylistEntryCount.ToString()}";
         }
 
