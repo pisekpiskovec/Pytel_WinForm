@@ -67,7 +67,7 @@
             // 
             this.bPlaylistPlay.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bPlaylistPlay.Enabled = false;
-            this.bPlaylistPlay.Location = new System.Drawing.Point(244, 291);
+            this.bPlaylistPlay.Location = new System.Drawing.Point(244, 286);
             this.bPlaylistPlay.Name = "bPlaylistPlay";
             this.bPlaylistPlay.Size = new System.Drawing.Size(75, 23);
             this.bPlaylistPlay.TabIndex = 5;
@@ -142,7 +142,8 @@
             // rbLoopOne
             // 
             this.rbLoopOne.AutoSize = true;
-            this.rbLoopOne.Location = new System.Drawing.Point(126, 53);
+            this.rbLoopOne.Enabled = false;
+            this.rbLoopOne.Location = new System.Drawing.Point(126, 42);
             this.rbLoopOne.Name = "rbLoopOne";
             this.rbLoopOne.Size = new System.Drawing.Size(72, 17);
             this.rbLoopOne.TabIndex = 8;
@@ -154,20 +155,19 @@
             // 
             this.rbLoopPlaylist.AutoSize = true;
             this.rbLoopPlaylist.Enabled = false;
-            this.rbLoopPlaylist.Location = new System.Drawing.Point(17, 39);
+            this.rbLoopPlaylist.Location = new System.Drawing.Point(120, 65);
             this.rbLoopPlaylist.Name = "rbLoopPlaylist";
             this.rbLoopPlaylist.Size = new System.Drawing.Size(84, 17);
             this.rbLoopPlaylist.TabIndex = 9;
             this.rbLoopPlaylist.Text = "Loop Playlist";
             this.rbLoopPlaylist.UseVisualStyleBackColor = true;
-            this.rbLoopPlaylist.Visible = false;
             this.rbLoopPlaylist.CheckedChanged += new System.EventHandler(this.rbLoopPlaylist_CheckedChanged);
             // 
             // rbOff
             // 
             this.rbOff.AutoSize = true;
             this.rbOff.Checked = true;
-            this.rbOff.Location = new System.Drawing.Point(143, 30);
+            this.rbOff.Location = new System.Drawing.Point(143, 19);
             this.rbOff.Name = "rbOff";
             this.rbOff.Size = new System.Drawing.Size(39, 17);
             this.rbOff.TabIndex = 7;
