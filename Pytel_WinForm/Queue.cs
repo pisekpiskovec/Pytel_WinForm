@@ -14,7 +14,6 @@ namespace Pytel_WinForm
         public Queue(List<string> listPass) { InitializeComponent(); mediaQueue = new BindingList<string>(listPass); }
         private void Queue_Load(object sender, EventArgs e)
         {
-            lbList.Items.Clear();
             lbList.DataSource = mediaQueue;
             switch (Settings.Default.queLoop) 
             {
