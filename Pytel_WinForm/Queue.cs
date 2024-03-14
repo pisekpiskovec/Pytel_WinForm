@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Pytel_WinForm.Properties;
@@ -17,12 +18,9 @@ namespace Pytel_WinForm
             lbList.DataSource = mediaQueue;
             switch (Settings.Default.queLoop) 
             {
-                case 0: 
-                    rbOff.Checked = true; break; 
-                case 1: 
-                    rbLoopPlaylist.Checked = true; break; 
-                case 2: 
-                    rbLoopOne.Checked = true; break; 
+                case 0: rbOff.Checked = true; break; 
+                case 1: rbLoopPlaylist.Checked = true; break; 
+                case 2: rbLoopOne.Checked = true; break; 
             }
         }
 
@@ -42,8 +40,18 @@ namespace Pytel_WinForm
         {
             if (ofdAdd.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < ofdAdd.FileNames.Count(); i++) { mediaQueue.Add(ofdAdd.FileNames[i]); }
-                Settings.Default.Save();
+                for (int i = 0; i < ofdAdd.FileNames.Count(); i++) {
+
+                    if (Path.GetExtension(ofdAdd.FileNames[i]) == ".m3u")
+                    {
+                        String[] inputing = File.ReadAllLines(ofdAdd.FileNames[i]);
+                        foreach(string item in inputing)
+                        {
+                            mediaQueue.Add(item);
+                        }
+                    }
+                    else { mediaQueue.Add(ofdAdd.FileNames[i]); }
+                }
             }
         }
         private void bPlaylistDelete_Click(object sender, EventArgs e) { mediaQueue.RemoveAt(lbList.SelectedIndex); }
