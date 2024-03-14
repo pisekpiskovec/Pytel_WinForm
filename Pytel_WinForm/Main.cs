@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Mpv.NET.Player;
 using Pytel_WinForm.Properties;
-using Mpv.NET.API;
 
 namespace Pytel_WinForm
 {
@@ -14,13 +13,9 @@ namespace Pytel_WinForm
     public partial class Main : Form
     {
         MpvPlayer player;
-        int saveLocalVolume = 0;
-        bool isMediaLoaded = false;
-        bool isMediaPlaying = false;
-        bool isFullScreen = false;
+        int saveLocalVolume = 0, winState;
+        bool isMediaLoaded = false, isMediaPlaying = false, isFullScreen = false, closedWithQ = false;
         string mediaPath;
-        bool closedWithQ = false;
-        int winState;
         List<string> mediaQueue = new List<string>();
 
         public Main()
