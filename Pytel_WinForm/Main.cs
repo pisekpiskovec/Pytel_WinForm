@@ -205,65 +205,7 @@ namespace Pytel_WinForm
         {
             switch (Settings.Default.queLoop)
             {
-                case 0:
-                    player.Loop = false;
-                    if (System.IO.Path.GetExtension(mediaPath) != ".m3u") 
-                    {
-                        isMediaPlaying = false;
-                        isMediaLoaded = false;
-                        mediaQueueIndex++;
-                        Settings.Default.Save();
-                        if (mediaQueueIndex < mediaQueue.Count)
-                        {
-                            try
-                            {
-                                player.Load(mediaQueue[mediaQueueIndex]);
-                                mediaPath = mediaQueue[mediaQueueIndex];
-                                isMediaLoaded = true;
-                                player.Resume();
-                                isMediaPlaying = true;
-                                tDuration.Start();
-                            }
-                            catch (Exception) { }
-                        }
-                        else
-                        {
-                            player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                            mediaQueueIndex = 0;
-                            Settings.Default.Save();
-                            tDuration.Stop();
-                        }
-                    } else
-                    {
-                        if(player.PlaylistIndex < player.PlaylistEntryCount) { }
-                        else {
-                            isMediaPlaying = false;
-                            isMediaLoaded = false;
-                            mediaQueueIndex++;
-                            Settings.Default.Save();
-                            if (mediaQueueIndex < mediaQueue.Count)
-                            {
-                                try
-                                {
-                                    player.Load(mediaQueue[mediaQueueIndex]);
-                                    mediaPath = mediaQueue[mediaQueueIndex];
-                                    isMediaLoaded = true;
-                                    player.Resume();
-                                    isMediaPlaying = true;
-                                    tDuration.Start();
-                                }
-                                catch (Exception) { }
-                            }
-                            else
-                            {
-                                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                                mediaQueueIndex = 0;
-                                Settings.Default.Save();
-                                tDuration.Stop();
-                            }
-                        }
-                    }
-                    break;
+                case 0: break;
                 case 1: break;
                 case 2: player.Loop = true; break;
             }
