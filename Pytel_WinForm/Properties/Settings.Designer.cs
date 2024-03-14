@@ -130,17 +130,5 @@ namespace Pytel_WinForm.Properties {
                 this["queLoop"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int queIndex {
-            get {
-                return ((int)(this["queIndex"]));
-            }
-            set {
-                this["queIndex"] = value;
-            }
-        }
     }
 }

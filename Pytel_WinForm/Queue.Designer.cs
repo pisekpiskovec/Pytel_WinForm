@@ -75,7 +75,6 @@
             this.bPlaylistPlay.TabIndex = 5;
             this.bPlaylistPlay.Text = "Play Playlist";
             this.bPlaylistPlay.UseVisualStyleBackColor = true;
-            this.bPlaylistPlay.Click += new System.EventHandler(this.bPlaylistPlay_Click);
             // 
             // bPlaylistDelete
             // 
@@ -208,7 +207,6 @@
             this.bPlaylistPlaySelected.TabIndex = 7;
             this.bPlaylistPlaySelected.Text = "Play from Selected";
             this.bPlaylistPlaySelected.UseVisualStyleBackColor = true;
-            this.bPlaylistPlaySelected.Click += new System.EventHandler(this.bPlaylistPlaySelected_Click);
             // 
             // Queue
             // 

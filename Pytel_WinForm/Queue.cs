@@ -37,7 +37,7 @@ namespace Pytel_WinForm
                 System.IO.File.WriteAllLines(sfdSave.FileName, inputing);
             }
         }
-        private void bPlaylistClear_Click(object sender, EventArgs e) { mediaQueue.Clear(); Settings.Default.queIndex = 0; Settings.Default.Save(); }
+        private void bPlaylistClear_Click(object sender, EventArgs e) { mediaQueue.Clear(); Settings.Default.Save(); }
         private void bPlaylistAdd_Click(object sender, EventArgs e)
         {
             if (ofdAdd.ShowDialog() == DialogResult.OK)
@@ -47,7 +47,6 @@ namespace Pytel_WinForm
             }
         }
         private void bPlaylistDelete_Click(object sender, EventArgs e) { mediaQueue.RemoveAt(lbList.SelectedIndex); }
-        private void bPlaylistPlay_Click(object sender, EventArgs e) { Settings.Default.queIndex = 0; Settings.Default.Save(); }
         private void rbOff_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 0; }
         private void rbLoopPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 1; }
         private void rbLoopOne_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 2; }
@@ -61,6 +60,5 @@ namespace Pytel_WinForm
         }
 
         public List<string> getEditedMediaQueue() { return mediaQueue.ToList(); }
-        private void bPlaylistPlaySelected_Click(object sender, EventArgs e) { Settings.Default.queIndex = lbList.SelectedIndex; Settings.Default.Save(); }
     }
 }

@@ -13,7 +13,7 @@ namespace Pytel_WinForm
     public partial class Main : Form
     {
         MpvPlayer player;
-        int saveLocalVolume = 0, winState;
+        int saveLocalVolume = 0, winState, mediaQueueIndex = 0;
         bool isMediaLoaded = false, isMediaPlaying = false, isFullScreen = false, closedWithQ = false;
         string mediaPath;
         List<string> mediaQueue = new List<string>();
@@ -45,7 +45,7 @@ namespace Pytel_WinForm
             Settings.Default.lastStat = (int)this.WindowState;
             if (WindowState != FormWindowState.Maximized) Settings.Default.lastSize = this.Size;
             if (closedWithQ) { Settings.Default.mediaLast = mediaPath; } else { Settings.Default.mediaLast = ""; }
-            if (!closedWithQ) { Settings.Default.queLoop = 0; Settings.Default.queIndex = 0; }
+            if (!closedWithQ) { Settings.Default.queLoop = 0; }
             Settings.Default.Save();
             player.Dispose();
         }
@@ -67,18 +67,18 @@ namespace Pytel_WinForm
             else
             {
                 //string[] playlist = Settings.Default.quePlaylist.Split('\n');
-                Settings.Default.queIndex--;
+                mediaQueueIndex--;
                 Settings.Default.Save();
-                if (Settings.Default.queIndex >= 0)
+                if (mediaQueueIndex >= 0)
                 {
-                    player.Load(mediaQueue[Settings.Default.queIndex]);
-                    mediaPath = mediaQueue[Settings.Default.queIndex];
+                    player.Load(mediaQueue[mediaQueueIndex]);
+                    mediaPath = mediaQueue[mediaQueueIndex];
                     isMediaLoaded = true;
                     player.Resume();
                     isMediaPlaying = true;
                     tDuration.Start();
                 }
-                else { Settings.Default.queIndex = 0; Settings.Default.Save(); }
+                else { mediaQueueIndex = 0; Settings.Default.Save(); }
             }
         }
 
@@ -92,14 +92,14 @@ namespace Pytel_WinForm
             else
             {
                 //string[] playlist = Settings.Default.quePlaylist.Split('\n');
-                Settings.Default.queIndex++;
+                mediaQueueIndex++;
                 Settings.Default.Save();
-                if (Settings.Default.queIndex < mediaQueue.Count)
+                if (mediaQueueIndex < mediaQueue.Count)
                 {
                     try
                     {
-                        player.Load(mediaQueue[Settings.Default.queIndex]);
-                        mediaPath = mediaQueue[Settings.Default.queIndex];
+                        player.Load(mediaQueue[mediaQueueIndex]);
+                        mediaPath = mediaQueue[mediaQueueIndex];
                         isMediaLoaded = true;
                         player.Resume();
                         isMediaPlaying = true;
@@ -242,14 +242,14 @@ namespace Pytel_WinForm
                     {
                         isMediaPlaying = false;
                         isMediaLoaded = false;
-                        Settings.Default.queIndex++;
+                        mediaQueueIndex++;
                         Settings.Default.Save();
-                        if (Settings.Default.queIndex < mediaQueue.Count)
+                        if (mediaQueueIndex < mediaQueue.Count)
                         {
                             try
                             {
-                                player.Load(mediaQueue[Settings.Default.queIndex]);
-                                mediaPath = mediaQueue[Settings.Default.queIndex];
+                                player.Load(mediaQueue[mediaQueueIndex]);
+                                mediaPath = mediaQueue[mediaQueueIndex];
                                 isMediaLoaded = true;
                                 player.Resume();
                                 isMediaPlaying = true;
@@ -260,7 +260,7 @@ namespace Pytel_WinForm
                         else
                         {
                             player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                            Settings.Default.queIndex = 0;
+                            mediaQueueIndex = 0;
                             Settings.Default.Save();
                             tDuration.Stop();
                         }
@@ -270,14 +270,14 @@ namespace Pytel_WinForm
                         else {
                             isMediaPlaying = false;
                             isMediaLoaded = false;
-                            Settings.Default.queIndex++;
+                            mediaQueueIndex++;
                             Settings.Default.Save();
-                            if (Settings.Default.queIndex < mediaQueue.Count)
+                            if (mediaQueueIndex < mediaQueue.Count)
                             {
                                 try
                                 {
-                                    player.Load(mediaQueue[Settings.Default.queIndex]);
-                                    mediaPath = mediaQueue[Settings.Default.queIndex];
+                                    player.Load(mediaQueue[mediaQueueIndex]);
+                                    mediaPath = mediaQueue[mediaQueueIndex];
                                     isMediaLoaded = true;
                                     player.Resume();
                                     isMediaPlaying = true;
@@ -288,7 +288,7 @@ namespace Pytel_WinForm
                             else
                             {
                                 player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
-                                Settings.Default.queIndex = 0;
+                                mediaQueueIndex = 0;
                                 Settings.Default.Save();
                                 tDuration.Stop();
                             }
@@ -342,7 +342,7 @@ namespace Pytel_WinForm
             switch (que.ShowDialog())
             {
                 case DialogResult.OK:
-                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = 0;
                     mediaQueue = que.getEditedMediaQueue();
                     player.Load(mediaQueue[0]);
                     mediaPath = mediaQueue[0];
@@ -352,10 +352,10 @@ namespace Pytel_WinForm
                     tDuration.Start();
                     break;
                 case DialogResult.Yes:
-                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = que.lbList.SelectedIndex;
                     mediaQueue = que.getEditedMediaQueue();
-                    player.Load(mediaQueue[Settings.Default.queIndex]);
-                    mediaPath = mediaQueue[Settings.Default.queIndex];
+                    player.Load(mediaQueue[mediaQueueIndex]);
+                    mediaPath = mediaQueue[mediaQueueIndex];
                     isMediaLoaded = true;
                     player.Resume();
                     isMediaPlaying = true;
