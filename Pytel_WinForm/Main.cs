@@ -66,7 +66,6 @@ namespace Pytel_WinForm
             }
             else
             {
-                //string[] playlist = Settings.Default.quePlaylist.Split('\n');
                 mediaQueueIndex--;
                 Settings.Default.Save();
                 if (mediaQueueIndex >= 0)
@@ -91,7 +90,6 @@ namespace Pytel_WinForm
             }
             else
             {
-                //string[] playlist = Settings.Default.quePlaylist.Split('\n');
                 mediaQueueIndex++;
                 Settings.Default.Save();
                 if (mediaQueueIndex < mediaQueue.Count)
@@ -128,33 +126,6 @@ namespace Pytel_WinForm
             tslDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
             tslFSDuration.Text = $"{hoursPosition}{player.Position.Minutes:00}:{player.Position.Seconds:00}/{hoursTotal}{player.Duration.Minutes:00}:{player.Duration.Seconds:00}";
             tslFSDuration.ToolTipText = $"Volume: {player.Volume}%";
-
-            /* if (player.Position.TotalSeconds == player.Duration.TotalSeconds)
-            {
-                if (System.IO.Path.GetExtension(mediaPath) == ".m3u" && player.PlaylistIndex != player.PlaylistEntryCount - 1)
-                {
-                    player.PlaylistNext();
-                }
-                else
-                {
-                    string[] playlist = Settings.Default.quePlaylist.Split('\n');
-                    Settings.Default.queIndex++;
-                    Settings.Default.Save();
-                    if (Settings.Default.queIndex < playlist.Length)
-                    {
-                        try
-                        {
-                            player.Load(playlist[Settings.Default.queIndex]);
-                            mediaPath = playlist[Settings.Default.queIndex];
-                            isMediaLoaded = true;
-                            player.Resume();
-                            isMediaPlaying = true;
-                            tDuration.Start();
-                        }
-                        catch (Exception) { }
-                    }
-                }
-            }*/
         }
 
         private void tControls_Tick(object sender, EventArgs e)
@@ -181,7 +152,6 @@ namespace Pytel_WinForm
             tsbNext.Enabled = isMediaLoaded;
             this.Text = isMediaLoaded ? "Pytel | " + player.MediaTitle : "Pytel";
             toolTip.SetToolTip(tbVolume, $"Volume: {tbVolume.Value}%");
-            //tslDebug.Text = $"{player.PlaylistIndex.ToString()}/{player.PlaylistEntryCount.ToString()}";
         }
 
         private void tbVolume_Scroll(object sender, EventArgs e) { player.Volume = tbVolume.Value; }
@@ -233,7 +203,6 @@ namespace Pytel_WinForm
 
         private void mediaFinished(object sender, EventArgs e)
         {
-            //string[] playlist = Settings.Default.quePlaylist.Split('\n');
             switch (Settings.Default.queLoop)
             {
                 case 0:
