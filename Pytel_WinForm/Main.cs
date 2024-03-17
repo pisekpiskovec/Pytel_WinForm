@@ -9,7 +9,6 @@ using Pytel_WinForm.Properties;
 
 namespace Pytel_WinForm
 {
-
     public partial class Main : Form
     {
         MpvPlayer player;
@@ -81,21 +80,17 @@ namespace Pytel_WinForm
             if (mediaQueueIndex != mediaQueue.Count - 1)
             {
                 player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex++;
-                        player.Load(mediaQueue[mediaQueueIndex]);
-                        mediaPath = mediaQueue[mediaQueueIndex];
-                        isMediaLoaded = true;
-                        player.Resume();
-                        isMediaPlaying = true;
-                        tDuration.Start();
-                    }
-                }
-
-        private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
-        private void tsbPause_Click(object sender, EventArgs e) {
-            if (isMediaPlaying) { player.Pause(); isMediaPlaying = false; }
-            else { player.NextFrame(); }
+                player.Load(mediaQueue[mediaQueueIndex]);
+                mediaPath = mediaQueue[mediaQueueIndex];
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
+                tDuration.Start();
+            }
         }
 
+        private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
+        private void tsbPause_Click(object sender, EventArgs e) { if (isMediaPlaying) { player.Pause(); isMediaPlaying = false; } else { player.NextFrame(); } }
         private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; Text = "Pytel"; }
         private void tDuration_Tick(object sender, EventArgs e)
         {
@@ -244,7 +239,6 @@ namespace Pytel_WinForm
             {
                 if (e.KeyCode == Keys.O) { tsmiOpenFileUniversal.PerformClick(); }
                 else if (e.KeyCode == Keys.F6) { isFullScreen = false; this.FormBorderStyle = FormBorderStyle.Sizable; this.WindowState = FormWindowState.Normal; this.Location = new Point(0, 0); }
-
             }
             else if (e.Control)
             {
