@@ -25,20 +25,23 @@ namespace Pytel_WinForm
         }
 
         private void Queue_FormClosing(object sender, FormClosingEventArgs e) { Settings.Default.Save(); }
-        private void bPlaylistSave_Click(object sender, EventArgs e) { if (sfdSave.ShowDialog() == DialogResult.OK) { File.WriteAllLines(sfdSave.FileName, mediaQueue.ToArray()); } }
+        private void bPlaylistSave_Click(object sender, EventArgs e) { try { if(sfdSave.ShowDialog() == DialogResult.OK) { File.WriteAllLines(sfdSave.FileName, mediaQueue.ToArray()); } } catch { MessageBox.Show("Opening dialog failed. Please try again.", "Opening dialog failed", MessageBoxButtons.OK, MessageBoxIcon.Error); } }
         private void bPlaylistClear_Click(object sender, EventArgs e) { mediaQueue.Clear(); Settings.Default.Save(); }
         private void bPlaylistAdd_Click(object sender, EventArgs e)
         {
-            if (ofdAdd.ShowDialog() == DialogResult.OK)
+            try
             {
-                for (int i = 0; i < ofdAdd.FileNames.Count(); i++) {
-                    if (Path.GetExtension(ofdAdd.FileNames[i]) == ".m3u")
-                    {
-                        String[] inputing = File.ReadAllLines(ofdAdd.FileNames[i]);
-                        foreach(string item in inputing) { mediaQueue.Add(item); }
-                    } else { mediaQueue.Add(ofdAdd.FileNames[i]); }
+                if (ofdAdd.ShowDialog() == DialogResult.OK)
+                {
+                    for (int i = 0; i < ofdAdd.FileNames.Count(); i++) {
+                        if (Path.GetExtension(ofdAdd.FileNames[i]) == ".m3u")
+                        {
+                            String[] inputing = File.ReadAllLines(ofdAdd.FileNames[i]);
+                            foreach(string item in inputing) { mediaQueue.Add(item); }
+                        } else { mediaQueue.Add(ofdAdd.FileNames[i]); }
+                    }
                 }
-            }
+            } catch { MessageBox.Show("Opening dialog failed. Please try again.", "Opening dialog failed", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void bPlaylistDelete_Click(object sender, EventArgs e) { mediaQueue.RemoveAt(lbList.SelectedIndex); }

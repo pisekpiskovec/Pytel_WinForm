@@ -53,8 +53,10 @@ namespace Pytel_WinForm
         private void tsmiOpenFile_Click(object sender, EventArgs e)
         {
             player.Pause();
-            if (ofdFile.ShowDialog() == DialogResult.OK) { loadMedia(ofdFile.FileName); }
-            else { player.Resume(); }
+            try {
+                if (ofdFile.ShowDialog() == DialogResult.OK) { loadMedia(ofdFile.FileName); }
+                else { player.Resume(); } }
+            catch { MessageBox.Show("Opening dialog failed. Please try again.", "Opening dialog failed", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void tsbPrevious_Click(object sender, EventArgs e) 
@@ -174,8 +176,10 @@ namespace Pytel_WinForm
         private void tsmiOpenFileUniversal_Click(object sender, EventArgs e)
         {
             player.Pause();
-            if (ofdUniversal.ShowDialog() == DialogResult.OK) { loadMedia(ofdUniversal.FileName); }
-            else { player.Resume(); }
+            try {
+                if (ofdUniversal.ShowDialog() == DialogResult.OK) { loadMedia(ofdUniversal.FileName); }
+                else { player.Resume(); } }
+            catch { MessageBox.Show("Opening dialog failed. Please try again.", "Opening dialog failed", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void mediaFinished(object sender, EventArgs e)
