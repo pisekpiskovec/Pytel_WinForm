@@ -60,5 +60,11 @@ namespace Pytel_WinForm
         }
 
         public List<string> getEditedMediaQueue() { return mediaQueue.ToList(); }
+
+        private void Queue_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+            if(e.KeyCode == Keys.Escape) { DialogResult = DialogResult.Cancel; }
+        }
     }
 }

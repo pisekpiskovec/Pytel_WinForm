@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Queue));
             this.gbPlaylist = new System.Windows.Forms.GroupBox();
+            this.bPlaylistPlaySelected = new System.Windows.Forms.Button();
             this.bPlaylistPlay = new System.Windows.Forms.Button();
             this.bPlaylistDelete = new System.Windows.Forms.Button();
             this.lbList = new System.Windows.Forms.ListBox();
@@ -44,7 +45,6 @@
             this.sfdSave = new System.Windows.Forms.SaveFileDialog();
             this.ofdAdd = new System.Windows.Forms.OpenFileDialog();
             this.tControls = new System.Windows.Forms.Timer(this.components);
-            this.bPlaylistPlaySelected = new System.Windows.Forms.Button();
             this.gbPlaylist.SuspendLayout();
             this.gbLoop.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +64,17 @@
             this.gbPlaylist.TabIndex = 0;
             this.gbPlaylist.TabStop = false;
             this.gbPlaylist.Text = "Playlist";
+            // 
+            // bPlaylistPlaySelected
+            // 
+            this.bPlaylistPlaySelected.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.bPlaylistPlaySelected.Enabled = false;
+            this.bPlaylistPlaySelected.Location = new System.Drawing.Point(244, 234);
+            this.bPlaylistPlaySelected.Name = "bPlaylistPlaySelected";
+            this.bPlaylistPlaySelected.Size = new System.Drawing.Size(75, 46);
+            this.bPlaylistPlaySelected.TabIndex = 7;
+            this.bPlaylistPlaySelected.Text = "Play from Selected";
+            this.bPlaylistPlaySelected.UseVisualStyleBackColor = true;
             // 
             // bPlaylistPlay
             // 
@@ -197,17 +208,6 @@
             this.tControls.Interval = 1000;
             this.tControls.Tick += new System.EventHandler(this.tControls_Tick);
             // 
-            // bPlaylistPlaySelected
-            // 
-            this.bPlaylistPlaySelected.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.bPlaylistPlaySelected.Enabled = false;
-            this.bPlaylistPlaySelected.Location = new System.Drawing.Point(244, 234);
-            this.bPlaylistPlaySelected.Name = "bPlaylistPlaySelected";
-            this.bPlaylistPlaySelected.Size = new System.Drawing.Size(75, 46);
-            this.bPlaylistPlaySelected.TabIndex = 7;
-            this.bPlaylistPlaySelected.Text = "Play from Selected";
-            this.bPlaylistPlaySelected.UseVisualStyleBackColor = true;
-            // 
             // Queue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +217,7 @@
             this.Controls.Add(this.gbPlaylist);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Queue";
@@ -225,6 +226,7 @@
             this.Text = "Queue";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Queue_FormClosing);
             this.Load += new System.EventHandler(this.Queue_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Queue_KeyDown);
             this.gbPlaylist.ResumeLayout(false);
             this.gbLoop.ResumeLayout(false);
             this.gbLoop.PerformLayout();
