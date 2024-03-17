@@ -273,6 +273,7 @@ namespace Pytel_WinForm
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About Pytel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.About_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.About_KeyDown);
             this.gbAbout.ResumeLayout(false);
             this.gbAbout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
