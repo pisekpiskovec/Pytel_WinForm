@@ -329,6 +329,7 @@ namespace Pytel_WinForm
             player.Load(path);
             mediaPath = path;
             mediaQueue.Add(path);
+            mediaQueueIndex = mediaQueue.Count-1;
             isMediaLoaded = true;
             player.Resume();
             isMediaPlaying = true;
