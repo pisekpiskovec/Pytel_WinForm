@@ -60,15 +60,12 @@ namespace Pytel_WinForm
 
         private void tsbPrevious_Click(object sender, EventArgs e) 
         {
-            if (System.IO.Path.GetExtension(mediaPath) == ".m3u" && player.PlaylistIndex != 0)
-            {
-                player.PlaylistPrevious();
-            }
+            if(player.Position.TotalSeconds > (double)Settings.Default.positionChange) { player.Position = TimeSpan.FromSeconds(0); }
             else
             {
-                mediaQueueIndex--;
-                if (mediaQueueIndex >= 0)
+                if(mediaQueueIndex != 0)
                 {
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex--;
                     player.Load(mediaQueue[mediaQueueIndex]);
                     mediaPath = mediaQueue[mediaQueueIndex];
                     isMediaLoaded = true;
@@ -76,24 +73,14 @@ namespace Pytel_WinForm
                     isMediaPlaying = true;
                     tDuration.Start();
                 }
-                else { mediaQueueIndex = 0; }
             }
         }
 
         private void tsbNext_Click(object sender, EventArgs e)
         {
-
-            if (System.IO.Path.GetExtension(mediaPath) == ".m3u" && player.PlaylistIndex != player.PlaylistEntryCount - 1)
+            if (mediaQueueIndex != mediaQueue.Count - 1)
             {
-                player.PlaylistNext();
-            }
-            else
-            {
-                mediaQueueIndex++;
-                if (mediaQueueIndex < mediaQueue.Count)
-                {
-                    try
-                    {
+                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex++;
                         player.Load(mediaQueue[mediaQueueIndex]);
                         mediaPath = mediaQueue[mediaQueueIndex];
                         isMediaLoaded = true;
@@ -101,10 +88,7 @@ namespace Pytel_WinForm
                         isMediaPlaying = true;
                         tDuration.Start();
                     }
-                    catch (Exception) { }
                 }
-            }
-        }
 
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
         private void tsbPause_Click(object sender, EventArgs e) {
