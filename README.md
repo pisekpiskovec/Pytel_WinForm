@@ -31,6 +31,10 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier still yet powerful mutl
 
 (About and Settings window)
 
+![Queue window](https://github.com/pisekpiskovec/Pytel_WinForm/blob/master/Pytel_WinForm/readme_resources/pytel_queue.png)
+
+(Queue window)
+
 ## Features
 
 * Open local video/audio
