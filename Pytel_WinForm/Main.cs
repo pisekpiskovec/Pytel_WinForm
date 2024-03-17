@@ -22,7 +22,7 @@ namespace Pytel_WinForm
         {
             InitializeComponent();
             player = new MpvPlayer(pPlayer.Handle);
-            //player.MediaFinished += this.mediaFinished;
+            player.MediaFinished += mediaFinished;
             this.Location = Settings.Default.lastPos;
             this.WindowState = (FormWindowState)Settings.Default.lastStat;
             this.Size = Settings.Default.lastSize;
@@ -67,7 +67,6 @@ namespace Pytel_WinForm
             else
             {
                 mediaQueueIndex--;
-                Settings.Default.Save();
                 if (mediaQueueIndex >= 0)
                 {
                     player.Load(mediaQueue[mediaQueueIndex]);
@@ -77,7 +76,7 @@ namespace Pytel_WinForm
                     isMediaPlaying = true;
                     tDuration.Start();
                 }
-                else { mediaQueueIndex = 0; Settings.Default.Save(); }
+                else { mediaQueueIndex = 0; }
             }
         }
 
@@ -91,7 +90,6 @@ namespace Pytel_WinForm
             else
             {
                 mediaQueueIndex++;
-                Settings.Default.Save();
                 if (mediaQueueIndex < mediaQueue.Count)
                 {
                     try
@@ -205,9 +203,49 @@ namespace Pytel_WinForm
         {
             switch (Settings.Default.queLoop)
             {
-                case 0: break;
-                case 1: break;
-                case 2: player.Loop = true; break;
+                case 0:
+                    if(mediaQueueIndex != mediaQueue.Count - 1)
+                    {
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex++;
+                    player.Load(mediaQueue[mediaQueueIndex]);
+                    mediaPath = mediaQueue[mediaQueueIndex];
+                    isMediaLoaded = true;
+                    player.Resume();
+                    isMediaPlaying = true;
+                    tDuration.Start();
+                    }
+                    break;
+                case 1:
+                    if (mediaQueueIndex != mediaQueue.Count - 1)
+                    {
+                        player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex++;
+                        player.Load(mediaQueue[mediaQueueIndex]);
+                        mediaPath = mediaQueue[mediaQueueIndex];
+                        isMediaLoaded = true;
+                        player.Resume();
+                        isMediaPlaying = true;
+                        tDuration.Start();
+                    }
+                    else
+                    {
+                        player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = 0;
+                        player.Load(mediaQueue[0]);
+                        mediaPath = mediaQueue[0];
+                        isMediaLoaded = true;
+                        player.Resume();
+                        isMediaPlaying = true;
+                        tDuration.Start();
+                    }
+                    break;
+                case 2:
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                    player.Load(mediaQueue[mediaQueueIndex]);
+                    mediaPath = mediaQueue[mediaQueueIndex];
+                    isMediaLoaded = true;
+                    player.Resume();
+                    isMediaPlaying = true;
+                    tDuration.Start();
+                    break;
             }
         }
 

@@ -154,7 +154,6 @@
             // rbLoopOne
             // 
             this.rbLoopOne.AutoSize = true;
-            this.rbLoopOne.Enabled = false;
             this.rbLoopOne.Location = new System.Drawing.Point(126, 42);
             this.rbLoopOne.Name = "rbLoopOne";
             this.rbLoopOne.Size = new System.Drawing.Size(72, 17);
@@ -166,7 +165,6 @@
             // rbLoopPlaylist
             // 
             this.rbLoopPlaylist.AutoSize = true;
-            this.rbLoopPlaylist.Enabled = false;
             this.rbLoopPlaylist.Location = new System.Drawing.Point(120, 65);
             this.rbLoopPlaylist.Name = "rbLoopPlaylist";
             this.rbLoopPlaylist.Size = new System.Drawing.Size(84, 17);
