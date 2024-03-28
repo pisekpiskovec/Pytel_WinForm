@@ -335,6 +335,13 @@ namespace Pytel_WinForm
                     else if (player.Volume == 0) { TaskbarProgress.SetValue(this.Handle, 1, 1); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Error); }
                     else if (player.Volume < 50) { TaskbarProgress.SetValue(this.Handle, player.Volume, 100); TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused); }
                     break;
+                case 4:
+                    TaskbarProgress.SetValue(this.Handle, mediaQueueIndex+1, mediaQueue.Count);
+                    if (isMediaPlaying) TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Normal);
+                    else if (!isMediaPlaying && isMediaLoaded) TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Paused);
+                    else if (!isMediaLoaded) { TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.Error); }
+                    else TaskbarProgress.SetState(this.Handle, TaskbarProgress.TaskbarStates.NoProgress);
+                    break;
             }
         }
 

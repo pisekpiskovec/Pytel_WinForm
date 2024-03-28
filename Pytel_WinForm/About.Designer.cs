@@ -46,6 +46,7 @@ namespace Pytel_WinForm
             this.lPosition = new System.Windows.Forms.Label();
             this.nudVolume = new System.Windows.Forms.NumericUpDown();
             this.lVolume = new System.Windows.Forms.Label();
+            this.rbPlaylist = new System.Windows.Forms.RadioButton();
             this.gbAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbShortcuts.SuspendLayout();
@@ -142,6 +143,7 @@ namespace Pytel_WinForm
             // 
             // gbSettingsTaskbar
             // 
+            this.gbSettingsTaskbar.Controls.Add(this.rbPlaylist);
             this.gbSettingsTaskbar.Controls.Add(this.rbVolume);
             this.gbSettingsTaskbar.Controls.Add(this.rbPosition);
             this.gbSettingsTaskbar.Controls.Add(this.rbState);
@@ -156,7 +158,7 @@ namespace Pytel_WinForm
             // rbVolume
             // 
             this.rbVolume.AutoSize = true;
-            this.rbVolume.Location = new System.Drawing.Point(110, 94);
+            this.rbVolume.Location = new System.Drawing.Point(110, 84);
             this.rbVolume.Name = "rbVolume";
             this.rbVolume.Size = new System.Drawing.Size(147, 17);
             this.rbVolume.TabIndex = 3;
@@ -167,7 +169,7 @@ namespace Pytel_WinForm
             // rbPosition
             // 
             this.rbPosition.AutoSize = true;
-            this.rbPosition.Location = new System.Drawing.Point(112, 71);
+            this.rbPosition.Location = new System.Drawing.Point(112, 61);
             this.rbPosition.Name = "rbPosition";
             this.rbPosition.Size = new System.Drawing.Size(143, 17);
             this.rbPosition.TabIndex = 2;
@@ -178,7 +180,7 @@ namespace Pytel_WinForm
             // rbState
             // 
             this.rbState.AutoSize = true;
-            this.rbState.Location = new System.Drawing.Point(142, 48);
+            this.rbState.Location = new System.Drawing.Point(142, 38);
             this.rbState.Name = "rbState";
             this.rbState.Size = new System.Drawing.Size(82, 17);
             this.rbState.TabIndex = 1;
@@ -190,7 +192,7 @@ namespace Pytel_WinForm
             // 
             this.rbOff.AutoSize = true;
             this.rbOff.Checked = true;
-            this.rbOff.Location = new System.Drawing.Point(164, 25);
+            this.rbOff.Location = new System.Drawing.Point(164, 15);
             this.rbOff.Name = "rbOff";
             this.rbOff.Size = new System.Drawing.Size(39, 17);
             this.rbOff.TabIndex = 0;
@@ -255,6 +257,18 @@ namespace Pytel_WinForm
             this.lVolume.TabIndex = 0;
             this.lVolume.Text = "Volume Change:";
             // 
+            // rbPlaylist
+            // 
+            this.rbPlaylist.AutoSize = true;
+            this.rbPlaylist.Location = new System.Drawing.Point(94, 104);
+            this.rbPlaylist.Name = "rbPlaylist";
+            this.rbPlaylist.Size = new System.Drawing.Size(178, 17);
+            this.rbPlaylist.TabIndex = 4;
+            this.rbPlaylist.TabStop = true;
+            this.rbPlaylist.Text = "Queue Position and Player State";
+            this.rbPlaylist.UseVisualStyleBackColor = true;
+            this.rbPlaylist.CheckedChanged += new System.EventHandler(this.rbPlaylist_CheckedChanged);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,5 +319,6 @@ namespace Pytel_WinForm
         private System.Windows.Forms.Label lPosition;
         private System.Windows.Forms.NumericUpDown nudVolume;
         private System.Windows.Forms.RadioButton rbVolume;
+        private System.Windows.Forms.RadioButton rbPlaylist;
     }
 }
