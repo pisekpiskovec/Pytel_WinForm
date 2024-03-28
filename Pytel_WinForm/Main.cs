@@ -264,6 +264,22 @@ namespace Pytel_WinForm
             else if (e.KeyCode == Keys.Down) { if (!(player.Volume - Settings.Default.volumeChange < 0)) { player.Volume -= (int)Settings.Default.volumeChange; } }
             else if (e.KeyCode == Keys.M) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } }
             else if (e.KeyCode == Keys.Q) { player.Stop(); Application.Exit(); }
+            else if (isMediaLoaded)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.NumPad0: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 0); break;
+                    case Keys.NumPad1: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 1); break;
+                    case Keys.NumPad2: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 2); break;
+                    case Keys.NumPad3: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 3); break;
+                    case Keys.NumPad4: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 4); break;
+                    case Keys.NumPad5: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 5); break;
+                    case Keys.NumPad6: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 6); break;
+                    case Keys.NumPad7: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 7); break;
+                    case Keys.NumPad8: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 8); break;
+                    case Keys.NumPad9: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 9); break;
+                }
+            }
         }
 
         private void pPlayer_MouseDoubleClick(object sender, MouseEventArgs e) { { if (e.Button == MouseButtons.Left) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } } } }

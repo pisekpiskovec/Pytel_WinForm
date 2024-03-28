@@ -14,7 +14,7 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier still yet powerful mutl
 * [ ] Windows integration and Drag'n'Drop
 * [ ] Playlist taskbar visual
 * [ ] Loop modes behaviour for Previous/Next
-* [ ] Navigation using numbers
+* [x] Navigation using numbers
 
 ## Screenshots
 
