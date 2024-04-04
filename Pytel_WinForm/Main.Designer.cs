@@ -443,7 +443,7 @@ namespace Pytel_WinForm
             // 
             // ofdUniversal
             // 
-            this.ofdUniversal.FileName = "openFileDialog1";
+            this.ofdUniversal.Title = "Open...";
             // 
             // tTaskbar
             // 
