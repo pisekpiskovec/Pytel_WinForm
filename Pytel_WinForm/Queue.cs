@@ -19,8 +19,8 @@ namespace Pytel_WinForm
             switch (Settings.Default.queLoop)
             {
                 case 0: rbOff.Checked = true; break;
-                case 1: rbLoopPlaylist.Checked = true; break;
-                case 2: rbLoopOne.Checked = true; break;
+                case 1: rbLoopOne.Checked = true; break;
+                case 2: rbLoopPlaylist.Checked = true; break;
             }
         }
 
@@ -46,8 +46,8 @@ namespace Pytel_WinForm
 
         private void bPlaylistDelete_Click(object sender, EventArgs e) { mediaQueue.RemoveAt(lbList.SelectedIndex); }
         private void rbOff_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 0; }
-        private void rbLoopPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 1; }
-        private void rbLoopOne_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 2; }
+        private void rbLoopOne_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 1; }
+        private void rbLoopPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.queLoop = 2; }
         private void tControls_Tick(object sender, EventArgs e)
         {
             bPlaylistPlay.Enabled = lbList.Items.Count == 0 ? false : true;

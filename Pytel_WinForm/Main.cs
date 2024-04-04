@@ -59,29 +59,48 @@ namespace Pytel_WinForm
             catch { MessageBox.Show("Opening dialog failed. Please try again.", "Opening dialog failed", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
-        private void tsbPrevious_Click(object sender, EventArgs e) 
+        private void tsbPrevious_Click(object sender, EventArgs e)
         {
-            if(player.Position.TotalSeconds > (double)Settings.Default.positionChange) { player.Position = TimeSpan.FromSeconds(0); }
-            else
+            if (player.Position.TotalSeconds > (double)Settings.Default.positionChange) { player.Position = TimeSpan.FromSeconds(0); }
+            else if (mediaQueueIndex != 0 && (Settings.Default.queLoop == 0 || Settings.Default.queLoop == 2))
             {
-                if(mediaQueueIndex != 0)
-                {
-                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex--;
-                    player.Load(mediaQueue[mediaQueueIndex]);
-                    mediaPath = mediaQueue[mediaQueueIndex];
-                    isMediaLoaded = true;
-                    player.Resume();
-                    isMediaPlaying = true;
-                    tDuration.Start();
-                }
+                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex--;
+                player.Load(mediaQueue[mediaQueueIndex]);
+                mediaPath = mediaQueue[mediaQueueIndex];
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
+                tDuration.Start();
+            }
+            else if (Settings.Default.queLoop == 1) { player.Position = TimeSpan.FromSeconds(0); }
+            else if (mediaQueueIndex == 0 && Settings.Default.queLoop == 2)
+            {
+                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = mediaQueue.Count - 1;
+                player.Load(mediaQueue[mediaQueueIndex]);
+                mediaPath = mediaQueue[mediaQueueIndex];
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
+                tDuration.Start();
             }
         }
 
         private void tsbNext_Click(object sender, EventArgs e)
         {
-            if (mediaQueueIndex != mediaQueue.Count - 1)
+            if (mediaQueueIndex != mediaQueue.Count - 1 && (Settings.Default.queLoop == 0 || Settings.Default.queLoop == 2))
             {
                 player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex++;
+                player.Load(mediaQueue[mediaQueueIndex]);
+                mediaPath = mediaQueue[mediaQueueIndex];
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
+                tDuration.Start();
+            }
+            else if (Settings.Default.queLoop == 1) { player.Position = TimeSpan.FromSeconds(0); }
+            else if (mediaQueueIndex == mediaQueue.Count - 1 && Settings.Default.queLoop == 2)
+            {
+                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = 0;
                 player.Load(mediaQueue[mediaQueueIndex]);
                 mediaPath = mediaQueue[mediaQueueIndex];
                 isMediaLoaded = true;
@@ -120,7 +139,7 @@ namespace Pytel_WinForm
             tbVolume.Value = (int)player.Volume;
             tspbVolume.Value = (int)player.Volume;
             tsbFullScreen.Enabled = isMediaLoaded;
-            tsbPrevious.Enabled = isMediaLoaded & (player.Position.TotalSeconds > (double)Settings.Default.positionChange || mediaQueueIndex != 0);
+            tsbPrevious.Enabled = isMediaLoaded /*& (player.Position.TotalSeconds > (double)Settings.Default.positionChange || mediaQueueIndex != 0)*/;
             tsbSeekBack.Enabled = player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
             tsbPlay.Enabled = !isMediaPlaying && isMediaLoaded;
             tsbPause.Enabled = isMediaLoaded;
@@ -128,7 +147,7 @@ namespace Pytel_WinForm
             tsbFSPause.Enabled = isMediaLoaded;
             tsbStop.Enabled = isMediaLoaded;
             tsbSeekForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
-            tsbNext.Enabled = isMediaLoaded & mediaQueueIndex != mediaQueue.Count - 1;
+            tsbNext.Enabled = isMediaLoaded /*& mediaQueueIndex != mediaQueue.Count - 1*/;
             this.Text = isMediaLoaded ? "Pytel | " + player.MediaTitle : "Pytel";
             toolTip.SetToolTip(tbVolume, $"Volume: {tbVolume.Value}%");
         }
@@ -198,7 +217,7 @@ namespace Pytel_WinForm
                     tDuration.Start();
                     }
                     break;
-                case 1:
+                case 2:
                     if (mediaQueueIndex != mediaQueue.Count - 1)
                     {
                         player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex++;
@@ -220,10 +239,9 @@ namespace Pytel_WinForm
                         tDuration.Start();
                     }
                     break;
-                case 2:
-                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = "";
+                case 1:
+                    player.Stop(); isMediaPlaying = false; isMediaLoaded = false;
                     player.Load(mediaQueue[mediaQueueIndex]);
-                    mediaPath = mediaQueue[mediaQueueIndex];
                     isMediaLoaded = true;
                     player.Resume();
                     isMediaPlaying = true;
