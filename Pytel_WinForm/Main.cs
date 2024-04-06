@@ -112,7 +112,7 @@ namespace Pytel_WinForm
 
         private void tsbPlay_Click(object sender, EventArgs e) { player.Resume(); isMediaPlaying = true; if (isFullScreen && tsFullScreen.Visible) { tsFullScreen.Visible = false; } }
         private void tsbPause_Click(object sender, EventArgs e) { if (isMediaPlaying) { player.Pause(); isMediaPlaying = false; } else { player.NextFrame(); } }
-        private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; Text = "Pytel"; }
+        private void tsbStop_Click(object sender, EventArgs e) { player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; }
         private void tDuration_Tick(object sender, EventArgs e)
         {
             tbPosition.Maximum = (int)player.Duration.TotalSeconds;
