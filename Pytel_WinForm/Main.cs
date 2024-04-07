@@ -6,6 +6,9 @@ using System.Threading;
 using System.Windows.Forms;
 using Mpv.NET.Player;
 using Pytel_WinForm.Properties;
+using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Pytel_WinForm
 {
@@ -300,6 +303,37 @@ namespace Pytel_WinForm
             }
         }
 
+        private void pPlayer_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] validFileExtension = { ".avi", ".mkv", ".mp4", ".m4a", ".m4v", ".ogg", ".mpg", ".mpeg", ".mpv", ".mp3", ".wmv", ".wma", ".mov", ".m3u" };
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                for(int i = 0; i < files.Length; i++) { if (validFileExtension.Contains(Path.GetExtension(files[i]))) fileLoad(files[i]); }
+                int newPlayIndex = mediaQueue.FindLastIndex(x => x.Contains(files[0]));
+
+                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = newPlayIndex;
+                player.Load(mediaQueue[newPlayIndex]);
+                mediaPath = mediaQueue[newPlayIndex];
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
+                tDuration.Start();
+
+            }
+        }
+
+        private void fileLoad(string FileName)
+        {
+            if (Path.GetExtension(FileName) == ".m3u")
+            {
+                string[] inputing = File.ReadAllLines(FileName);
+                foreach (string item in inputing) { fileLoad(item); }
+            }
+            else { mediaQueue.Add(FileName); }
+        }
+
+        private void pPlayer_DragEnter(object sender, DragEventArgs e) { e.Effect = DragDropEffects.Copy; }
         private void pPlayer_MouseDoubleClick(object sender, MouseEventArgs e) { { if (e.Button == MouseButtons.Left) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } } } }
         private void tslDuration_Click(object sender, EventArgs e) { About abt = new About(); abt.ShowDialog(); }
         private void tsbQueue_Click(object sender, EventArgs e) {

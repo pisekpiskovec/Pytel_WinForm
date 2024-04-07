@@ -291,6 +291,7 @@ namespace Pytel_WinForm
             // 
             // pPlayer
             // 
+            this.pPlayer.AllowDrop = true;
             this.pPlayer.AutoScroll = true;
             this.pPlayer.BackColor = System.Drawing.Color.Black;
             this.pPlayer.Controls.Add(this.pFullScreenControl);
@@ -301,6 +302,8 @@ namespace Pytel_WinForm
             this.pPlayer.Size = new System.Drawing.Size(800, 374);
             this.pPlayer.TabIndex = 1;
             this.pPlayer.TabStop = true;
+            this.pPlayer.DragDrop += new System.Windows.Forms.DragEventHandler(this.pPlayer_DragDrop);
+            this.pPlayer.DragEnter += new System.Windows.Forms.DragEventHandler(this.pPlayer_DragEnter);
             this.pPlayer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseClick);
             this.pPlayer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pPlayer_MouseDoubleClick);
             // 

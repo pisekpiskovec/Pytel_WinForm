@@ -59,5 +59,28 @@ namespace Pytel_WinForm
 
         public List<string> getEditedMediaQueue() { return mediaQueue.ToList(); }
         private void Queue_KeyDown(object sender, KeyEventArgs e) { e.SuppressKeyPress = true; if(e.KeyCode == Keys.Escape) { DialogResult = DialogResult.Cancel; } }
+
+        private void lbList_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] validFileExtension = { ".avi", ".mkv", ".mp4", ".m4a", ".m4v", ".ogg", ".mpg", ".mpeg", ".mpv", ".mp3", ".wmv", ".wma", ".mov", ".m3u" };
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                for (int i = 0; i < files.Length; i++) { if (validFileExtension.Contains(Path.GetExtension(files[i]))) fileLoad(files[i]); }
+
+            }
+        }
+
+        private void fileLoad(string FileName)
+        {
+            if (Path.GetExtension(FileName) == ".m3u")
+            {
+                string[] inputing = File.ReadAllLines(FileName);
+                foreach (string item in inputing) { fileLoad(item); }
+            }
+            else { mediaQueue.Add(FileName); }
+        }
+
+        private void lbList_DragEnter(object sender, DragEventArgs e) { e.Effect = DragDropEffects.Copy; }
     }
 }

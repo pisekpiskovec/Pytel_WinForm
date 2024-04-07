@@ -100,12 +100,15 @@
             // 
             // lbList
             // 
+            this.lbList.AllowDrop = true;
             this.lbList.FormattingEnabled = true;
             this.lbList.HorizontalScrollbar = true;
             this.lbList.Location = new System.Drawing.Point(6, 19);
             this.lbList.Name = "lbList";
             this.lbList.Size = new System.Drawing.Size(232, 290);
             this.lbList.TabIndex = 6;
+            this.lbList.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbList_DragDrop);
+            this.lbList.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbList_DragEnter);
             // 
             // bPlaylistAdd
             // 
