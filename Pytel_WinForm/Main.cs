@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -8,7 +9,6 @@ using Mpv.NET.Player;
 using Pytel_WinForm.Properties;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Pytel_WinForm
 {
@@ -285,6 +285,26 @@ namespace Pytel_WinForm
             else if (e.KeyCode == Keys.Down) { if (!(player.Volume - Settings.Default.volumeChange < 0)) { player.Volume -= (int)Settings.Default.volumeChange; } }
             else if (e.KeyCode == Keys.M) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } }
             else if (e.KeyCode == Keys.Q) { player.Stop(); Application.Exit(); }
+            else if (e.KeyCode == Keys.S) {
+                bool wasFSBarVisible = tsFullScreen.Visible;
+                bool wasBasicBarVisible = tsBasic.Visible;
+
+                tsFullScreen.Visible = false;
+                tsBasic.Visible = false;
+
+                Rectangle bounds = this.RectangleToScreen(this.ClientRectangle);
+                int titleHeight = bounds.Top - this.Top;
+                int borderWidth = bounds.Left - this.Left;
+                Bitmap bitmap = new Bitmap(pPlayer.Width, pPlayer.Height);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.CopyFromScreen(this.Left + borderWidth + pPlayer.Left, this.Top + titleHeight + pPlayer.Top, 0, 0, bitmap.Size, CopyPixelOperation.SourceCopy);
+
+                tsBasic.Visible = wasBasicBarVisible;
+                tsFullScreen.Visible = wasFSBarVisible;
+
+                int scrNum = 0;
+                bitmap.Save(@"" + player.MediaTitle + scrNum.ToString("###") + ".png", ImageFormat.Png);
+            }
             else if (isMediaLoaded)
             {
                 switch (e.KeyCode)
