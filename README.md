@@ -14,7 +14,7 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier still yet powerful mutl
 * [ ] Windows integration
 * [x] Drag'n'Drop
 * [x] Playlist taskbar visual
-* [ ] Loop modes behaviour for Previous/Next
+* [x] Loop modes behaviour for Previous/Next
 * [x] Navigation using numbers
 * [x] `.mov` file support (add to open dialog)
 

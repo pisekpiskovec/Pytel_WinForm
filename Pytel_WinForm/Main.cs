@@ -142,7 +142,7 @@ namespace Pytel_WinForm
             tbVolume.Value = (int)player.Volume;
             tspbVolume.Value = (int)player.Volume;
             tsbFullScreen.Enabled = isMediaLoaded;
-            tsbPrevious.Enabled = isMediaLoaded /*& (player.Position.TotalSeconds > (double)Settings.Default.positionChange || mediaQueueIndex != 0)*/;
+            tsbPrevious.Enabled = isMediaLoaded;
             tsbSeekBack.Enabled = player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
             tsbPlay.Enabled = !isMediaPlaying && isMediaLoaded;
             tsbPause.Enabled = isMediaLoaded;
@@ -150,7 +150,7 @@ namespace Pytel_WinForm
             tsbFSPause.Enabled = isMediaLoaded;
             tsbStop.Enabled = isMediaLoaded;
             tsbSeekForward.Enabled = player.Duration.TotalSeconds - player.Position.TotalSeconds >= (double)Settings.Default.positionChange;
-            tsbNext.Enabled = isMediaLoaded /*& mediaQueueIndex != mediaQueue.Count - 1*/;
+            tsbNext.Enabled = isMediaLoaded;
             this.Text = isMediaLoaded ? "Pytel | " + player.MediaTitle : "Pytel";
             toolTip.SetToolTip(tbVolume, $"Volume: {tbVolume.Value}%");
         }
@@ -206,7 +206,7 @@ namespace Pytel_WinForm
 
         private void mediaFinished(object sender, EventArgs e)
         {
-            switch (Settings.Default.queLoop)
+            switch (Settings.Default.queLoop) 
             {
                 case 0:
                     if(mediaQueueIndex != mediaQueue.Count - 1)
