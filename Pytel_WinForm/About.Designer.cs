@@ -32,7 +32,7 @@ namespace Pytel_WinForm
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
             this.gbAbout = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbIcon = new System.Windows.Forms.PictureBox();
             this.lAbout = new System.Windows.Forms.Label();
             this.gbShortcuts = new System.Windows.Forms.GroupBox();
             this.lbShortcuts = new System.Windows.Forms.ListBox();
@@ -51,7 +51,7 @@ namespace Pytel_WinForm
             this.lVolume = new System.Windows.Forms.Label();
             this.rbPlaylist = new System.Windows.Forms.RadioButton();
             this.gbAbout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.gbShortcuts.SuspendLayout();
             this.gbSettings.SuspendLayout();
             this.gbSettingsTaskbar.SuspendLayout();
@@ -61,7 +61,7 @@ namespace Pytel_WinForm
             // 
             // gbAbout
             // 
-            this.gbAbout.Controls.Add(this.pictureBox1);
+            this.gbAbout.Controls.Add(this.pbIcon);
             this.gbAbout.Controls.Add(this.lAbout);
             this.gbAbout.Location = new System.Drawing.Point(12, 12);
             this.gbAbout.Name = "gbAbout";
@@ -70,16 +70,16 @@ namespace Pytel_WinForm
             this.gbAbout.TabStop = false;
             this.gbAbout.Text = "About";
             // 
-            // pictureBox1
+            // pbIcon
             // 
-            this.pictureBox1.Image = global::Pytel_WinForm.Properties.Resources.pytel_icon_64;
-            this.pictureBox1.Location = new System.Drawing.Point(308, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pbIcon.Image = global::Pytel_WinForm.Properties.Resources.pytel_icon_64;
+            this.pbIcon.Location = new System.Drawing.Point(308, 18);
+            this.pbIcon.Name = "pbIcon";
+            this.pbIcon.Size = new System.Drawing.Size(64, 64);
+            this.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbIcon.TabIndex = 1;
+            this.pbIcon.TabStop = false;
+            this.pbIcon.Click += new System.EventHandler(this.pbIcon_Click);
             // 
             // lAbout
             // 
@@ -326,7 +326,7 @@ namespace Pytel_WinForm
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.About_KeyDown);
             this.gbAbout.ResumeLayout(false);
             this.gbAbout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.gbShortcuts.ResumeLayout(false);
             this.gbSettings.ResumeLayout(false);
             this.gbSettings.PerformLayout();
@@ -341,7 +341,7 @@ namespace Pytel_WinForm
         #endregion
 
         private System.Windows.Forms.GroupBox gbAbout;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbIcon;
         private System.Windows.Forms.Label lAbout;
         private System.Windows.Forms.GroupBox gbShortcuts;
         private System.Windows.Forms.GroupBox gbSettings;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Pytel_WinForm.Properties;
 
@@ -26,7 +27,7 @@ namespace Pytel_WinForm
         private void rbPosition_CheckedChanged(object sender, EventArgs e) { Settings.Default.tbVisual = 2; }
         private void rbVolume_CheckedChanged(object sender, EventArgs e) { Settings.Default.tbVisual = 3; }
         private void rbPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.tbVisual = 4; }
-        private void pictureBox1_Click(object sender, EventArgs e) { lbShortcuts.Items.Add("++;"); }
+        private void pbIcon_Click(object sender, EventArgs e) { lbShortcuts.Items.Add("++;"); }
         private void About_KeyDown(object sender, KeyEventArgs e) { e.SuppressKeyPress = true; if (e.KeyCode == Keys.Escape) { DialogResult = DialogResult.Cancel; } }
         private void bChangeSCRLocation_Click(object sender, EventArgs e)
         {
