@@ -285,26 +285,6 @@ namespace Pytel_WinForm
             else if (e.KeyCode == Keys.Down) { if (!(player.Volume - Settings.Default.volumeChange < 0)) { player.Volume -= (int)Settings.Default.volumeChange; } }
             else if (e.KeyCode == Keys.M) { if (player.Volume == 0) { player.Volume = saveLocalVolume; } else { saveLocalVolume = player.Volume; player.Volume = 0; } }
             else if (e.KeyCode == Keys.Q) { player.Stop(); Application.Exit(); }
-            else if (e.KeyCode == Keys.S) {
-                bool wasFSBarVisible = tsFullScreen.Visible;
-                bool wasBasicBarVisible = tsBasic.Visible;
-
-                tsFullScreen.Visible = false;
-                tsBasic.Visible = false;
-
-                Rectangle bounds = this.RectangleToScreen(this.ClientRectangle);
-                int titleHeight = bounds.Top - this.Top;
-                int borderWidth = bounds.Left - this.Left;
-                Bitmap bitmap = new Bitmap(pPlayer.Width, pPlayer.Height);
-                Graphics g = Graphics.FromImage(bitmap);
-                g.CopyFromScreen(this.Left + borderWidth + pPlayer.Left, this.Top + titleHeight + pPlayer.Top, 0, 0, bitmap.Size, CopyPixelOperation.SourceCopy);
-
-                tsBasic.Visible = wasBasicBarVisible;
-                tsFullScreen.Visible = wasFSBarVisible;
-
-                int scrNum = 0;
-                bitmap.Save(@"" + player.MediaTitle + scrNum.ToString("###") + ".png", ImageFormat.Png);
-            }
             else if (isMediaLoaded)
             {
                 switch (e.KeyCode)
@@ -319,6 +299,25 @@ namespace Pytel_WinForm
                     case Keys.NumPad7: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 7); break;
                     case Keys.NumPad8: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 8); break;
                     case Keys.NumPad9: player.Position = TimeSpan.FromMilliseconds((player.Duration.TotalMilliseconds / 10) * 9); break;
+                    case Keys.S:
+                        bool wasFSBarVisible = tsFullScreen.Visible;
+                        bool wasBasicBarVisible = tsBasic.Visible;
+
+                        tsFullScreen.Visible = false;
+                        tsBasic.Visible = false;
+
+                        Rectangle bounds = this.RectangleToScreen(this.ClientRectangle);
+                        int titleHeight = bounds.Top - this.Top;
+                        int borderWidth = bounds.Left - this.Left;
+                        Bitmap bitmap = new Bitmap(pPlayer.Width, pPlayer.Height);
+                        Graphics g = Graphics.FromImage(bitmap);
+                        g.CopyFromScreen(this.Left + borderWidth + pPlayer.Left, this.Top + titleHeight + pPlayer.Top, 0, 0, bitmap.Size, CopyPixelOperation.SourceCopy);
+
+                        tsBasic.Visible = wasBasicBarVisible;
+                        tsFullScreen.Visible = wasFSBarVisible; //gitignore
+
+                        bitmap.Save($"{Settings.Default.scrLocation}\\{player.MediaTitle} at {Math.Floor(player.Position.TotalSeconds)}sec.png", ImageFormat.Png);
+                        break;
                 }
             }
         }

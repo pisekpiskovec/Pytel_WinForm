@@ -130,5 +130,17 @@ namespace Pytel_WinForm.Properties {
                 this["queLoop"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string scrLocation {
+            get {
+                return ((string)(this["scrLocation"]));
+            }
+            set {
+                this["scrLocation"] = value;
+            }
+        }
     }
 }

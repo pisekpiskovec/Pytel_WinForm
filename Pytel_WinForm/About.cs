@@ -15,6 +15,7 @@ namespace Pytel_WinForm
                 case 3: rbVolume.Checked = true; break;
                 case 4: rbPlaylist.Checked = true; break;
             }
+            llScreenshotFolder.Text = Settings.Default.scrLocation;
         }
 
         private void About_FormClosing(object sender, FormClosingEventArgs e) { Settings.Default.Save(); }
@@ -27,5 +28,19 @@ namespace Pytel_WinForm
         private void rbPlaylist_CheckedChanged(object sender, EventArgs e) { Settings.Default.tbVisual = 4; }
         private void pictureBox1_Click(object sender, EventArgs e) { lbShortcuts.Items.Add("++;"); }
         private void About_KeyDown(object sender, KeyEventArgs e) { e.SuppressKeyPress = true; if (e.KeyCode == Keys.Escape) { DialogResult = DialogResult.Cancel; } }
+        private void bChangeSCRLocation_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
+                Settings.Default.scrLocation = folderBrowserDialog.SelectedPath;
+                llScreenshotFolder.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
+
+        private void llScreenshotFolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try { Process.Start(llScreenshotFolder.Text); }
+            catch { llScreenshotFolder.Text = string.Empty; }
+        }
     }
 }

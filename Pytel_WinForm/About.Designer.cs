@@ -37,6 +37,9 @@ namespace Pytel_WinForm
             this.gbShortcuts = new System.Windows.Forms.GroupBox();
             this.lbShortcuts = new System.Windows.Forms.ListBox();
             this.gbSettings = new System.Windows.Forms.GroupBox();
+            this.llScreenshotFolder = new System.Windows.Forms.LinkLabel();
+            this.bChangeSCRLocation = new System.Windows.Forms.Button();
+            this.lScreenshot = new System.Windows.Forms.Label();
             this.gbSettingsTaskbar = new System.Windows.Forms.GroupBox();
             this.rbVolume = new System.Windows.Forms.RadioButton();
             this.rbPosition = new System.Windows.Forms.RadioButton();
@@ -129,6 +132,9 @@ namespace Pytel_WinForm
             // 
             // gbSettings
             // 
+            this.gbSettings.Controls.Add(this.llScreenshotFolder);
+            this.gbSettings.Controls.Add(this.bChangeSCRLocation);
+            this.gbSettings.Controls.Add(this.lScreenshot);
             this.gbSettings.Controls.Add(this.gbSettingsTaskbar);
             this.gbSettings.Controls.Add(this.nudPosition);
             this.gbSettings.Controls.Add(this.lPosition);
@@ -136,10 +142,40 @@ namespace Pytel_WinForm
             this.gbSettings.Controls.Add(this.lVolume);
             this.gbSettings.Location = new System.Drawing.Point(12, 224);
             this.gbSettings.Name = "gbSettings";
-            this.gbSettings.Size = new System.Drawing.Size(378, 214);
+            this.gbSettings.Size = new System.Drawing.Size(378, 249);
             this.gbSettings.TabIndex = 2;
             this.gbSettings.TabStop = false;
             this.gbSettings.Text = "Settings";
+            // 
+            // llScreenshotFolder
+            // 
+            this.llScreenshotFolder.AutoEllipsis = true;
+            this.llScreenshotFolder.Location = new System.Drawing.Point(148, 219);
+            this.llScreenshotFolder.Name = "llScreenshotFolder";
+            this.llScreenshotFolder.Size = new System.Drawing.Size(154, 13);
+            this.llScreenshotFolder.TabIndex = 7;
+            this.llScreenshotFolder.TabStop = true;
+            this.llScreenshotFolder.Text = "linkLabel1";
+            this.llScreenshotFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llScreenshotFolder_LinkClicked);
+            // 
+            // bChangeSCRLocation
+            // 
+            this.bChangeSCRLocation.Location = new System.Drawing.Point(308, 214);
+            this.bChangeSCRLocation.Name = "bChangeSCRLocation";
+            this.bChangeSCRLocation.Size = new System.Drawing.Size(64, 23);
+            this.bChangeSCRLocation.TabIndex = 6;
+            this.bChangeSCRLocation.Text = "Change";
+            this.bChangeSCRLocation.UseVisualStyleBackColor = true;
+            this.bChangeSCRLocation.Click += new System.EventHandler(this.bChangeSCRLocation_Click);
+            // 
+            // lScreenshot
+            // 
+            this.lScreenshot.AutoSize = true;
+            this.lScreenshot.Location = new System.Drawing.Point(6, 219);
+            this.lScreenshot.Name = "lScreenshot";
+            this.lScreenshot.Size = new System.Drawing.Size(136, 13);
+            this.lScreenshot.TabIndex = 5;
+            this.lScreenshot.Text = "Screenshot Save Location:";
             // 
             // gbSettingsTaskbar
             // 
@@ -273,7 +309,7 @@ namespace Pytel_WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 450);
+            this.ClientSize = new System.Drawing.Size(402, 485);
             this.Controls.Add(this.gbSettings);
             this.Controls.Add(this.gbShortcuts);
             this.Controls.Add(this.gbAbout);
@@ -320,5 +356,8 @@ namespace Pytel_WinForm
         private System.Windows.Forms.NumericUpDown nudVolume;
         private System.Windows.Forms.RadioButton rbVolume;
         private System.Windows.Forms.RadioButton rbPlaylist;
+        private System.Windows.Forms.LinkLabel llScreenshotFolder;
+        private System.Windows.Forms.Button bChangeSCRLocation;
+        private System.Windows.Forms.Label lScreenshot;
     }
 }
