@@ -9,6 +9,7 @@ using Mpv.NET.Player;
 using Pytel_WinForm.Properties;
 using System.IO;
 using System.Linq;
+using Microsoft.Win32;
 
 namespace Pytel_WinForm
 {
@@ -19,10 +20,12 @@ namespace Pytel_WinForm
         bool isMediaLoaded = false, isMediaPlaying = false, isFullScreen = false, closedWithQ = false;
         string mediaPath;
         List<string> mediaQueue = new List<string>();
+        string[] _args;
 
-        public Main()
+        public Main(string[] args)
         {
             InitializeComponent();
+            _args = args;
             player = new MpvPlayer(pPlayer.Handle);
             player.MediaFinished += mediaFinished;
             this.Location = Settings.Default.lastPos;
@@ -36,6 +39,21 @@ namespace Pytel_WinForm
                 Thread.Sleep(2000);
                 this.Text = "Pytel | " + player.MediaTitle;
                 isMediaLoaded = true;
+                tDuration.Start();
+            }
+
+            CreateExtend();
+            if (_args.Length > 0)
+            {
+               string[] validFileExtension = { ".avi", ".mkv", ".mp4", ".m4a", ".m4v", ".ogg", ".mpg", ".mpeg", ".mpv", ".mp3", ".wmv", ".wma", ".mov", ".m3u" };
+                if (File.Exists(_args[0]) && validFileExtension.Contains(Path.GetExtension(_args[0]))) fileLoad(_args[0]);
+
+                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = 0;
+                player.Load(mediaQueue[0]);
+                mediaPath = mediaQueue[0];
+                isMediaLoaded = true;
+                player.Resume();
+                isMediaPlaying = true;
                 tDuration.Start();
             }
         }
@@ -314,7 +332,7 @@ namespace Pytel_WinForm
                         g.CopyFromScreen(this.Left + borderWidth + pPlayer.Left, this.Top + titleHeight + pPlayer.Top, 0, 0, bitmap.Size, CopyPixelOperation.SourceCopy);
 
                         tsBasic.Visible = wasBasicBarVisible;
-                        tsFullScreen.Visible = wasFSBarVisible; //gitignore
+                        tsFullScreen.Visible = wasFSBarVisible;
 
                         bitmap.Save($"{Settings.Default.scrLocation}\\{player.MediaTitle} at {Math.Floor(player.Position.TotalSeconds)}sec.png", ImageFormat.Png);
                         break;
@@ -338,7 +356,6 @@ namespace Pytel_WinForm
                 player.Resume();
                 isMediaPlaying = true;
                 tDuration.Start();
-
             }
         }
 
@@ -426,6 +443,31 @@ namespace Pytel_WinForm
             player.Resume();
             isMediaPlaying = true;
             tDuration.Start();
+        }
+
+        private void CreateExtend()
+        {
+            string appName = "Pytel";
+            string exePath = string.Format("\"{0}\"", Application.ExecutablePath);
+            string exeName = AppDomain.CurrentDomain.FriendlyName;
+
+            string[] ext = { ".avi", ".mkv", ".mp4", ".m4a", ".m4v", ".ogg", ".mpg", ".mpeg", ".mpv", ".mp3", ".wmv", ".wma", ".mov" };
+            foreach(string str in ext)
+            {
+                Registry.CurrentUser.CreateSubKey(str).SetValue("", appName);
+                Registry.CurrentUser.CreateSubKey(appName + @"\DefaultIcon").SetValue("", exePath);
+                Registry.CurrentUser.CreateSubKey(appName + @"\shell\open\command").SetValue("", exePath + "\"%1\"");
+                Registry.CurrentUser.CreateSubKey(appName + @"\shell\open\command").SetValue("", exePath + "\"%1\"");
+                Registry.CurrentUser.CreateSubKey(string.Format(@"Applications\{0}\shell\open\command", exeName)).SetValue("", exePath + "\"%1\"");
+                Registry.CurrentUser.CreateSubKey(string.Format(@"Applications\{0}\shell\edit\command", exeName)).SetValue("", exePath + "\"%1\"");
+            }
+
+            Registry.CurrentUser.CreateSubKey(".m3u").SetValue("", appName);
+            Registry.CurrentUser.CreateSubKey(appName + @"\DefaultIcon").SetValue("", exePath);
+            Registry.CurrentUser.CreateSubKey(appName + @"\shell\open\command").SetValue("", exePath + "\"%1\"");
+            Registry.CurrentUser.CreateSubKey(appName + @"\shell\open\command").SetValue("", exePath + "\"%1\"");
+            Registry.CurrentUser.CreateSubKey(string.Format(@"Applications\{0}\shell\open\command", exeName)).SetValue("", exePath + "\"%1\"");
+            Registry.CurrentUser.CreateSubKey(string.Format(@"Applications\{0}\shell\edit\command", exeName)).SetValue("", exePath + "\"%1\"");
         }
     }
 
