@@ -21,3 +21,4 @@
 # :||
 
 * [ ] Discord RPC
+* [ ] Dark Mode when playing
