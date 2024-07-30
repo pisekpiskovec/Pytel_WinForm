@@ -9,7 +9,7 @@
 * [ ] Screenshots
 * [ ] subtitle and track chooser
 * [ ] default audio track
-* [ ] default dubtitles
+* [ ] default subtitles
 
 # Q
 
@@ -21,4 +21,3 @@
 # :||
 
 * [ ] Discord RPC
-* [ ] Dark Mode when playing

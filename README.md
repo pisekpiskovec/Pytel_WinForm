@@ -18,7 +18,6 @@ Inspired by KDE's Haruna Media Player, Pytel is simplier still yet powerful mutl
 * [x] Navigation using numbers
 * [x] `.mov`, `.wav` file support (add to open dialog)
 * [x] Close StreamReader in Queue dialog
-* [ ] Dark Mode??
 
 ## Screenshots
 
