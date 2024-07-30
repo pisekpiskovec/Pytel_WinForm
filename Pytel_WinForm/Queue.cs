@@ -75,8 +75,13 @@ namespace Pytel_WinForm
         {
             if (Path.GetExtension(FileName) == ".m3u")
             {
-                string[] inputing = File.ReadAllLines(FileName);
-                foreach (string item in inputing) { fileLoad(item); }
+                StreamReader reader = new StreamReader(FileName, System.Text.Encoding.Default);
+                string[] inputing = reader.ReadToEnd().Split('\n');
+                foreach (string input in inputing) {
+                    string str = input.Trim().Replace("\r", string.Empty);
+                    fileLoad(str);
+                }
+                reader.Close();
             }
             else { mediaQueue.Add(FileName); }
         }
