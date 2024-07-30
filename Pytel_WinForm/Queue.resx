@@ -124,7 +124,7 @@
     <value>212, 17</value>
   </metadata>
   <data name="ofdAdd.Filter" xml:space="preserve">
-    <value>All Supported Formats|*.avi;*.mkv;*.mp4;*.m4a;*.m4v;*.ogg;*.mpg;*.mpeg;*.mpv;*.mp3;*.wmv;*.wma;*.mov|Audio Video Interleave|*.avi|Matroska|*.mkv|MPEG-4|*.mp4;*.m4a;*.m4v|Vorbis|*.ogg|MPEG-1|*.mpg;*.mpeg;*.mpv|MPEG-2|*.mp3|Windows Media Video|*.wmv|Windows Media Audio|*.wma|Movie|*.mov|MP3 URL|*.m3u</value>
+    <value>All Supported Formats|*.avi;*.mkv;*.mp4;*.m4a;*.m4v;*.ogg;*.mpg;*.mpeg;*.mpv;*.mp3;*.wmv;*.wma;*.mov;*.wav|Audio Video Interleave|*.avi|Matroska|*.mkv|MPEG-4|*.mp4;*.m4a;*.m4v|Vorbis|*.ogg|MPEG-1|*.mpg;*.mpeg;*.mpv|MPEG-2|*.mp3|Windows Media Video|*.wmv|Windows Media Audio|*.wma|Movie|*.mov|WAVE Audio|*.wav|MP3 URL|*.m3u</value>
   </data>
   <metadata name="tControls.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

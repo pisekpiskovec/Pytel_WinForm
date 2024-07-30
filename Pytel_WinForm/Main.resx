@@ -370,28 +370,28 @@
 </value>
   </data>
   <metadata name="ofdFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>122, 17</value>
+    <value>107, 17</value>
   </metadata>
   <data name="ofdFile.Filter" xml:space="preserve">
-    <value>All Supported Formats|*.avi;*.mkv;*.mp4;*.m4a;*.m4v;*.ogg;*.mpg;*.mpeg;*.mpv;*.mp3;*.wmv;*.wma;*.mov|Audio Video Interleave|*.avi|Matroska|*.mkv|MPEG-4|*.mp4;*.m4a;*.m4v|Vorbis|*.ogg|MPEG-1|*.mpg;*.mpeg;*.mpv|MPEG-2|*.mp3|Windows Media Video|*.wmv|Windows Media Audio|*.wma|Movie|*.mov|MP3 URL|*.m3u</value>
+    <value>All Supported Formats|*.avi;*.mkv;*.mp4;*.m4a;*.m4v;*.ogg;*.mpg;*.mpeg;*.mpv;*.mp3;*.wmv;*.wma;*.mov;*.wav|Audio Video Interleave|*.avi|Matroska|*.mkv|MPEG-4|*.mp4;*.m4a;*.m4v|Vorbis|*.ogg|MPEG-1|*.mpg;*.mpeg;*.mpv|MPEG-2|*.mp3|Windows Media Video|*.wmv|Windows Media Audio|*.wma|Movie|*.mov|WAVE Audio|*.wav|MP3 URL|*.m3u</value>
   </data>
   <metadata name="tDuration.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>206, 18</value>
+    <value>197, 17</value>
   </metadata>
   <metadata name="tControls.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>309, 18</value>
   </metadata>
   <metadata name="tsFullScreen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>511, 15</value>
+    <value>532, 18</value>
   </metadata>
   <metadata name="ofdUniversal.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>397, 18</value>
+    <value>412, 18</value>
   </metadata>
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>624, 18</value>
+    <value>649, 18</value>
   </metadata>
   <metadata name="tTaskbar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>714, 18</value>
+    <value>740, 18</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
