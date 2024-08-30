@@ -42,24 +42,9 @@ namespace Pytel_WinForm
                 isMediaLoaded = true;
                 tDuration.Start();
             }
-
-            CreateExtend();
-            if (_args.Length > 0)
-            {
-               string[] validFileExtension = { ".avi", ".mkv", ".mp4", ".m4a", ".m4v", ".ogg", ".mpg", ".mpeg", ".mpv", ".mp3", ".wmv", ".wma", ".mov", ".m3u" };
-                if (File.Exists(_args[0]) && validFileExtension.Contains(Path.GetExtension(_args[0]))) fileLoad(_args[0]);
-
-                player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = 0;
-                player.Load(mediaQueue[0]);
-                mediaPath = mediaQueue[0];
-                isMediaLoaded = true;
-                player.Resume();
-                isMediaPlaying = true;
-                tDuration.Start();
-            }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (closedWithQ) { Settings.Default.volumeLast = player.Volume; } else { Settings.Default.volumeLast = 100; }
             if (WindowState != FormWindowState.Maximized) Settings.Default.lastPos = this.Location;
@@ -272,7 +257,7 @@ namespace Pytel_WinForm
             }
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Main_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
             if (e.Control && e.Shift)
@@ -372,6 +357,28 @@ namespace Pytel_WinForm
 
         private void pPlayer_DragEnter(object sender, DragEventArgs e) { e.Effect = DragDropEffects.Copy; }
         private void pPlayer_MouseDoubleClick(object sender, MouseEventArgs e) { { if (e.Button == MouseButtons.Left) { if (isFullScreen) { tsbExitFullScreen.PerformClick(); } else { tsbFullScreen.PerformClick(); } } } }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            CreateExtend();
+            if (_args.Length > 0)
+            {
+                string[] validFileExtension = { ".avi", ".mkv", ".mp4", ".m4a", ".m4v", ".ogg", ".mpg", ".mpeg", ".mpv", ".mp3", ".wmv", ".wma", ".mov", ".m3u" };
+                //if (File.Exists(_args[0]) && validFileExtension.Contains(new FileInfo(_args[0]).Extension))
+                if (File.Exists(_args[0]) && new FileInfo(_args[0]).Extension == ".mp3")
+                {
+                    fileLoad(_args[0]);
+                    //player.Stop(); isMediaPlaying = false; isMediaLoaded = false; mediaPath = ""; mediaQueueIndex = 0;
+                    //player.Load(mediaQueue[0]);
+                    //mediaPath = mediaQueue[0];
+                    //isMediaLoaded = true;
+                    //player.Resume();
+                    //isMediaPlaying = true;
+                    //tDuration.Start();
+                }
+            }
+        }
+
         private void tslDuration_Click(object sender, EventArgs e) { About abt = new About(); abt.ShowDialog(); }
         private void tsbQueue_Click(object sender, EventArgs e) {
             Queue que = new Queue(mediaQueue);
