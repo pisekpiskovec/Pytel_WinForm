@@ -470,7 +470,7 @@ namespace Pytel_WinForm
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Pytel";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
-            this.Load += new System.EventHandler(this.Main_Load);
+            //this.Load += new System.EventHandler(this.Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.tsBasic.ResumeLayout(false);
             this.tsBasic.PerformLayout();
