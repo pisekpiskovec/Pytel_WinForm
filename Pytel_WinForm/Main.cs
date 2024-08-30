@@ -32,6 +32,19 @@ namespace Pytel_WinForm
             this.WindowState = (FormWindowState)Settings.Default.lastStat;
             this.Size = Settings.Default.lastSize;
             if (Settings.Default.volumeLast != 100) { player.Volume = Settings.Default.volumeLast; } else { player.Volume = 100; }
+            if (!string.IsNullOrEmpty(Settings.Default.mediaArg))
+            {
+                player.Load(Settings.Default.mediaArg);
+                mediaPath = Settings.Default.mediaArg;
+                mediaQueue.Add(Settings.Default.mediaArg);
+                Thread.Sleep(2000);
+                this.Text = "Pytel | " + player.MediaTitle;
+                isMediaLoaded = true;
+                tDuration.Start();
+                Settings.Default.mediaArg = string.Empty;
+                Settings.Default.Save();
+            }
+
             if (!string.IsNullOrEmpty(Settings.Default.mediaLast))
             {
                 player.Load(Settings.Default.mediaLast);

@@ -142,5 +142,17 @@ namespace Pytel_WinForm.Properties {
                 this["scrLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string mediaArg {
+            get {
+                return ((string)(this["mediaArg"]));
+            }
+            set {
+                this["mediaArg"] = value;
+            }
+        }
     }
 }

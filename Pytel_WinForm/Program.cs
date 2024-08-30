@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Pytel_WinForm.Properties;
 
 namespace Pytel_WinForm
 {
@@ -13,6 +14,7 @@ namespace Pytel_WinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if(args.Length > 0) { Settings.Default.mediaArg = args[0]; Settings.Default.Save(); }
             Application.Run(new Main(args));
         }
     }
