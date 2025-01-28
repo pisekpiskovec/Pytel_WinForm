@@ -46,15 +46,24 @@ namespace Pytel_WinForm
             this.rbPosition = new System.Windows.Forms.RadioButton();
             this.rbState = new System.Windows.Forms.RadioButton();
             this.rbOff = new System.Windows.Forms.RadioButton();
-            this.nudPosition = new System.Windows.Forms.NumericUpDown();
             this.lPosition = new System.Windows.Forms.Label();
-            this.nudVolume = new System.Windows.Forms.NumericUpDown();
             this.lVolume = new System.Windows.Forms.Label();
+            this.gbYT = new System.Windows.Forms.GroupBox();
+            this.lYTytdlPath = new System.Windows.Forms.Label();
+            this.lFFmgegPath = new System.Windows.Forms.Label();
+            this.tbFFmgegPath = new System.Windows.Forms.TextBox();
+            this.bFFmgegPath = new System.Windows.Forms.Button();
+            this.bYTytdlPath = new System.Windows.Forms.Button();
+            this.tbYTytdlPath = new System.Windows.Forms.TextBox();
+            this.chbYTEnable = new System.Windows.Forms.CheckBox();
+            this.nudPosition = new System.Windows.Forms.NumericUpDown();
+            this.nudVolume = new System.Windows.Forms.NumericUpDown();
             this.gbAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.gbShortcuts.SuspendLayout();
             this.gbSettings.SuspendLayout();
             this.gbSettingsTaskbar.SuspendLayout();
+            this.gbYT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudVolume)).BeginInit();
             this.SuspendLayout();
@@ -132,6 +141,7 @@ namespace Pytel_WinForm
             // 
             // gbSettings
             // 
+            this.gbSettings.Controls.Add(this.gbYT);
             this.gbSettings.Controls.Add(this.llScreenshotFolder);
             this.gbSettings.Controls.Add(this.bChangeSCRLocation);
             this.gbSettings.Controls.Add(this.lScreenshot);
@@ -142,7 +152,7 @@ namespace Pytel_WinForm
             this.gbSettings.Controls.Add(this.lVolume);
             this.gbSettings.Location = new System.Drawing.Point(12, 224);
             this.gbSettings.Name = "gbSettings";
-            this.gbSettings.Size = new System.Drawing.Size(378, 243);
+            this.gbSettings.Size = new System.Drawing.Size(378, 357);
             this.gbSettings.TabIndex = 2;
             this.gbSettings.TabStop = false;
             this.gbSettings.Text = "Settings";
@@ -249,6 +259,111 @@ namespace Pytel_WinForm
             this.rbOff.UseVisualStyleBackColor = true;
             this.rbOff.CheckedChanged += new System.EventHandler(this.rbOff_CheckedChanged);
             // 
+            // lPosition
+            // 
+            this.lPosition.AutoSize = true;
+            this.lPosition.Location = new System.Drawing.Point(6, 47);
+            this.lPosition.Name = "lPosition";
+            this.lPosition.Size = new System.Drawing.Size(87, 13);
+            this.lPosition.TabIndex = 2;
+            this.lPosition.Text = "Position Change:";
+            // 
+            // lVolume
+            // 
+            this.lVolume.AutoSize = true;
+            this.lVolume.Location = new System.Drawing.Point(6, 21);
+            this.lVolume.Name = "lVolume";
+            this.lVolume.Size = new System.Drawing.Size(85, 13);
+            this.lVolume.TabIndex = 0;
+            this.lVolume.Text = "Volume Change:";
+            // 
+            // gbYT
+            // 
+            this.gbYT.Controls.Add(this.tbFFmgegPath);
+            this.gbYT.Controls.Add(this.lFFmgegPath);
+            this.gbYT.Controls.Add(this.bFFmgegPath);
+            this.gbYT.Controls.Add(this.bYTytdlPath);
+            this.gbYT.Controls.Add(this.tbYTytdlPath);
+            this.gbYT.Controls.Add(this.lYTytdlPath);
+            this.gbYT.Controls.Add(this.chbYTEnable);
+            this.gbYT.Location = new System.Drawing.Point(7, 244);
+            this.gbYT.Name = "gbYT";
+            this.gbYT.Size = new System.Drawing.Size(365, 103);
+            this.gbYT.TabIndex = 8;
+            this.gbYT.TabStop = false;
+            this.gbYT.Text = "YouTube Player";
+            // 
+            // lYTytdlPath
+            // 
+            this.lYTytdlPath.AutoSize = true;
+            this.lYTytdlPath.Location = new System.Drawing.Point(6, 47);
+            this.lYTytdlPath.Name = "lYTytdlPath";
+            this.lYTytdlPath.Size = new System.Drawing.Size(51, 13);
+            this.lYTytdlPath.TabIndex = 1;
+            this.lYTytdlPath.Text = "ytdl Path:";
+            // 
+            // lFFmgegPath
+            // 
+            this.lFFmgegPath.AutoSize = true;
+            this.lFFmgegPath.Location = new System.Drawing.Point(6, 76);
+            this.lFFmgegPath.Name = "lFFmgegPath";
+            this.lFFmgegPath.Size = new System.Drawing.Size(73, 13);
+            this.lFFmgegPath.TabIndex = 5;
+            this.lFFmgegPath.Text = "FFmpeg Path:";
+            // 
+            // tbFFmgegPath
+            // 
+            this.tbFFmgegPath.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::Pytel_WinForm.Properties.Settings.Default, "ytdlEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbFFmgegPath.Enabled = global::Pytel_WinForm.Properties.Settings.Default.ytdlEnabled;
+            this.tbFFmgegPath.Location = new System.Drawing.Point(85, 73);
+            this.tbFFmgegPath.Name = "tbFFmgegPath";
+            this.tbFFmgegPath.Size = new System.Drawing.Size(216, 20);
+            this.tbFFmgegPath.TabIndex = 6;
+            // 
+            // bFFmgegPath
+            // 
+            this.bFFmgegPath.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::Pytel_WinForm.Properties.Settings.Default, "ytdlEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.bFFmgegPath.Enabled = global::Pytel_WinForm.Properties.Settings.Default.ytdlEnabled;
+            this.bFFmgegPath.Location = new System.Drawing.Point(307, 71);
+            this.bFFmgegPath.Name = "bFFmgegPath";
+            this.bFFmgegPath.Size = new System.Drawing.Size(52, 23);
+            this.bFFmgegPath.TabIndex = 4;
+            this.bFFmgegPath.Text = "Browse";
+            this.bFFmgegPath.UseVisualStyleBackColor = true;
+            // 
+            // bYTytdlPath
+            // 
+            this.bYTytdlPath.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::Pytel_WinForm.Properties.Settings.Default, "ytdlEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.bYTytdlPath.Enabled = global::Pytel_WinForm.Properties.Settings.Default.ytdlEnabled;
+            this.bYTytdlPath.Location = new System.Drawing.Point(307, 42);
+            this.bYTytdlPath.Name = "bYTytdlPath";
+            this.bYTytdlPath.Size = new System.Drawing.Size(52, 23);
+            this.bYTytdlPath.TabIndex = 3;
+            this.bYTytdlPath.Text = "Browse";
+            this.bYTytdlPath.UseVisualStyleBackColor = true;
+            // 
+            // tbYTytdlPath
+            // 
+            this.tbYTytdlPath.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::Pytel_WinForm.Properties.Settings.Default, "ytdlEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbYTytdlPath.Enabled = global::Pytel_WinForm.Properties.Settings.Default.ytdlEnabled;
+            this.tbYTytdlPath.Location = new System.Drawing.Point(63, 44);
+            this.tbYTytdlPath.Name = "tbYTytdlPath";
+            this.tbYTytdlPath.Size = new System.Drawing.Size(238, 20);
+            this.tbYTytdlPath.TabIndex = 2;
+            // 
+            // chbYTEnable
+            // 
+            this.chbYTEnable.AutoSize = true;
+            this.chbYTEnable.Checked = global::Pytel_WinForm.Properties.Settings.Default.ytdlEnabled;
+            this.chbYTEnable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbYTEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Pytel_WinForm.Properties.Settings.Default, "ytdlEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chbYTEnable.Location = new System.Drawing.Point(6, 19);
+            this.chbYTEnable.Name = "chbYTEnable";
+            this.chbYTEnable.Size = new System.Drawing.Size(144, 17);
+            this.chbYTEnable.TabIndex = 0;
+            this.chbYTEnable.Text = "Enable YouTube support";
+            this.chbYTEnable.UseVisualStyleBackColor = true;
+            // 
             // nudPosition
             // 
             this.nudPosition.Location = new System.Drawing.Point(99, 45);
@@ -267,15 +382,6 @@ namespace Pytel_WinForm
             this.nudPosition.TabIndex = 3;
             this.nudPosition.Value = global::Pytel_WinForm.Properties.Settings.Default.positionChange;
             this.nudPosition.ValueChanged += new System.EventHandler(this.nudPosition_ValueChanged);
-            // 
-            // lPosition
-            // 
-            this.lPosition.AutoSize = true;
-            this.lPosition.Location = new System.Drawing.Point(6, 47);
-            this.lPosition.Name = "lPosition";
-            this.lPosition.Size = new System.Drawing.Size(87, 13);
-            this.lPosition.TabIndex = 2;
-            this.lPosition.Text = "Position Change:";
             // 
             // nudVolume
             // 
@@ -296,20 +402,11 @@ namespace Pytel_WinForm
             this.nudVolume.Value = global::Pytel_WinForm.Properties.Settings.Default.volumeChange;
             this.nudVolume.ValueChanged += new System.EventHandler(this.nudVolume_ValueChanged);
             // 
-            // lVolume
-            // 
-            this.lVolume.AutoSize = true;
-            this.lVolume.Location = new System.Drawing.Point(6, 21);
-            this.lVolume.Name = "lVolume";
-            this.lVolume.Size = new System.Drawing.Size(85, 13);
-            this.lVolume.TabIndex = 0;
-            this.lVolume.Text = "Volume Change:";
-            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 479);
+            this.ClientSize = new System.Drawing.Size(402, 588);
             this.Controls.Add(this.gbSettings);
             this.Controls.Add(this.gbShortcuts);
             this.Controls.Add(this.gbAbout);
@@ -332,6 +429,8 @@ namespace Pytel_WinForm
             this.gbSettings.PerformLayout();
             this.gbSettingsTaskbar.ResumeLayout(false);
             this.gbSettingsTaskbar.PerformLayout();
+            this.gbYT.ResumeLayout(false);
+            this.gbYT.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudVolume)).EndInit();
             this.ResumeLayout(false);
@@ -359,5 +458,13 @@ namespace Pytel_WinForm
         private System.Windows.Forms.LinkLabel llScreenshotFolder;
         private System.Windows.Forms.Button bChangeSCRLocation;
         private System.Windows.Forms.Label lScreenshot;
+        private System.Windows.Forms.GroupBox gbYT;
+        private System.Windows.Forms.CheckBox chbYTEnable;
+        private System.Windows.Forms.Button bFFmgegPath;
+        private System.Windows.Forms.Button bYTytdlPath;
+        private System.Windows.Forms.TextBox tbYTytdlPath;
+        private System.Windows.Forms.Label lYTytdlPath;
+        private System.Windows.Forms.Label lFFmgegPath;
+        private System.Windows.Forms.TextBox tbFFmgegPath;
     }
 }
