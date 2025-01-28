@@ -44,5 +44,26 @@ namespace Pytel_WinForm
             try { Process.Start(llScreenshotFolder.Text); }
             catch { llScreenshotFolder.Text = string.Empty; }
         }
+
+        private void bYTytdlPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Executables|*.exe";
+            if(fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.ytdlPath = fileDialog.FileName;
+            }
+        }
+
+        private void bFFmgegPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Executables|*.exe";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.ffmpegPath = fileDialog.FileName;
+            }
+
+        }
     }
 }

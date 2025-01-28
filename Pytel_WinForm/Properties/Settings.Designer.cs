@@ -166,5 +166,29 @@ namespace Pytel_WinForm.Properties {
                 this["ytdlEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ytdlPath {
+            get {
+                return ((string)(this["ytdlPath"]));
+            }
+            set {
+                this["ytdlPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ffmpegPath {
+            get {
+                return ((string)(this["ffmpegPath"]));
+            }
+            set {
+                this["ffmpegPath"] = value;
+            }
+        }
     }
 }
